@@ -1,0 +1,8 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.env
+./fetcher/credenciais/*
+server/node_modules/
+client/node_modules/
