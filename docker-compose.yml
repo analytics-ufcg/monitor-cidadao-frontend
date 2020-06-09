@@ -1,0 +1,26 @@
+version: '3.5'
+
+services:
+
+  backend:
+    build: ../monitor-cidadao-backend
+    volumes:
+      - ../monitor-cidadao-backend:/app/server
+      - ../monitor-cidadao-backend/app.js:/app/app.js
+    ports:
+      - "3000:3000"
+    networks:
+      - my-proxy-net
+
+  frontend:
+    build: ./
+    volumes:
+      - ./:/app/client
+      - /app/client/node_modules/
+    ports:
+      - "4200:4200"
+
+networks:
+  my-proxy-net:
+    external:
+      name: monitor_cidadao_network
