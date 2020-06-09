@@ -6,7 +6,7 @@
                 <p class="text-secondary"><strong>Número:</strong> {{ licitacao.nu_licitacao }}</p>
             </div>
             <div class="col-sm align-self-end">
-                <p class="text-secondary"><strong>Valor:</strong> R$ {{ licitacao.vl_licitacao }}</p>
+                <p class="text-secondary"><strong>Valor:</strong>  {{ licitacao.vl_licitacao | currency:"BRL" }}</p>
             </div>
         </div>
 
