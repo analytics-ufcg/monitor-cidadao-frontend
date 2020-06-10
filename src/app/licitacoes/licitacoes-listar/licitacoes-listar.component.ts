@@ -8,6 +8,8 @@ import { LicitacaoService } from 'src/app/shared/services/licitacao.service';
 })
 export class LicitacoesListarComponent implements OnInit {
 
+  pag : number = 1;
+  contador : number = 15;
   licitacoes = [
     // { nu_licitacao: "10101010", vl_licitacao: "100000", de_Obs: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vehicula nulla a sollicitudin gravida. Vivamus et ultricies sem. Praesent ut molestie neque. Sed porttitor, massa vel scelerisque molestie, nibh tortor tincidunt nisl, ac aliquet massa nibh et lorem. Cras a purus arcu. " },
     // { nu_licitacao: "10101010", vl_licitacao: "100000", de_Obs: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vehicula nulla a sollicitudin gravida. Vivamus et ultricies sem. Praesent ut molestie neque. Sed porttitor, massa vel scelerisque molestie, nibh tortor tincidunt nisl, ac aliquet massa nibh et lorem. Cras a purus arcu. " },
@@ -24,5 +26,8 @@ export class LicitacoesListarComponent implements OnInit {
       this.licitacoes = licitacoes;
     });
   }
+
+  
+  
 
 }
