@@ -1,10 +1,10 @@
 
 
-<ul class="list-group mt-2 col-lg-12" *ngFor="let licitacao of licitacoes | paginate: { itemsPerPage: contador, currentPage: pag }; let i = index">
+<ul class="list-group col-lg-12" *ngFor="let licitacao of licitacoes | paginate: { itemsPerPage: contador, currentPage: pag }; let i = index">
     
     <div *ngIf="licitacao.nu_licitacao != 000000000">
 
-         <li class="list-group-item">
+         <li class="list-group-item mt-2">
 
 
             <div class="row mr-2">
@@ -13,11 +13,7 @@
                 </div>
             
                 <div class="col text-right">
-
-                    
-                        <p class="text-secondary"><strong>Valor:</strong>  {{ licitacao.vl_licitacao | currency:"BRL"  }}</p>
-                    
-
+                    <p class="text-secondary"><strong>Valor:</strong>  {{ licitacao.vl_licitacao | currency:"BRL"  }}</p>
                 </div>
             </div>
 
