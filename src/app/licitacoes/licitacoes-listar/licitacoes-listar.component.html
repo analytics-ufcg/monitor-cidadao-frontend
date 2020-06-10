@@ -5,20 +5,16 @@
          <li class="list-group-item">
 
 
-            <div class="row">
+            <div class="row mr-2">
                 <div class="col-9">
                   <p class="text-secondary"><strong>Número:</strong> {{ licitacao.nu_licitacao }}</p>
                 </div>
             
                 <div class="col text-right">
 
-                    <div *ngIf="licitacao.vl_licitacao === null; else valorValido">
-                        <span class="text-secondary"><strong>Valor não cadastrado</strong> </span>
-                    </div>
-
-                    <ng-template #valorValido>
+                    
                         <p class="text-secondary"><strong>Valor:</strong>  {{ licitacao.vl_licitacao | currency:"BRL"  }}</p>
-                    </ng-template>
+                    
 
                 </div>
             </div>
