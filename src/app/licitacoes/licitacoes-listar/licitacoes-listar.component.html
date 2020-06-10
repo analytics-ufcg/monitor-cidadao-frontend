@@ -1,4 +1,6 @@
-<ul class="list-group mt-2 col-lg-12" *ngFor="let licitacao of licitacoes; let i = index">
+
+
+<ul class="list-group mt-2 col-lg-12" *ngFor="let licitacao of licitacoes | paginate: { itemsPerPage: contador, currentPage: pag }; let i = index">
     
     <div *ngIf="licitacao.nu_licitacao != 000000000">
 
@@ -29,6 +31,19 @@
         </li>
     </div>
 </ul>
+<p></p>
+<div class = "row d-flex justify-content-center">
+    <div 
+        class="my-pagination col-md-7">
+        <pagination-controls 
+            (pageChange)="pag = $event" 
+            previousLabel="Anterior"
+            nextLabel="Próximo"
+            autoHide="true">
+        </pagination-controls>
+    </div>
+</div>
+
 
 <div class="mt-3" *ngIf="licitacoes.length === 0">
     <p> <strong> Nenhuma licitação no momento. </strong> </p>
