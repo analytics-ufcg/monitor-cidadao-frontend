@@ -1,3 +1,4 @@
+import { SharedModule } from './shared/shared.module';
 import { LicitacoesModule } from './licitacoes/licitacoes.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -24,7 +25,8 @@ registerLocaleData(localePt, 'pt');
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    LicitacoesModule
+    LicitacoesModule,
+    SharedModule
   ],
   providers: [ 
      {
