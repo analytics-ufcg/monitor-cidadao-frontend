@@ -3,7 +3,7 @@ import { LicitacoesModule } from './licitacoes/licitacoes.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -26,7 +26,8 @@ registerLocaleData(localePt, 'pt');
     HttpClientModule,
     NgbModule,
     LicitacoesModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule
   ],
   providers: [ 
      {
