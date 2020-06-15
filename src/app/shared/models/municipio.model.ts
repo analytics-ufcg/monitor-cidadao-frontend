@@ -1,6 +1,7 @@
 export class Municipio {
-    codigoMunicipio: string;
-    codigoIBGE: string ;
-    nomeMunicipio: string;
+    cd_Municipio: string;
+    cd_Ibge: string ;
+    no_Municipio: string;
+
 }
 

@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { LicitacoesModule } from './licitacoes/licitacoes.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -21,14 +22,16 @@ registerLocaleData(localePt, 'pt');
     AppComponent
   ],
   imports: [
+    SharedModule,
+    NgbModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    NgbModule,
     LicitacoesModule,
     SharedModule,
-    BrowserAnimationsModule
-  ],
+    BrowserAnimationsModule,
+    FormsModule
+  ], 
   providers: [ 
      {
     provide: LOCALE_ID,
