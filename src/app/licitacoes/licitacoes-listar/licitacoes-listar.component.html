@@ -34,6 +34,12 @@
           class="text-center">
           Nº Licitação
         </th>
+        <th
+          scope="col"
+          class="text-center">
+          Valor
+        </th>
+        
         <th>&nbsp;</th>
       </tr>
     </thead>
@@ -45,6 +51,9 @@
         </td>
         <td class="text-center">
           {{ licitacao.nu_licitacao  }}
+        </td>
+        <td class="text-center">
+          {{ licitacao.vl_licitacao | currency:"BRL"  }}
         </td>
         <td class="text-center">
           <a

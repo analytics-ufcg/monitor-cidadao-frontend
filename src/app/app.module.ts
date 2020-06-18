@@ -14,12 +14,14 @@ import { AppComponent } from './app.component';
 import {LOCALE_ID} from '@angular/core';
 import localePt from '@angular/common/locales/pt';
 import {registerLocaleData} from '@angular/common';
+import { MunicipiosComponent } from './municipios/municipios.component';
 
 registerLocaleData(localePt, 'pt');
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MunicipiosComponent
   ],
   imports: [
     SharedModule,
