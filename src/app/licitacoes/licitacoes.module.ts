@@ -6,10 +6,13 @@ import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [LicitacoesListarComponent],
+  
   imports: [
     CommonModule,
     NgxPaginationModule
-  ], exports: [
+  ], 
+  
+  exports: [
     LicitacoesListarComponent
   ]
 })

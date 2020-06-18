@@ -15,7 +15,8 @@ import { SobreComponent } from './sobre/sobre.component';
   imports: [
     CommonModule,
     MainRoutingModule,
-    LicitacoesModule
+    LicitacoesModule,
+    
   ]
 })
 export class MainModule { }
