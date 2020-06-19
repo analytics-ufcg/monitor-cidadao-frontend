@@ -14,6 +14,11 @@ import { MunicipioRoutingModule } from './municipios-routing.module';
     CommonModule,
     NgxPaginationModule,
     MunicipioRoutingModule,
+  ],
+  exports:[
+    MunicipiosComponent,
+    MunicipiosLicitacoesComponent
   ]
 })
 export class MunicipiosModule { }
+

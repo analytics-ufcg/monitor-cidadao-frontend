@@ -1,3 +1,4 @@
+import { MunicipiosModule } from './../municipios/municipios.module';
 import { LicitacoesModule } from './../licitacoes/licitacoes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';

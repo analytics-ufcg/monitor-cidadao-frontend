@@ -1,3 +1,4 @@
+import { MunicipiosModule } from './municipios/municipios.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { BrowserModule } from '@angular/platform-browser';
@@ -28,9 +29,9 @@ registerLocaleData(localePt, 'pt');
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,  
-    SharedModule,
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MunicipiosModule
   ], 
 
   providers: [ 
