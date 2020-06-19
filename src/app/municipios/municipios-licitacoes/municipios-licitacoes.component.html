@@ -1,6 +1,6 @@
 <div class="container view-container">
      
-    <h4 class="mb-4">Licitações abertas</h4>
+    <h4 class="mb-4">Licitações</h4>
 
     <table class="table" [hidden]="licitacoes.length == 0 ">
       <thead>
@@ -22,7 +22,6 @@
       </thead>
       <tbody>
         <tr  *ngFor="let licitacao of licitacoes | paginate: { itemsPerPage: contador, currentPage: pag }; let i = index">
-         
           <td>
             {{ licitacao.de_Obs  }}
           </td>
@@ -40,7 +39,6 @@
             Ver detalhes
           </a>
           </td>
-     
         </tr>
       </tbody>
     </table>
