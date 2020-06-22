@@ -17,7 +17,7 @@ export class LicitacaoService {
 
 
    // Recupera licitacoes de um municipio
-   getLicitacaoPorMunicipio(municipio: string): Observable<Licitacao[]> {
+   getLicitacoesPorMunicipio(municipio: string): Observable<Licitacao[]> {
     const params = new HttpParams().set('cd_municipio', municipio);
     return this.http.get<Licitacao[]>(this.url + '/municipio', { params });
   }

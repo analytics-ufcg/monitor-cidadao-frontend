@@ -19,7 +19,7 @@ export class MunicipiosLicitacoesComponent implements OnInit {
   constructor(private licitacoesService: LicitacaoService) { }
 
   ngOnInit(): void {
-    this.licitacoesService.getLicitacaoPorMunicipio(this.cd_municipio)
+    this.licitacoesService.getLicitacoesPorMunicipio(this.cd_municipio)
     .pipe(takeUntil(this.unsubscribe))
     .subscribe(licitacoes => {
       this.licitacoes = licitacoes;
