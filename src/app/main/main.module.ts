@@ -1,3 +1,4 @@
+import { MunicipiosModule } from './../municipios/municipios.module';
 import { LicitacoesModule } from './../licitacoes/licitacoes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -15,7 +16,8 @@ import { SobreComponent } from './sobre/sobre.component';
   imports: [
     CommonModule,
     MainRoutingModule,
-    LicitacoesModule
+    LicitacoesModule,
+    
   ]
 })
 export class MainModule { }

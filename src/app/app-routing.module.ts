@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
+import { MunicipiosComponent } from './municipios/municipios.component';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -11,7 +12,22 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule)
-  }
+  },
+
+  {
+    path: 'municipio',
+    loadChildren: () => import('./municipios/municipios.module').then(m => m.MunicipiosModule)
+  },
+
+  {
+    path: 'municipios',
+    component: MunicipiosComponent
+  },
+
+  
+
+  
+  
   
 ];
 

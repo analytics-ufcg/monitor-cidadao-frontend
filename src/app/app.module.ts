@@ -1,6 +1,6 @@
+import { MunicipiosModule } from './municipios/municipios.module';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
-import { LicitacoesModule } from './licitacoes/licitacoes.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -18,20 +18,22 @@ import {registerLocaleData} from '@angular/common';
 registerLocaleData(localePt, 'pt');
 
 @NgModule({
+ 
   declarations: [
-    AppComponent
+    AppComponent,
   ],
+
   imports: [
     SharedModule,
     NgbModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
-    LicitacoesModule,
-    SharedModule,
+    HttpClientModule,  
     BrowserAnimationsModule,
-    FormsModule
+    FormsModule,
+    MunicipiosModule
   ], 
+
   providers: [ 
      {
     provide: LOCALE_ID,
