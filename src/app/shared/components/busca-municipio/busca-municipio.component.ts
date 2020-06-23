@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { Municipio } from './../../models/municipio.model';
 import { takeUntil } from 'rxjs/operators';
 import { RegiaoService } from './../../services/regiao.service';
@@ -6,6 +7,7 @@ import { trigger, transition, animate, style } from '@angular/animations'
 
 import { Observable, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 
@@ -32,12 +34,17 @@ export class BuscaMunicipioComponent implements OnInit {
 
   private unsubscribe = new Subject();
   public muncipioSelecionado: any;
-  municipios: any[];
+  public municipios: any[];
+  public municipioSelecionado: Municipio;
 
-  constructor(private regiaoService: RegiaoService) { }
 
-  ngOnInit(): void {
-    this.getMunicipios()
+  constructor(private router: Router,
+    private regiaoService: RegiaoService,
+    private userService: UserService) { }
+
+  ngOnInit() {
+    this.getMunicipios();
+    this.getMunicipioSalvo();
   }
 
   getMunicipios() {
@@ -48,26 +55,42 @@ export class BuscaMunicipioComponent implements OnInit {
       });
   }
 
+  getMunicipioSalvo() {
+    this.userService
+      .getMunicipioEscolhido()
+      .subscribe(municipio => {
+        this.municipioSelecionado = municipio;
+      });
+  }
+
+ 
+
   selecionaMunicipio (municipio){
-    //Chamar método para mudar de Município
-    console.log (municipio)
+    this.userService.setMunicipioEscolhido(municipio);
+    this.router.navigate(['/municipio']);
+    this.mostrarBusca = false;
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
   /**
-   * Usado para realizar apresentar as sugestões da busca por munípios
+   * Usado para realizar apresentar as sugestões da busca por municípios
    */
   search = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       map(term => term.length < 2 ? []
         : this.municipios.filter(
-          v => v.no_Municipio.toLowerCase().indexOf(
+          v => v.no_municipio.toLowerCase().indexOf(
             term.toLowerCase()
             ) > -1
           ).slice(0, 5)
           )
         )
-  formatter = (x: { no_Municipio: string }) => x.no_Municipio;
+  formatter = (x: { no_municipio: string }) => x.no_municipio;
 
 
 }

@@ -1,3 +1,7 @@
+import { Municipio } from './../shared/models/municipio.model';
+import { debounceTime, takeUntil } from 'rxjs/operators';
+import { UserService } from './../shared/services/user.service';
+import { Subject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MunicipiosComponent implements OnInit {
 
-  constructor() { }
+  private unsubscribe = new Subject();
 
-  ngOnInit(): void {
+  public municipioEscolhido: Municipio;
+
+  constructor(
+    private userService: UserService) { }
+
+  ngOnInit() {
+    this.getMunicipio();
+  }
+
+  getMunicipio() {
+    this.userService
+      .getMunicipioEscolhido()
+      .pipe(
+        debounceTime(300),
+        takeUntil(this.unsubscribe))
+      .subscribe(municipio => {
+        this.municipioEscolhido = municipio;
+      });
   }
 
 }
