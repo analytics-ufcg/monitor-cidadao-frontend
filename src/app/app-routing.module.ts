@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule, ExtraOptions } from '@angular/router';
 import { MunicipiosComponent } from './municipios/municipios.component';
+import { ListaRelatoriosComponent } from './relatorios/lista-relatorios/lista-relatorios.component';
+import { RelatorioComponent } from './relatorios/relatorio/relatorio.component';
 
 const routerOptions: ExtraOptions = {
   scrollPositionRestoration: 'enabled',
@@ -17,6 +19,16 @@ const routes: Routes = [
   {
     path: 'municipio',
     loadChildren: () => import('./municipios/municipios.module').then(m => m.MunicipiosModule)
+  },
+
+  {
+    path: 'lista-relatorios',
+    component: ListaRelatoriosComponent
+  },
+  
+  {
+    path: 'lista-relatorios/:id',
+    component: RelatorioComponent
   },
 
   {
