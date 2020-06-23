@@ -33,3 +33,7 @@
 .mb-4{
     padding-top: 20px;
 }
+
+::ng-deep .my-pagination .ngx-pagination .current {
+  background: grey;
+}

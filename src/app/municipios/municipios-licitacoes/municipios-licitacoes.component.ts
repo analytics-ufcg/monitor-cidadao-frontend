@@ -14,10 +14,12 @@ export class MunicipiosLicitacoesComponent implements OnInit {
   private unsubscribe = new Subject();
   licitacoes;
 
+  cd_municipio = "012"
+
   constructor(private licitacoesService: LicitacaoService) { }
 
   ngOnInit(): void {
-    this.licitacoesService.getLicitacoes()
+    this.licitacoesService.getLicitacoesPorMunicipio(this.cd_municipio)
     .pipe(takeUntil(this.unsubscribe))
     .subscribe(licitacoes => {
       this.licitacoes = licitacoes;

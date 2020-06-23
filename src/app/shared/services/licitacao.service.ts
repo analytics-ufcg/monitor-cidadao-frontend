@@ -2,8 +2,7 @@ import { Licitacao } from './../models/licitacao.model';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
-import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient,  HttpParams } from '@angular/common/http';
 
 import { environment } from '../../../environments/environment';
 
@@ -17,8 +16,9 @@ export class LicitacaoService {
   constructor(private http: HttpClient) { }
 
 
-  // Lista todas as licitações
-  getLicitacoes(): Observable<Licitacao[]> {
-    return this.http.get<Licitacao[]>(`${this.url}`);
+   // Recupera licitacoes de um municipio
+   getLicitacoesPorMunicipio(municipio: string): Observable<Licitacao[]> {
+    const params = new HttpParams().set('cd_municipio', municipio);
+    return this.http.get<Licitacao[]>(this.url + '/municipio', { params });
   }
 }
