@@ -1,3 +1,4 @@
+import { ListaContratosComponent } from './lista-contratos/lista-contratos.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MunicipiosComponent } from './municipios.component';
@@ -19,6 +20,10 @@ const routes: Routes = [
         path: 'licitacoes',
         component: MunicipiosLicitacoesComponent
       },
+      {
+        path: 'contratos',
+        component: ListaContratosComponent
+      }
     
     ]
   }
