@@ -1,4 +1,4 @@
-import { MunicipiosModule } from './../municipios/municipios.module';
+import { SharedModule } from './../shared/shared.module';
 import { LicitacoesModule } from './../licitacoes/licitacoes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,7 +17,7 @@ import { SobreComponent } from './sobre/sobre.component';
     CommonModule,
     MainRoutingModule,
     LicitacoesModule,
-    
+    SharedModule
   ]
 })
 export class MainModule { }

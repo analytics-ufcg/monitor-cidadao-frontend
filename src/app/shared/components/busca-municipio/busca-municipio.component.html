@@ -1,17 +1,12 @@
-<div class="barra-busca fixed-top" *ngIf="mostrarBusca" [@slideInOut]>
-    <div class="container mt-2 mb-1 w-50">
-
-        <div class="input-group">
-            <input 
-            id="typeahead-prevent-manual-entry" 
-            type="text" class="form-control" 
-            [(ngModel)]="muncipioSelecionado"
-            [ngbTypeahead]="search" 
-            [inputFormatter]="formatter" 
-            [resultFormatter]="formatter" 
-            [editable]='false' 
-            placeholder="Busque por um município..." 
-            (selectItem)="selecionaMunicipio($event.item)"/>
-        </div>
-    </div>
+<div class="input-group">
+    <input 
+    id="typeahead-prevent-manual-entry" 
+    type="text" class="form-control" 
+    [(ngModel)]="muncipioSelecionado"
+    [ngbTypeahead]="search" 
+    [inputFormatter]="formatter" 
+    [resultFormatter]="formatter" 
+    [editable]='false' 
+    placeholder="Qual município você deseja consultar?" 
+    (selectItem)="selecionaMunicipio($event.item)"/>
 </div>

@@ -6,14 +6,17 @@
 }
 
 h1 {
-    color: #f08856;
+    color: rgba(0,8,35,0.7);
     font-weight: bold;
 }
 
-h5 {
+p {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.1em;
     color: gray;
 }
 
-.mt-9 {
-    margin-top: 9rem !important;
+.mt-6 {
+    margin-top: 6rem !important;
 }
