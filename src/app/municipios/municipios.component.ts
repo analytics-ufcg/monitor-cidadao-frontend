@@ -1,8 +1,10 @@
 import { Municipio } from './../shared/models/municipio.model';
+
 import { debounceTime, takeUntil } from 'rxjs/operators';
-import { UserService } from './../shared/services/user.service';
-import { Subject } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+
+import { UserService } from './../shared/services/user.service';
 
 @Component({
   selector: 'app-municipios',

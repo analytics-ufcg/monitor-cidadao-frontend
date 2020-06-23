@@ -1,11 +1,12 @@
 import { Municipio } from './../../shared/models/municipio.model';
-import { ContratoService } from './../../shared/services/contrato.service';
+import { Contrato } from '../../shared/models/contrato.model';
+
 import { UserService } from './../../shared/services/user.service';
+import { ContratoService } from './../../shared/services/contrato.service';
 
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { takeUntil, debounceTime } from 'rxjs/operators';
-import { Contrato } from '../../shared/models/contrato.model';
 
 @Component({
   selector: 'app-lista-contratos',
@@ -19,7 +20,7 @@ export class ListaContratosComponent implements OnInit {
   public municipioEscolhido: Municipio;
 
   private unsubscribe = new Subject();
-  contratos: Contrato[];
+  contratos: Contrato[] = [];
 
   constructor(private userService: UserService, 
               private contratosService: ContratoService) { }
