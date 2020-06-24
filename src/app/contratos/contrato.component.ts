@@ -31,7 +31,6 @@ export class ContratoComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(contrato => {
         this.contrato = contrato;
-        console.log (contrato)
       });
   }
 

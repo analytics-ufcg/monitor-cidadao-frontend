@@ -15,28 +15,21 @@ const routes: Routes = [
     path: '',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule)
   },
+  // aqui contém a listagem de licitações e contratos de um município
   {
-    path: 'municipio',
+    path: 'municipios', 
     loadChildren: () => import('./municipios/municipios.module').then(m => m.MunicipiosModule)
   },
+  // aqui contém os relatórios HTML gerados
   {
-    path: 'relatorio',
+    path: 'relatorios',
     loadChildren: () => import('./relatorios/relatorios.module').then(m => m.RelatoriosModule)
   },
+  // aqui contém as informações de um contrato específico (detalhes)
   {
     path: 'contrato',
     loadChildren: () => import('./contratos/contratos.module').then(m => m.ContratosModule)
-  },
-  {
-    path: 'relatorios',
-    component: ListaRelatoriosComponent
-  },
-  
-  {
-    path: 'relatorios/:id',
-    component: RelatorioComponent
   }
-  
   
 ];
 
