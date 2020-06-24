@@ -1,0 +1,14 @@
+
+<div class="d-flex justify-content-center">
+    <loading-spinner class="mt-5" *ngIf="isLoading"></loading-spinner>
+</div>
+
+<div [hidden]="isLoading" class="container relatorio-container">
+    <a class="link-voltar" href="relatorios/"><i class="fas fa-arrow-left"></i> Voltar</a>
+    <div class="row">
+        <div class="col-md-13 tamanho-relatorio offset-md-1">
+            <div [innerHtml]="relatorio">
+            </div>
+        </div>
+    </div>
+</div>

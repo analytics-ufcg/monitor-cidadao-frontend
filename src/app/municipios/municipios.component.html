@@ -1,5 +1,5 @@
 <div class="container view-container">
-    <h2 class="mb-4">Nome Municipio</h2>
+    <h2 class="mb-4 mt-1">{{municipioEscolhido?.no_municipio}}</h2>
   
     <div class="licitacoes-detalhar-nav">
       <ul class="nav nav-pills nav-fill">
@@ -8,7 +8,7 @@
             class="nav-link"
             [routerLink]="['./licitacoes']"
             routerLinkActive="active">
-            Licitações 
+            <strong>Licitações</strong> 
           </a>
         </li>
         <li class="nav-item">
@@ -16,7 +16,7 @@
             class="nav-link"
             [routerLink]="['./contratos']"
             routerLinkActive="active">
-            Contratos vigentes
+          <strong>Contratos</strong>
           </a>
         </li>
       </ul>

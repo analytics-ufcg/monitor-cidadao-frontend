@@ -1,0 +1,15 @@
+.barra-busca {
+    z-index: 1000;
+    background-color: #f1f1f1;
+    color: #f1f1f1;
+    opacity: 1;
+    margin-top: 3.8rem;
+    border-bottom: 1px solid #dedede;
+  }
+  
+  @media (max-width: 767.98px) {
+    .w-50 {
+      width: 100% !important;
+    }
+  }
+  
