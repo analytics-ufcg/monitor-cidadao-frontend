@@ -24,6 +24,10 @@ const routes: Routes = [
     loadChildren: () => import('./relatorios/relatorios.module').then(m => m.RelatoriosModule)
   },
   {
+    path: 'contrato',
+    loadChildren: () => import('./contratos/contratos.module').then(m => m.ContratosModule)
+  },
+  {
     path: 'relatorios',
     component: ListaRelatoriosComponent
   },
@@ -31,16 +35,7 @@ const routes: Routes = [
   {
     path: 'relatorios/:id',
     component: RelatorioComponent
-  },
-
-  {
-    path: 'municipios',
-    component: MunicipiosComponent
-  },
-
-  
-
-  
+  }
   
   
 ];
