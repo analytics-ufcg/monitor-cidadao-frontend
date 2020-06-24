@@ -11,13 +11,21 @@ export class RelatorioComponent implements OnInit {
   relatorio: any = '';
   rota: string;
 
+  public isLoading = true;
+
   constructor(private relatorioService: RelatorioService, private route: ActivatedRoute) {
     this.rota = this.route.snapshot.params['id'];
   }
 
   ngOnInit(): void {
-    this.relatorio = this.relatorioService.getDescritivo(this.rota)
-    .subscribe(data => this.relatorio = data);
+    this.carregaRelatorio ()
   }
 
+  carregaRelatorio () {
+    this.relatorio = this.relatorioService.getDescritivo(this.rota)
+    .subscribe(data => {
+      this.relatorio = data;
+      this.isLoading = false;
+    });
+  }
 }
