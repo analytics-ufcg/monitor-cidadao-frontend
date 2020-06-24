@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { PipesModule } from './../shared/pipes/pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -18,7 +19,8 @@ import { ListaLicitacoesComponent } from './lista-licitacoes/lista-licitacoes.co
     CommonModule,
     NgxPaginationModule,
     MunicipioRoutingModule,
-    PipesModule
+    PipesModule,
+    SharedModule
   ],
   exports:[
     MunicipiosComponent

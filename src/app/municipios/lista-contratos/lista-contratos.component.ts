@@ -16,6 +16,7 @@ import { takeUntil, debounceTime } from 'rxjs/operators';
 export class ListaContratosComponent implements OnInit {
   pag: number = 1;
   contador: number = 15;
+  public isLoading = true;
 
   public municipioEscolhido: Municipio;
 
@@ -45,6 +46,7 @@ export class ListaContratosComponent implements OnInit {
     this.contratosService.getContratosPorMunicipio(municipio.cd_municipio)
       .pipe(takeUntil(this.unsubscribe)).subscribe(contratos => {
         this.contratos = contratos.sort((a, b) => (b.dt_ano - a.dt_ano));
+        this.isLoading = false;
       });
   }
 

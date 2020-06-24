@@ -17,6 +17,8 @@ export class ListaLicitacoesComponent implements OnInit {
   pag: number = 1;
   contador: number = 15;
 
+  public isLoading = true;
+
   private unsubscribe = new Subject();
   licitacoes: Licitacao[] = [];
 
@@ -46,6 +48,7 @@ export class ListaLicitacoesComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(licitacoes => {
         this.licitacoes = licitacoes.sort((a, b) => (b.dt_ano - a.dt_ano));
+        this.isLoading = false;
       });
   }
 
