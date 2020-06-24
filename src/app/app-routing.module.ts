@@ -22,12 +22,12 @@ const routes: Routes = [
   },
 
   {
-    path: 'lista-relatorios',
+    path: 'relatorios',
     component: ListaRelatoriosComponent
   },
   
   {
-    path: 'lista-relatorios/:id',
+    path: 'relatorios/:id',
     component: RelatorioComponent
   },
 
