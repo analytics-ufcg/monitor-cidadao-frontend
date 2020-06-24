@@ -29,13 +29,6 @@
                 <li class="nav-item">
                     <a class="nav-link" href="sobre">Sobre</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link"
-                    href="#"
-                    routerLink="/municipio"
-                    (click)="toggleNavbar()">
-                    Municipios</a>
-                </li>
             </ul>
             
         </div>
@@ -43,7 +36,8 @@
     </div>
 </nav>
 
-<app-busca-municipio [mostrarBusca]="mostrarBusca"></app-busca-municipio>
+
+<app-barra-busca [mostrarBusca]="mostrarBusca"></app-barra-busca>
 
 <router-outlet></router-outlet>
 

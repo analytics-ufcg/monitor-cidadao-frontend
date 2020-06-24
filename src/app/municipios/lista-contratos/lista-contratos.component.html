@@ -1,0 +1,57 @@
+<div class="container view-container">
+    <h4 class="mb-4">Contratos vigentes</h4>
+
+    <p [hidden]="contratos?.length > 0 || isLoading">Não há contratos neste momento.</p>
+    
+    
+
+    <table class="table" >
+        <thead>
+            <tr>
+                <th scope="col">Número</th>
+                <th scope="col" class="w-25">CNPJ/CPF</th>
+                <th scope="col">Início da vigência</th>
+                <th scope="col">Fim da vigência</th>
+                <th scope="col" class="text-right">
+                    Valor Total
+                </th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        
+        <tbody [hidden]="contratos?.length == 0">
+            
+            <tr
+                *ngFor="let contrato of contratos | paginate: { itemsPerPage: contador, currentPage: pag }; let i = index;">
+                <td>{{ contrato.nu_contrato }}</td>
+                <td class="w-17">
+                    <span *ngIf="contrato.nu_cpfcnpj">{{ contrato.nu_cpfcnpj | formatCpfCnpj}}</span>
+                    <span *ngIf="!contrato.nu_cpfcnpj">-</span>
+                </td>
+                <td>{{ contrato.dt_assinatura | date: 'dd/MM/yyyy'}}</td>
+                <td>{{ contrato.pr_vigencia | date: 'dd/MM/yyyy'}}</td>
+                <td class="text-right numero">
+                    <span *ngIf="contrato.de_obs">{{ contrato.vl_total_contrato | currency: "R$" }}</span>
+                    <span *ngIf="!contrato.de_obs">-</span>
+                </td>
+                <td class="text-center">
+                    <a [routerLink]="['/licitacoes/' + contrato.id_licitacao + '/contratos']"
+                        [queryParams]="{ id: contrato.id_contrato }" class="btn btn-sm btn-primary">
+                        Ver contrato
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="d-flex justify-content-center">
+    <loading-spinner class="mt-2" *ngIf="isLoading"></loading-spinner>
+</div>
+
+<div class="row d-flex justify-content-center">
+    <div class="my-pagination col-md-7">
+        <pagination-controls (pageChange)="pag = $event" previousLabel="Anterior" nextLabel="Próximo" autoHide="true">
+        </pagination-controls>
+    </div>
+</div>

@@ -1,23 +1,29 @@
+import { SharedModule } from './../shared/shared.module';
+import { PipesModule } from './../shared/pipes/pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MunicipiosLicitacoesComponent } from './municipios-licitacoes/municipios-licitacoes.component';
-import { MunicipiosComponent } from './municipios.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { MunicipioRoutingModule } from './municipios-routing.module';
 
+import { MunicipiosComponent } from './municipios.component';
+import { ListaContratosComponent } from './lista-contratos/lista-contratos.component';
+import { ListaLicitacoesComponent } from './lista-licitacoes/lista-licitacoes.component';
+
 @NgModule({
   declarations: [
-    MunicipiosLicitacoesComponent,
-    MunicipiosComponent
+    MunicipiosComponent,
+    ListaContratosComponent,
+    ListaLicitacoesComponent
   ],
   imports: [
     CommonModule,
     NgxPaginationModule,
     MunicipioRoutingModule,
+    PipesModule,
+    SharedModule
   ],
   exports:[
-    MunicipiosComponent,
-    MunicipiosLicitacoesComponent
+    MunicipiosComponent
   ]
 })
 export class MunicipiosModule { }

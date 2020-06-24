@@ -1,9 +1,8 @@
+import { ListaLicitacoesComponent } from './lista-licitacoes/lista-licitacoes.component';
+import { ListaContratosComponent } from './lista-contratos/lista-contratos.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { MunicipiosComponent } from './municipios.component';
-import { MunicipiosLicitacoesComponent } from './municipios-licitacoes/municipios-licitacoes.component';
-
-
 
 const routes: Routes = [
   {
@@ -17,9 +16,12 @@ const routes: Routes = [
       },
       {
         path: 'licitacoes',
-        component: MunicipiosLicitacoesComponent
+        component: ListaLicitacoesComponent
       },
-    
+      {
+        path: 'contratos',
+        component: ListaContratosComponent
+      }
     ]
   }
 ];
