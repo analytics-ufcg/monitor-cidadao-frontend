@@ -54,7 +54,7 @@ export class BuscaMunicipioComponent implements OnInit {
 
   selecionaMunicipio (municipio){
     this.userService.setMunicipioEscolhido(municipio);
-    this.router.navigate(['/municipio']);
+    this.router.navigate(['/municipios']);
   }
 
   ngOnDestroy() {

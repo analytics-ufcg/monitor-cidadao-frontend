@@ -19,4 +19,9 @@ export class ContratoService {
     const params = new HttpParams().set('cd_municipio', municipio);
     return this.http.get<Contrato[]>(this.url + '/municipio', { params });
   }
+
+  // Recupera contrato pelo ID
+  getById(id: string): Observable<Contrato> {
+    return this.http.get<Contrato>(this.url + '/' + id);
+  }
 }
