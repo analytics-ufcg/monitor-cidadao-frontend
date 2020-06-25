@@ -1,0 +1,59 @@
+<div [hidden]="!licitacao">
+
+    <div>
+        <span class="titulo">
+            <a [routerLink]="['/municipios/licitacoes']">
+                <i class="fas fa-arrow-left arrow"></i>
+            </a> Licitacao {{licitacao?.nu_licitacao}}</span>
+    </div>
+    <div class="mb-4">
+        <div class="row mt-4">
+            <div class="col">
+                <span [hidden]="licitacao?.dt_homologacao" class="badge badge-info status-licitacao">
+                    Licitação aberta
+                </span>
+                <span [hidden]="!licitacao?.dt_homologacao" class="badge badge-danger status-licitacao">
+                    Licitação encerrada
+                </span>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-sm-6 col-md-3 col-lg-2">
+                <div>
+                    <strong>Valor da licitação</strong>
+                </div>
+                <div>
+                    <span [hidden]="!licitacao?.vl_licitacao">
+                        {{ licitacao?.vl_licitacao | currency: "R$" }}
+                    </span>
+                    <span [hidden]="licitacao?.vl_licitacao">--</span>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-3">
+                <div>
+                    <strong>Data da homologação</strong>
+                </div>
+                <div>
+                    <span [hidden]="!licitacao?.dt_homologacao">
+                        {{ licitacao?.dt_homologacao | date: 'LLL/y'}}
+                    </span>
+                    <span [hidden]="licitacao?.dt_homologacao">--</span>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-sm-6 col-md-3 col-lg-2">
+                <div >
+                    <strong>Objeto da Licitação</strong>
+                </div>
+
+            </div>
+            <div class="col-12">
+                {{ licitacao?.de_obs  }}
+            </div>
+        </div>
+    </div>
+    <div>
+        <app-lista-contratos [contratos] = "licitacao?.contratosLicitacao"></app-lista-contratos>
+    </div>
+</div>

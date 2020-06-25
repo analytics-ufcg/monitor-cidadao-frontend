@@ -1,0 +1,45 @@
+<div class="container view-container">
+    <h4 class="mb-4">Contratos</h4>
+
+    <p [hidden]="contratos?.length > 0">Não há contratos neste momento.</p>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Número</th>
+                    <th scope="col" class="w-25">CNPJ/CPF</th>
+                    <th scope="col">Início da vigência</th>
+                    <th scope="col">Fim da vigência</th>
+                    <th scope="col" class="text-right">
+                        Valor Total
+                    </th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+
+            <tbody [hidden]="contratos?.length == 0">
+
+                <tr *ngFor="let contrato of contratos">
+                    <td>
+                        <a [routerLink]="['/contrato/' + contrato.id_contrato]">
+                            <span>
+                                {{ contrato.nu_contrato }}
+                            </span>
+                        </a>
+                    </td>
+                    <td class="w-17">
+                        <span *ngIf="contrato.nu_cpfcnpj">{{ contrato.nu_cpfcnpj | formatCpfCnpj}}</span>
+                        <span *ngIf="!contrato.nu_cpfcnpj">-</span>
+                    </td>
+                    <td>{{ contrato.dt_assinatura | date: 'LLL/y'}}</td>
+                    <td>{{ contrato.pr_vigencia | date: 'LLL/y'}}</td>
+                    <td class="text-right numero">
+                        <span *ngIf="contrato.de_obs">{{ contrato.vl_total_contrato | currency: "R$" }}</span>
+                        <span *ngIf="!contrato.de_obs">-</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

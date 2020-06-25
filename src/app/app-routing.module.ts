@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'municipios', 
     loadChildren: () => import('./municipios/municipios.module').then(m => m.MunicipiosModule)
   },
+  {
+    path: 'licitacao',
+    loadChildren: () => import('./licitacoes/licitacao.module').then(m => m.LicitacaoModule)
+  },
   // aqui contém os relatórios HTML gerados
   {
     path: 'relatorios',

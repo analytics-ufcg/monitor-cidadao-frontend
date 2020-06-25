@@ -10,6 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
+import { LicitacaoModule } from './licitacoes/licitacao.module';
+
 
 import {LOCALE_ID} from '@angular/core';
 import localePt from '@angular/common/locales/pt';
@@ -31,7 +33,8 @@ registerLocaleData(localePt, 'pt');
     HttpClientModule,  
     BrowserAnimationsModule,
     FormsModule,
-    MunicipiosModule
+    MunicipiosModule,
+    LicitacaoModule
   ], 
 
   providers: [ 
