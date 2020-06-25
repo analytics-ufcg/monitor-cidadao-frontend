@@ -16,6 +16,10 @@ export class LicitacaoService {
   constructor(private http: HttpClient) { }
 
 
+  get(id: string): Observable<Licitacao> {
+    return this.http.get<Licitacao>(this.url + '/' + id);
+  }
+  
    // Recupera licitacoes de um municipio
    getLicitacoesPorMunicipio(municipio: string): Observable<Licitacao[]> {
     const params = new HttpParams().set('cd_municipio', municipio);

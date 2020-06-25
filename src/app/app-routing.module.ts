@@ -20,6 +20,10 @@ const routes: Routes = [
     loadChildren: () => import('./municipios/municipios.module').then(m => m.MunicipiosModule)
   },
   {
+    path: 'licitacao',
+    loadChildren: () => import('./licitacoes/licitacao.module').then(m => m.LicitacaoModule)
+  },
+  {
     path: 'relatorio',
     loadChildren: () => import('./relatorios/relatorios.module').then(m => m.RelatoriosModule)
   },
@@ -37,12 +41,6 @@ const routes: Routes = [
     path: 'municipios',
     component: MunicipiosComponent
   },
-
-  
-
-  
-  
-  
 ];
 
 @NgModule({
