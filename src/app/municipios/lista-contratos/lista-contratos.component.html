@@ -35,8 +35,8 @@
                     <span *ngIf="!contrato.de_obs">-</span>
                 </td>
                 <td class="text-center">
-                    <a [routerLink]="['/licitacoes/' + contrato.id_licitacao + '/contratos']"
-                        [queryParams]="{ id: contrato.id_contrato }" class="btn btn-sm btn-primary">
+                    <a [routerLink]="['/contrato/' + contrato.id_contrato]"
+                        class="btn btn-sm btn-primary">
                         Ver contrato
                     </a>
                 </td>

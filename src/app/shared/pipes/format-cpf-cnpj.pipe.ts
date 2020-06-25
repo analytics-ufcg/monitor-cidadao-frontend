@@ -6,6 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class FormatCpfCnpjPipe implements PipeTransform {
 
   transform(value: any, ...args: any[]): any {
+    if (value == null) {
+      return "";
+    }
     const cnpjCpf = value.replace(/\D/g, '');
 
     if (cnpjCpf.length === 11) {
