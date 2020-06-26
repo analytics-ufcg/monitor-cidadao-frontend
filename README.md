@@ -1,7 +1,18 @@
+# Monitor Cidadão (front-end)
 
-  
 
-## Executando front-end (client)
+O Monitor Cidadão é um sistema desenvolvido através da parceria entre a CampinaTec e o laboratório Analytics da Universidade Federal de Campina Grande-PB com finalidade possibilitar aos cidadãos o acompanhamento dos contratos realizados pelos municípios do estado da Paraíba.
+
+
+## Front-end
+
+
+Aqui se encontra o front-end da aplicação, que foi desenvolvido em Angular. 
+Funciona a partir do back-end localizado nesse [repositório](https://github.com/analytics-ufcg/monitor-cidadao-backend).
+
+
+
+## Executando front-end 
 
  
 A execução do front-end Angular pode ser feita com o auxílio do docker ou manualmente.
@@ -10,11 +21,11 @@ A execução do front-end Angular pode ser feita com o auxílio do docker ou man
 
 Antes de tudo, garanta que você tenha instalado em sua máquina o **npm** e o **Angular CLI**.
 
-Instale os pacotes necessários (cd monitor-cidadao/client):
+Instale os pacotes necessários (cd monitor-cidadao-frontend):
 
 > npm install
 
-Para executar, bastar entrar na pasta **client** via terminal e inserir o comando:
+Para executar, basta estar na pasta **monitor-cidadao-frontend** via terminal e inserir o comando:
 
 > ng serve --open
 
