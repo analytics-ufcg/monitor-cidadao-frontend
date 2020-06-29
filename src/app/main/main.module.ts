@@ -1,4 +1,4 @@
-import { LicitacoesModule } from './../licitacoes/licitacoes.module';
+import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -15,7 +15,7 @@ import { SobreComponent } from './sobre/sobre.component';
   imports: [
     CommonModule,
     MainRoutingModule,
-    LicitacoesModule
+    SharedModule
   ]
 })
 export class MainModule { }

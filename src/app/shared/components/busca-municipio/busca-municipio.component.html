@@ -1,0 +1,12 @@
+<div class="input-group">
+    <input 
+    id="typeahead-prevent-manual-entry" 
+    type="text" class="form-control" 
+    [(ngModel)]="muncipioSelecionado"
+    [ngbTypeahead]="search" 
+    [inputFormatter]="formatter" 
+    [resultFormatter]="formatter" 
+    [editable]='false' 
+    placeholder="Qual município você deseja consultar?" 
+    (selectItem)="selecionaMunicipio($event.item)"/>
+</div>

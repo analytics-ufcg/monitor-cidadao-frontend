@@ -1,0 +1,49 @@
+<div class="view-container mt-4">
+  <div class="container" [hidden]="!contrato">
+
+    <div>
+      <span class="titulo">
+        <a [routerLink]="['/municipios/contratos']">
+          <i class="fas fa-arrow-left arrow"></i>
+        </a> Contrato {{contrato?.nu_contrato}}</span>
+    </div>
+
+    <p class="sub-titulo">{{contrato?.de_obs}}</p>
+
+    <div class="row mt-5">
+      <div class="col-sm-12 col-md-3 mb-4">
+        <div class="dados-linha">
+          <strong>Licitação</strong>
+        </div>
+        <div class="dados-linha">
+          <a [routerLink]="['/licitacao/' + contrato?.id_licitacao]">
+            {{ contrato?.nu_licitacao }}/{{ contrato?.dt_ano }}
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-9 mb-4">
+        <div class="dados-linha">
+          <strong>CNPJ/CPF do Contratado</strong>
+        </div>
+        <div class="dados-linha" >
+          {{contrato?.nu_cpfcnpj | formatCpfCnpj}}
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
+        <div class="dados-linha">
+          <strong>Vigência</strong>
+        </div>
+        <div class="dados-linha">
+          {{ contrato?.dt_assinatura | date: "dd/MM/yyyy" }} à {{ contrato?.pr_vigencia | date: "dd/MM/yyyy" }}
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
+        <div class="dados-linha">
+          <strong>Valor</strong>
+        </div>
+        <div class="dados-linha">
+          {{ contrato?.vl_total_contrato | currency: "R$" }}
+        </div>
+      </div>
+    </div>
+  </div>
