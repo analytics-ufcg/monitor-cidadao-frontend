@@ -10,3 +10,11 @@
 .arrow {
     max-width: .75em;
 }
+
+.top-page-container {
+    height: 200px;
+    background-color: coral;
+    width: 100vw;
+    margin-left: calc(-50vw + 50% - 8px);
+    position: relative;
+}

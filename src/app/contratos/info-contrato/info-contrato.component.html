@@ -1,6 +1,6 @@
 <div class="view-container mt-4">
-  <div class="container" [hidden]="!contrato">
 
+  <div class="top-page-container">
     <div>
       <span class="titulo">
         <a [routerLink]="['/municipios/contratos']">
@@ -8,25 +8,23 @@
         </a> Contrato {{contrato?.nu_contrato}}</span>
     </div>
 
-    <p class="sub-titulo">{{contrato?.de_obs}}</p>
+    <p class="sub-titulo">Última atualização realizada em {{contrato?.dt_atualizacao}}</p>
+
+    <div class="descricao">
+      <strong>Descrição</strong>
+      <p class="sub-titulo">{{contrato?.de_obs}}</p>
+    </div>
+  </div>
+
+  <div class="container" [hidden]="!contrato">
 
     <div class="row mt-5">
-      <div class="col-sm-12 col-md-3 mb-4">
+      <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
         <div class="dados-linha">
-          <strong>Licitação</strong>
+          <strong>Valor do Contrato</strong>
         </div>
         <div class="dados-linha">
-          <a [routerLink]="['/licitacao/' + contrato?.id_licitacao]">
-            {{ contrato?.nu_licitacao }}/{{ contrato?.dt_ano }}
-          </a>
-        </div>
-      </div>
-      <div class="col-sm-12 col-md-9 mb-4">
-        <div class="dados-linha">
-          <strong>CNPJ/CPF do Contratado</strong>
-        </div>
-        <div class="dados-linha" >
-          {{contrato?.nu_cpfcnpj | formatCpfCnpj}}
+          {{ contrato?.vl_total_contrato | currency: "R$" }}
         </div>
       </div>
       <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
@@ -37,12 +35,40 @@
           {{ contrato?.dt_assinatura | date: "dd/MM/yyyy" }} à {{ contrato?.pr_vigencia | date: "dd/MM/yyyy" }}
         </div>
       </div>
-      <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
+      <div class="col-sm-12 col-md-3 mb-4">
         <div class="dados-linha">
-          <strong>Valor</strong>
+          <strong>Licitação Originária</strong>
         </div>
         <div class="dados-linha">
-          {{ contrato?.vl_total_contrato | currency: "R$" }}
+          <a [routerLink]="['/licitacao/' + contrato?.id_licitacao]">
+            {{ contrato?.nu_licitacao }}/{{ contrato?.dt_ano }}
+          </a>
+        </div>
+      </div>
+      <div class="col-sm-12 col-md-9 mb-4">
+        <div class="dados-linha">
+          <strong>Unidade Gestora</strong>
+        </div>
+        <div class="dados-linha" >
+          <!-- {{contrato?.de_ugestora}} -->
+          Unidade aleatoria
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
+        <div class="dados-linha">
+          <strong>Empresa Contratada</strong>
+        </div>
+        <div class="dados-linha">
+          <!-- {{contrato?.no_fornecedor}}/{{contrato?.nu_cpfcnpj | formatCpfCnpj}} -->
+          Odbe
+        </div>
+      </div>
+      <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
+        <div class="dados-linha">
+          <strong>Eventos</strong>
+        </div>
+        <div class="dados-linha">
+          Timeline
         </div>
       </div>
     </div>
