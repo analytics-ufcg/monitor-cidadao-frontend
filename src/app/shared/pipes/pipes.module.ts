@@ -5,7 +5,9 @@ import { CommonModule } from '@angular/common';
 
 
 @NgModule({
-  declarations: [FormatCpfCnpjPipe],
+  declarations: [
+    FormatCpfCnpjPipe
+  ],
   imports: [
     CommonModule
   ],
