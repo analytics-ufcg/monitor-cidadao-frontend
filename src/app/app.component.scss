@@ -1,40 +1,64 @@
 .navbar-brand {
-    font-weight:lighter;
+    font-weight:600;
     font-size: 1.5em;
     color: 	#42427b;
+    margin-right: 0.3rem !important; 
 }
 
 .navbar{
     box-shadow: 0px 3px #cf6b41;
 }
+
 .page-footer{
-    margin-top: 100px;
     background-color: #2c2b54;
-    color: #f7f8f9;
-    height: 200px;
+    color: hsl(210, 14%, 97%);
+    min-height: 170px;
+    width: 100%;
+    margin-top: 6%;
 }
 
 .text-copyright{
-    font-size: 5;
+    font-size: 15px !important;
 }
+
 .teal{
-    background-color:#94524c;
-    width: 180px;
-    height: 2px;
-   
+    background-color:#d2784d;
+    width: 13em;
+    height: 2px; 
 }
 
 ul.list-unstyled{
     color: white;
 }
+
 a{
     color: white;
     font-size: 18px;
 }
+
 .navbar-light .navbar-nav .nav-link {
     color: #d06a3f;
+    font-size: 1em;
 }
 
-hr{
-    padding-bottom: 0%;
+.li-footer {
+    margin: 0 0 6px 0;
+}
+
+hr, h5{
+    padding: 0px;
+    margin: 0px;    
+  }
+
+.li-risco {
+    color:gray;
+}
+
+.li-risco:hover {
+    cursor: not-allowed;
+    text-decoration: none;
+}
+
+#work-area {
+    min-height: calc(70vh);
 }
