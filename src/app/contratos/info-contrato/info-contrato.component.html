@@ -1,43 +1,62 @@
 <div class="view-container mt-4">
 
   <div class="top-page-container">
-    <div>
-      <span class="titulo">
-        <a [routerLink]="['/municipios/contratos']">
-          <i class="fas fa-arrow-left arrow"></i>
-        </a> Contrato {{contrato?.nu_contrato}}</span>
-    </div>
+    <div class="container">
+      <div>
+        <span class="rota">
+          <a [routerLink]="['/municipios/contratos']">
+            <p class="texto-rota">Estado > Município</p>
+          </a>
+        </span>
+      </div>
 
-    <p class="sub-titulo">Última atualização realizada em {{contrato?.dt_atualizacao}}</p>
+      <div>
+        <span class="titulo cor-fonte-azul">
+          <a [routerLink]="['/municipios/contratos']">
+            <i class="fas fa-arrow-left arrow"></i>
+          </a>
+          Contrato <strong>{{contrato?.nu_contrato}}</strong>
+          <h5 class="d-inline-block status-contrato-div">
+            <span class="badge badge-info align-top status-contrato-badge">Em curso</span>
+          </h5>
+          <h3 class="d-inline-block risco-contrato-div">
+            <span class="badge badge-info align-top risco-contrato-badge">Alto Risco</span>
+          </h3>
+        </span>
+      </div>
 
-    <div class="descricao">
-      <strong>Descrição</strong>
-      <p class="sub-titulo">{{contrato?.de_obs}}</p>
+      <p class="sub-titulo">Última atualização realizada em {{contrato?.dt_atualizacao}}</p>
+
+      <div class="descricao">
+        <strong class="cor-fonte-azul">Descrição</strong>
+        <p class="sub-titulo">{{contrato?.de_obs}}</p>
+      </div>
     </div>
   </div>
 
   <div class="container" [hidden]="!contrato">
 
     <div class="row mt-5">
-      <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
+      <!-- first row -->
+      <div class="col-sm-6 col-lg-3 mb-4">
         <div class="dados-linha">
-          <strong>Valor do Contrato</strong>
+          <strong class="cor-fonte-azul">Valor do Contrato</strong>
         </div>
         <div class="dados-linha">
           {{ contrato?.vl_total_contrato | currency: "R$" }}
         </div>
       </div>
-      <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
+      <div class="col-sm-6 col-lg-3 mb-4">
         <div class="dados-linha">
-          <strong>Vigência</strong>
+          <strong class="cor-fonte-azul">Vigência</strong>
         </div>
         <div class="dados-linha">
           {{ contrato?.dt_assinatura | date: "dd/MM/yyyy" }} à {{ contrato?.pr_vigencia | date: "dd/MM/yyyy" }}
         </div>
       </div>
-      <div class="col-sm-12 col-md-3 mb-4">
+      <div class="col-sm-6 col-lg-3 mb-4">
         <div class="dados-linha">
-          <strong>Licitação Originária</strong>
+          <strong class="cor-fonte-azul">Licitação Originária</strong>
         </div>
         <div class="dados-linha">
           <a [routerLink]="['/licitacao/' + contrato?.id_licitacao]">
@@ -45,31 +64,33 @@
           </a>
         </div>
       </div>
-      <div class="col-sm-12 col-md-9 mb-4">
+    <!-- second row -->
+      <div class="col-sm-12 col-lg-9 mb-4">
         <div class="dados-linha">
-          <strong>Unidade Gestora</strong>
+          <strong class="cor-fonte-azul">Unidade Gestora</strong>
         </div>
         <div class="dados-linha" >
           <!-- {{contrato?.de_ugestora}} -->
           Unidade aleatoria
         </div>
       </div>
-      <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
+      <div class="col-sm-12 col-lg-9 col-lg-3 mb-4">
         <div class="dados-linha">
-          <strong>Empresa Contratada</strong>
+          <strong class="cor-fonte-azul">Empresa Contratada</strong>
         </div>
         <div class="dados-linha">
           <!-- {{contrato?.no_fornecedor}}/{{contrato?.nu_cpfcnpj | formatCpfCnpj}} -->
           Odbe
         </div>
-      </div>
-      <div class="col-sm-6 col-md-6 col-lg-3 mb-4">
+      <!-- third row -->
+      <div class="col-sm-12 col-md-9 mb-4">
         <div class="dados-linha">
-          <strong>Eventos</strong>
+          <strong class="cor-fonte-azul">Eventos</strong>
         </div>
         <div class="dados-linha">
           Timeline
         </div>
       </div>
+
     </div>
   </div>
