@@ -1,16 +1,11 @@
-.home-container {
-    margin-top: 5rem;
-}
-
-h1 {
-    color: rgba(0,8,35,0.7);
-    font-weight: bold;
-}
-
-p {
-    margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.1em;
-    color: gray;
-}
-
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 3rem;
+  
+    @media (min-width: 576px) {
+      height: 60vh;
+      margin-top: 0;
+    }
+  }
