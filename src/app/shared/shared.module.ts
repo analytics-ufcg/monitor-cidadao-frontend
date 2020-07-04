@@ -4,14 +4,14 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BuscaMunicipioComponent } from './components/busca-municipio/busca-municipio.component';
-import { BarraBuscaComponent } from './components/barra-busca/barra-busca.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ListaContratosComponent } from './components/lista-contratos/lista-contratos.component';
 import { PipesModule } from './pipes/pipes.module';
+import { BuscaNavbarComponent } from './components/busca-navbar/busca-navbar.component';
 
 
 @NgModule({
-  declarations: [BuscaMunicipioComponent, BarraBuscaComponent, LoadingSpinnerComponent, ListaContratosComponent],
+  declarations: [BuscaMunicipioComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -20,9 +20,9 @@ import { PipesModule } from './pipes/pipes.module';
     RouterModule
   ], exports:[
     BuscaMunicipioComponent,
-    BarraBuscaComponent,
     LoadingSpinnerComponent,
-    ListaContratosComponent
+    ListaContratosComponent,
+    BuscaNavbarComponent
   ]
 })
 export class SharedModule { }

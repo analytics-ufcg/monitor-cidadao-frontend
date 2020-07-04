@@ -1,15 +1,30 @@
-.navbar-brand {
-    font-weight:600;
-    font-size: 1.5em;
-    color: 	#42427b;
-    margin-right: 0.3rem !important; 
-}
-
-.navbar{
+// 
+// NAV BAR
+// 
+.navbar {
     box-shadow: 0px 3px #cf6b41;
+
+    .navbar-logo {
+        color: #42427b;
+        margin-right: 0.3rem !important;
+        text-decoration: none;
+    }
 }
 
-.page-footer{
+.btn-buscar {
+    position: relative;
+    z-index: 1000;
+    right: 5px;
+}
+
+#work-area {
+    min-height: calc(40vh);
+}
+
+// 
+// FOOTER
+// 
+.page-footer {
     background-color: #2c2b54;
     color: hsl(210, 14%, 97%);
     min-height: 170px;
@@ -17,48 +32,13 @@
     margin-top: 6%;
 }
 
-.text-copyright{
-    font-size: 15px !important;
-}
-
-.teal{
-    background-color:#d2784d;
+.teal-footer {
+    background-color: #d2784d;
     width: 13em;
-    height: 2px; 
+    height: 2px;
 }
 
-ul.list-unstyled{
-    color: white;
-}
-
-a{
-    color: white;
-    font-size: 18px;
-}
-
-.navbar-light .navbar-nav .nav-link {
-    color: #d06a3f;
-    font-size: 1em;
-}
-
-.li-footer {
-    margin: 0 0 6px 0;
-}
-
-hr, h5{
-    padding: 0px;
-    margin: 0px;    
-  }
-
-.li-risco {
-    color:gray;
-}
-
-.li-risco:hover {
+.text-muted:hover {
     cursor: not-allowed;
     text-decoration: none;
-}
-
-#work-area {
-    min-height: calc(70vh);
 }

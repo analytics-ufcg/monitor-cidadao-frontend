@@ -1,36 +1,35 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light py-2">
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
   <div class="container">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" (click)="toggleNavbar()">
-      <span class="icon-menu"></span>
-    </button>
-    <a class="navbar-brand" href="#">MONITOR CIDADÃO</a>
+   
+    <h3>
+      <a class="navbar-logo" href="#">MONITOR CIDADÃO</a>
+    </h3>
     <p class="small text-muted">alpha</p>
+
     <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed"
       [attr.aria-expanded]="!isCollapsed" aria-controls="navbarPrincipal" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarPrincipal" [ngbCollapse]="!isCollapsed">
-
-
       <ul class="navbar-nav ml-auto">
-        <!-- <button class="btn btn-dark my-2 my-sm-0 mr-4" (click)="alteraVisibilidadeBusca()" type="submit"> <i
-            class="fas fa-search"></i> Busque por um município</button> -->
+
+        <app-busca-navbar [mostrarBusca]="mostrarBusca"></app-busca-navbar>
+
+        <button class="btn-buscar btn btn-dark my-2 my-sm-0 mr-4 text-light" (click)="alteraVisibilidadeBusca()" type="submit"> <i
+            class="fas fa-search"></i></button> 
         <li class="nav-item">
-          <a class="nav-link" href="relatorios">Relatórios</a>
+          <a class="nav-link text-primary" href="relatorios">Relatórios</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="sobre">Sobre</a>
+          <a class="nav-link text-primary" href="sobre">Sobre</a>
         </li>
       </ul>
-
     </div>
 
   </div>
 </nav>
 
-<!-- <app-barra-busca [mostrarBusca]="mostrarBusca"></app-barra-busca> -->
 
 <div id="work-area">
   <router-outlet></router-outlet>
@@ -40,24 +39,24 @@
   <div class="container container-fluid text-center text-md-left">
     <div class="row">
 
-      <div class="col mt-5 h-50">
+      <div class="col mt-5 h-50 " >
         <h5 class="text-uppercase"><strong> MONITOR CIDADÃO</strong></h5>
-        <hr class="teal accent-1 d-inline-block">
-        <p>© 2020
-          <a href="#">Monitor Cidadão</a>
+        <hr class="teal-footer accent-1 d-inline-block">
+        <p class="text-light">© 2020
+          <a class="text-light" href="#">Monitor Cidadão</a>
         </p>
       </div>
 
       <div class="col-md-4 mt-3 pl-4">
         <ul class="list-unstyled mt-4">
           <li class="li-footer">
-            <a href="/sobre">O que é o Monitor Cidadão?</a>
+            <a class="mt-2 text-light" href="/sobre">O que é o Monitor Cidadão?</a>
           </li>
-          <li class="li-footer">
-            <a href="/relatorios">Análises descritivas</a>
+          <li class="mt-2 li-footer">
+            <a class="text-light" href="/relatorios">Análises descritivas</a>
           </li>
-          <li class="li-footer">
-            <a class ="li-risco" href="#!" data-toggle="tooltip" data-placement="right" title="Em desenvolvimento...">Risco contratual</a>
+          <li class="mt-2 li-footer">
+            <a  class ="text-muted" data-toggle="tooltip" data-placement="right" title="Em desenvolvimento...">Risco contratual</a>
           </li>
         </ul>
       </div>
@@ -66,11 +65,11 @@
         <div class="col-auto text-right mt-4">
           <!-- Github do projeto -->
           <a target="_blank" href="https://github.com/analytics-ufcg/monitor-cidadao" class="tw-ic">
-            <i class="fab fa-github white-text mr-4"> </i>
+            <i class="fab fa-github white-text mr-4 text-light"> </i>
           </a>
           <!-- Facebook -->
           <a target="_blank" href="https://www.facebook.com/analytics.ufcg/" class="fb-ic">
-            <i class="fab fa-facebook-f white-text"> </i>
+            <i class="fab fa-facebook-f white-text text-light"> </i>
           </a>
         </div>
       </div>
