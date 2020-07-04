@@ -1,26 +1,35 @@
-<div class="container view-container">
-    <h2 class="mb-4 mt-1">{{municipioEscolhido?.no_municipio}}</h2>
-  
-    <div class="licitacoes-detalhar-nav">
+<div class="view-container h-25" style="background:#f7f1e3">
+  <div class="container">
+    <div class="row mb-4 pt-4 pb-4 ">
+      <div>
+        <h2 class="text-info ml-3"><strong>{{municipioEscolhido?.no_municipio}}</strong></h2>
+      </div>
+      <div class="col-sm my-auto">
+        <span class="text-info ml-0 ml-sm-3 mt-4">Acompanhe os <strong>contratos</strong> e as
+          <strong>licitações</strong> deste município</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container view-container pt-4">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-10">
       <ul class="nav nav-pills nav-fill">
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['./licitacoes']"
-            routerLinkActive="active">
-            <strong>Licitações</strong> 
+        <li class="nav-item border-primary">
+          <a class="nav-link" [routerLink]="['./contratos']" routerLinkActive="active">
+            <i class="fas fa-clipboard-list fa-lg mr-2"></i>
+            <small><strong>CONTRATOS</strong></small>
           </a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['./contratos']"
-            routerLinkActive="active">
-          <strong>Contratos</strong>
+          <a class="nav-link" [routerLink]="['./licitacoes']" routerLinkActive="active">
+            <i class="fa fa-gavel fa-lg mr-2"></i>
+            <small><strong>LICITAÇÕES</strong></small>
           </a>
         </li>
       </ul>
     </div>
-  
-    <router-outlet></router-outlet>
   </div>
+  <router-outlet></router-outlet>
+</div>
