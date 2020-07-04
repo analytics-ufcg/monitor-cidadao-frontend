@@ -1,4 +1,4 @@
-import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeaheadModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -8,21 +8,27 @@ import { LoadingSpinnerComponent } from './components/loading-spinner/loading-sp
 import { ListaContratosComponent } from './components/lista-contratos/lista-contratos.component';
 import { PipesModule } from './pipes/pipes.module';
 import { BuscaNavbarComponent } from './components/busca-navbar/busca-navbar.component';
+import { BarraNavegacaoComponent } from './components/barra-navegacao/barra-navegacao.component';
+import { RodapeComponent } from './components/rodape/rodape.component';
 
 
 @NgModule({
-  declarations: [BuscaMunicipioComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent],
+  declarations: [BuscaMunicipioComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent, BarraNavegacaoComponent, RodapeComponent],
   imports: [
     CommonModule,
     FormsModule,
     NgbTypeaheadModule,
     PipesModule,
-    RouterModule
+    RouterModule,
+    NgbModule
+
   ], exports:[
     BuscaMunicipioComponent,
     LoadingSpinnerComponent,
     ListaContratosComponent,
-    BuscaNavbarComponent
+    BuscaNavbarComponent, 
+    BarraNavegacaoComponent, 
+    RodapeComponent
   ]
 })
 export class SharedModule { }

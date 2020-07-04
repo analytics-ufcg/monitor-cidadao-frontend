@@ -1,0 +1,25 @@
+//
+// FOOTER
+//
+.page-footer {
+    background-color: #2c2b54;
+    color: hsl(210, 14%, 97%);
+    min-height: 170px;
+    width: 100%;
+    margin-top: 20%;
+
+    @media (min-width: 576px) {
+        margin-top: 6%;
+    }
+}
+
+.teal-footer {
+    background-color: #d2784d;
+    width: 13em;
+    height: 2px;
+}
+
+.text-muted:hover {
+    cursor: not-allowed;
+    text-decoration: none;
+}
