@@ -1,4 +1,4 @@
-<div class="container view-container">
+<div class="container view-container" *ngIf="!isLoading">
     <div class="float-right mt-5 mb-3">
         <div class="custom-control custom-switch">
             <input type="checkbox" 
@@ -12,13 +12,15 @@
                 <i class="fa fa-info-circle ml-2 text-secondary" 
                 data-toggle="tooltip" 
                 data-placement="top" 
-                title="Todos aqueles anteriores à 01/01/2019"></i>
+                title="Todos aqueles posteriores à 01/01/2019"></i>
             </label>
         </div>
     </div>
+</div>
 
-    <p [hidden]="contratosFiltrados?.length > 0 || isLoading">Não há contratos neste momento.</p>
 
+<div class="container view-container row d-flex justify-content-center">
+    <h5 class="mt-5 pt-5" [hidden]="contratosFiltrados?.length > 0 || isLoading">Não há contratos neste momento.</h5>
 </div>
 
 
@@ -36,7 +38,7 @@
                 </div>
 
                 <div class="col-sm-2 mx-auto">
-                    <h5 class="text-warning text-capitalize"><strong>{{ contrato.vl_total_contrato | currency: "R$" }}</strong></h5>
+                    <h5 class="text-warning text-capitalize mt-3 mt-sm-0"><strong>{{ contrato.vl_total_contrato | currency: "R$" }}</strong></h5>
                     <div class="row" *ngIf="!isPortrait" >
                         <span class="text-secondary ml-3">Pago</span>
                         <div class="col-sm-7 my-auto">
@@ -47,7 +49,7 @@
                       </div>
                 </div>
 
-                <div *ngIf="!isPortrait" class="col-sm-2 mx-auto">
+                <div class="col-sm-2 mx-auto mt-3 mt-sm-0">
                     <h5 class="text-warning"><strong>até {{ contrato.pr_vigencia | date: 'dd/MM/yyyy'}}</strong></h5>
                     <span class="text-secondary">de {{ contrato.dt_assinatura | date: 'dd/MM/yyyy'}}</span>
                 </div>
