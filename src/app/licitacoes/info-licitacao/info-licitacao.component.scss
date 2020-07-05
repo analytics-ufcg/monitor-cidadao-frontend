@@ -1,12 +1,35 @@
-.status-licitacao {
-    cursor: pointer;
-    color: white;
-}
-
-.titulo {
-    font-size: 1.9rem;
-}
-
+// BARRA INICIAL
 .arrow {
-    max-width: .75em;
-} 
+    max-width: 0.75em;
+}
+
+.secao-inicial {
+    background: #edf0f4;
+}
+
+.descricao-ajustada {
+    max-width: 100%;
+    text-align: justify;
+
+    @media (min-width: 576px) {
+        max-width:75%;
+    }
+}
+
+.custom-position-title {
+    position: relative;
+
+    @media (min-width: 576px) {
+        left: -19px;
+    }
+}
+
+.breadcrumb {
+    display: flex;
+    font-size: 0.8em;
+    padding: 0;
+    margin-bottom: 0;
+    list-style: none;
+    background-color: #ffffff00;
+    border-radius: 0;
+}
