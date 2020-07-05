@@ -53,3 +53,37 @@ h5 {
     margin: 0px;
 }
 
+// INPUTS
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #42427b;
+    background-color: #42427b;
+}
+
+// PROGRESS
+.progress {
+    border-radius: 13px;
+    height: 12px;
+    max-width: 70px;
+}
+
+//CARD
+.card {
+    border-radius: 0px;
+    margin-top: -1px;
+    cursor: pointer;
+  
+    &:hover{
+      background: #42427b05;
+      transform: scale(1.01);
+    }
+   
+  }
+  
+  .card-body {
+    padding: 1rem 0 .2rem 0;
+  
+    &:focus {
+      outline: 0;
+    }
+  }
