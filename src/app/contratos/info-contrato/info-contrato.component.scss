@@ -1,43 +1,39 @@
-.titulo {
-    font-size: 1.9rem;
-}
-
 .sub-titulo {
     font-size: 0.9em !important;
 }
 
+// BARRA INICIAL
 .arrow {
-    max-width: .75em;
-    color: black;
+    max-width: 0.75em;
 }
 
-.top-page-container {
-    height: 75%;
-    background-color: #edf0f4;
+.secao-inicial {
+    background: #edf0f4;
 }
 
-.texto-rota {
-   color: black;
+.descricao-ajustada {
+    max-width: 100%;
+    text-align: justify;
+
+    @media (min-width: 576px) {
+        max-width:75%;
+    }
 }
 
-.status-contrato-badge {
-  background-color: #218c74;
-  color: white;
+.custom-position-title {
+    position: relative;
+
+    @media (min-width: 576px) {
+        left: -19px;
+    }
 }
 
-.status-contrato-div {
-  padding-left: .3cm;
-}
-
-.risco-contrato-badge {
-  background-color: #f95253;
-  color: white;
-}
-
-.risco-contrato-div {
-  padding-left: .10cm;
-}
-
-.cor-fonte-azul {
-  color: #42427B;
+.breadcrumb {
+    display: flex;
+    font-size: 0.8em;
+    padding: 0;
+    margin-bottom: 0;
+    list-style: none;
+    background-color: #ffffff00;
+    border-radius: 0;
 }

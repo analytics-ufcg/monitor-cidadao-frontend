@@ -1,96 +1,112 @@
-<div class="view-container mt-4">
-
-  <div class="top-page-container">
-    <div class="container">
+<div class="secao-inicial view-container">
+  <div class="container pt-5">
+      <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a class="text-info" href="/home">Paraíba</a></li>
+              <li class="breadcrumb-item"><a class="text-info"
+                      href="/municipios/contratos">{{municipioEscolhido?.no_municipio}}</a></li>
+              <li class="breadcrumb-item"><a class="text-info" href="/municipios/contratos">Contratos</a></li>
+          </ol>
+      </nav>
+  </div>
+  <div class="container custom-position-title">
+      <div class="row">
+          <div>
+              <h2 class="text-info">
+                  <a [routerLink]="['/municipios/contratos']">
+                      <i class="fas fa-arrow-left arrow text-warning"></i>
+                  </a>
+                  Contrato <strong>{{contrato?.nu_contrato  | formatNumContrato}}</strong>
+              </h2>
+          </div>
+          <div>
+              <h5 class="ml-4 mt-1">
+                  <span [hidden]="contrato?.dt_homologacao" class="badge badge-success status-contrato">
+                      Em curso
+                  </span>
+                  <span [hidden]="!contrato?.dt_homologacao" class="badge badge-danger status-contrato">
+                      Alto Risco
+                  </span>
+              </h5>
+          </div>
+      </div>
       <div>
-        <span class="rota">
-          <a [routerLink]="['/municipios/contratos']">
-            <p class="texto-rota">Estado > Município</p>
-          </a>
-        </span>
+        <p class="sub-titulo">Última atualização realizada em {{contrato?.dt_atualizacao}}</p>
       </div>
-
-      <div>
-        <span class="titulo cor-fonte-azul">
-          <a [routerLink]="['/municipios/contratos']">
-            <i class="fas fa-arrow-left arrow"></i>
-          </a>
-          Contrato <strong>{{contrato?.nu_contrato}}</strong>
-          <h5 class="d-inline-block status-contrato-div">
-            <span class="badge badge-info align-top status-contrato-badge">Em curso</span>
-          </h5>
-          <h3 class="d-inline-block risco-contrato-div">
-            <span class="badge badge-info align-top risco-contrato-badge">Alto Risco</span>
-          </h3>
-        </span>
-      </div>
-
-      <p class="sub-titulo">Última atualização realizada em {{contrato?.dt_atualizacao}}</p>
-
-      <div class="descricao">
-        <strong class="cor-fonte-azul">Descrição</strong>
-        <p class="sub-titulo">{{contrato?.de_obs}}</p>
-      </div>
-    </div>
   </div>
 
-  <div class="container" [hidden]="!contrato">
+  <div class="container mt-5">
+      <div class="d-flex flex-column">
+          <div><strong class="text-info mb-0 pb-0 mb-sm-6 pb-sm-4">Descrição</strong></div>
+          <div class="descricao-ajustada pt-2 pb-4 text-warning">{{ contrato?.de_obs }}</div>
+      </div>
+  </div>
+</div>
 
-    <div class="row mt-5">
-      <!-- first row -->
-      <div class="col-sm-6 col-lg-3 mb-4">
-        <div class="dados-linha">
-          <strong class="cor-fonte-azul">Valor do Contrato</strong>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-4">
+            <strong><span class="text-warning">Valor do Contrato</span></strong>
+            <h5 class="text-warning text-capitalize mt-3 mt-sm-0">
+              <strong>{{ contrato.vl_total_contrato | currency: "R$" }}</strong>
+            </h5>
+            <div class="row">
+                <span class="text-secondary ml-3">Pago</span>
+                <div class="col-sm-7 my-auto">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-secondary progress-bar-animated" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+              </div>
         </div>
-        <div class="dados-linha">
-          {{ contrato?.vl_total_contrato | currency: "R$" }}
+        <div class="col-sm-4">
+            <strong><span class="text-warning">Vigência</span></strong>
+            <h5 class="text-warning"><strong>até {{ contrato.pr_vigencia | date: 'dd/MM/yyyy'}}</strong></h5>
+            <span class="text-secondary">de {{ contrato.dt_assinatura | date: 'dd/MM/yyyy'}}</span>
+            <div class="row">
+                <span class="text-secondary ml-3">Executada</span>
+                <div class="col-sm-7 my-auto">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped bg-secondary progress-bar-animated" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+              </div>
         </div>
-      </div>
-      <div class="col-sm-6 col-lg-3 mb-4">
-        <div class="dados-linha">
-          <strong class="cor-fonte-azul">Vigência</strong>
+        <div class="col-sm-4">
+            <strong><span class="text-warning">Licitação Originária</span></strong>
+            <p class="text-warning mt-1">
+              <a [routerLink]="['/licitacao/' + contrato?.id_licitacao]">
+              {{ contrato?.nu_licitacao }}/{{ contrato?.dt_ano }}
+              </a>
+            </p>
         </div>
-        <div class="dados-linha">
-          {{ contrato?.dt_assinatura | date: "dd/MM/yyyy" }} à {{ contrato?.pr_vigencia | date: "dd/MM/yyyy" }}
-        </div>
-      </div>
-      <div class="col-sm-6 col-lg-3 mb-4">
-        <div class="dados-linha">
-          <strong class="cor-fonte-azul">Licitação Originária</strong>
-        </div>
-        <div class="dados-linha">
-          <a [routerLink]="['/licitacao/' + contrato?.id_licitacao]">
-            {{ contrato?.nu_licitacao }}/{{ contrato?.dt_ano }}
-          </a>
-        </div>
-      </div>
-    <!-- second row -->
-      <div class="col-sm-12 col-lg-9 mb-4">
-        <div class="dados-linha">
-          <strong class="cor-fonte-azul">Unidade Gestora</strong>
-        </div>
-        <div class="dados-linha" >
-          <!-- {{contrato?.de_ugestora}} -->
-          Unidade aleatoria
-        </div>
-      </div>
-      <div class="col-sm-12 col-lg-9 col-lg-3 mb-4">
-        <div class="dados-linha">
-          <strong class="cor-fonte-azul">Empresa Contratada</strong>
-        </div>
-        <div class="dados-linha">
-          <!-- {{contrato?.no_fornecedor}}/{{contrato?.nu_cpfcnpj | formatCpfCnpj}} -->
-          Odbe
-        </div>
-      <!-- third row -->
-      <div class="col-sm-12 col-md-9 mb-4">
-        <div class="dados-linha">
-          <strong class="cor-fonte-azul">Eventos</strong>
-        </div>
-        <div class="dados-linha">
-          Timeline
-        </div>
-      </div>
+    </div>
+</div>
 
+<div class="container mt-4 mb-4">
+    <div class="row">
+        <div class="col-sm-4">
+            <strong><span class="text-warning">Unidade Gestora</span></strong>
+            <h5 class="text-warning text-capitalize mb-1">
+              <strong>{{ contrato?.de_ugestora }}
+              </strong>
+            </h5>
+        </div>
+        <div class="col-sm-4">
+            <strong><span class="text-warning">Empresa Contratada</span></strong>
+            <h5 class="text-warning text-capitalize mb-1">
+              <strong>{{contrato.no_fornecedor | formatNomeEmpresa}}
+              </strong>
+            </h5>
+            <span class="text-secondary">CNPJ/CPF: {{contrato.nu_cpfcnpj | formatCpfCnpj}}</span>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4 mb-4">
+  <div class="row">
+    <div class="col-sm-4">
+      <strong><span class="text-warning">Eventos</span></strong>
     </div>
   </div>
+</div>
