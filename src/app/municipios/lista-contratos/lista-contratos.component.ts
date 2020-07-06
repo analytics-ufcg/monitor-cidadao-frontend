@@ -46,24 +46,29 @@ export class ListaContratosComponent implements OnInit {
         debounceTime(300),
         takeUntil(this.unsubscribe))
       .subscribe(municipio => {
-        this.municipioEscolhido = municipio;
-        this.getContratos(this.municipioEscolhido);
+        // evita fazer a requisição duplicada de um municipio
+        if (municipio.cd_municipio != this.municipioEscolhido?.cd_municipio) {
+          this.isLoading = true;
+          this.contratosFiltrados = [];
+          
+          this.getContratos(municipio);
+        }
       });
   }
 
   getContratos(municipio: Municipio) {
     this.contratosService.getContratosPorMunicipio(municipio.cd_municipio)
       .pipe(takeUntil(this.unsubscribe)).subscribe(contratos => {
-        this.contratos = contratos.sort((a, b) => (b.dt_ano - a.dt_ano));
-        this.contratosFiltrados = this.contratos;
-        this.isLoading = false;
+          this.contratos = contratos.sort((a, b) => (b.dt_ano - a.dt_ano));
+          this.contratosFiltrados = this.contratos;
+          this.isCheckedVigentes = false;
+          this.isLoading = false;
+          this.municipioEscolhido = municipio;
       });
   }
 
   clickSwitchVigentes (event) { 
-    // utilizado para simular um período próximo 
-    // a data que o dump do SAGRES foi feito
-    let today = new Date("2019-01-01");
+    let today = new Date();
    
     if (event.target.checked){
       this.contratosFiltrados = this.contratos.filter(m => 

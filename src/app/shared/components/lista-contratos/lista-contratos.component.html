@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="col-sm-2 mx-auto">
-                    <h5 class="text-warning text-capitalize mt-3 mt-sm-0"><strong>{{ contrato.vl_total_contrato | currency: "R$" }}</strong></h5>
+                    <h5 class="text-warning text-capitalize mt-3 mt-sm-0"><strong class="custom-value">{{ contrato.vl_total_contrato | currency: "R$" }}</strong></h5>
                     <div class="row" *ngIf="!isPortrait" >
                         <span class="text-secondary ml-3">Pago</span>
                         <div class="col-sm-7 my-auto">
