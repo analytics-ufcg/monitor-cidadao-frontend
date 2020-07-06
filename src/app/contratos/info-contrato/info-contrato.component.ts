@@ -33,4 +33,22 @@ export class InfoContratoComponent implements OnInit {
       });
   }
 
+  getPorcentagemContrato (start, end) {
+    let percentage;
+
+    if (start && end) {
+      let startDate = new Date(start).getTime(); 
+      let endDate = new Date(end).getTime();
+      let todayDate = new Date().getTime();
+
+      let total = endDate - startDate;
+      let current = todayDate - startDate;
+      percentage = (current / total) * 100;
+
+      return Math.min(Math.max(parseInt((percentage).toFixed(2)), 0), 100);
+    }
+    
+    return -1
+  }
+
 }
