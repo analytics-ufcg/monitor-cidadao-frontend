@@ -10,7 +10,7 @@ $gray-100: #f8f9fa !default;
 $gray-200: #e9ecef !default;
 $gray-300: #dee2e6 !default;
 $gray-400: #ced4da !default;
-$gray-500: #adb5bd !default;
+$gray-500: #656565 !default;
 $gray-600: #6c757d !default;
 $gray-700: #495057 !default;
 $gray-800: #343a40 !default;
@@ -34,46 +34,49 @@ $grays: map-merge(
   $grays
 );
 
-$blue:    #007bff !default;
-$indigo:  #6610f2 !default;
-$purple:  #6f42c1 !default;
+$gray:    #f2f7f3 !default;
+$orange:  #f19638 !default;
+$green:   #63aa72 !default;
+$yellow:  #f7b24d !default;
 $pink:    #e83e8c !default;
-$red:     #dc3545 !default;
-$orange:  #f08856 !default;
-$yellow:  #ffc107 !default;
-$green:   #28a745 !default;
-$teal:    #20c997 !default;
-$cyan:    #17a2b8 !default;
+$teal:    #80a997 !default;
+$cyan:    #549b97 !default;
+$blue:    #42427b !default;
+$darkblue: #1f4354 !default;
+// $indigo:  #6610f2 !default;
+// $purple:  #6f42c1 !default;
+// $red:     #dc3545 !default;
 
 $colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $colors: map-merge(
   (
-    "blue":       $blue,
-    "indigo":     $indigo,
-    "purple":     $purple,
-    "pink":       $pink,
-    "red":        $red,
     "orange":     $orange,
+    "gray":       $gray,
+    "pink":       $pink,
     "yellow":     $yellow,
-    "green":      $green,
-    "teal":       $teal,
     "cyan":       $cyan,
-    "white":      $white,
-    "gray":       $gray-600,
-    "gray-dark":  $gray-800
+    "blue":       $blue,
+    // "indigo":     $indigo,
+    // "purple":     $purple,
+    // "red":        $red,
+    // "green":      $green,
+    // "teal":       $teal,
+    // "white":      $white,
+    // "gray-dark":  $gray-800
   ),
   $colors
 );
 
 $primary:       $orange !default;
-$secondary:     $gray-600 !default;
+$secondary:     $gray-500 !default;
 $success:       $green !default;
-$info:          $cyan !default;
-$warning:       $yellow !default;
-$danger:        $red !default;
+$info:          $blue !default;
+$warning:       $darkblue !default;
+$danger:        $orange !default;
 $light:         $white !default;
 $dark:          $orange !default;
+
 
 $theme-colors: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default

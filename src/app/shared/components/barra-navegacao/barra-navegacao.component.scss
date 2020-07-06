@@ -1,0 +1,14 @@
+.navbar {
+    box-shadow: 0px 3px #4d4d6b;
+
+    .navbar-logo {
+        margin-right: 0.3rem !important;
+        text-decoration: none;
+    }
+}
+
+.btn-buscar {
+    position: relative;
+    z-index: 1000;
+    right: 5px;
+}

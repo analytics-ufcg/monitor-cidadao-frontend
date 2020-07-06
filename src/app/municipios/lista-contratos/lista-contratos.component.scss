@@ -1,12 +1,13 @@
 
-.mb-4{
-    padding-top: 20px;
-}
-
+//Paginacao
 ::ng-deep .my-pagination .ngx-pagination .current {
-  background: grey;
+  background: #1e4354;
 }
 
-.w-17 {
-  width: 17% !important;
+.custom-line-height {
+  line-height: 1.4;
+}
+
+.custom-progress {
+  height: 18px;
 }

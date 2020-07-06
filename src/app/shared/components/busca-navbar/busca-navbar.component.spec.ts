@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RelatorioComponent } from './relatorio.component';
+import { BuscaNavbarComponent } from './busca-navbar.component';
 
-describe('RelatorioComponent', () => {
-  let component: RelatorioComponent;
-  let fixture: ComponentFixture<RelatorioComponent>;
+describe('BuscaNavbarComponent', () => {
+  let component: BuscaNavbarComponent;
+  let fixture: ComponentFixture<BuscaNavbarComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RelatorioComponent ]
+      declarations: [ BuscaNavbarComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RelatorioComponent);
+    fixture = TestBed.createComponent(BuscaNavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

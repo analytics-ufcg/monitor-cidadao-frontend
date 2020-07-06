@@ -3,6 +3,87 @@
     font-family: "Titillium Web", sans-serif;
 }
 
-.btn-dark:hover, .btn-dark:focus, .btn-dark:active, .btn-dark.active {
+.btn-dark:hover,
+.btn-dark:focus,
+.btn-dark:active,
+.btn-dark.active {
     color: #fff;
 }
+
+.btn.active.focus,
+.btn.active:focus,
+.btn.focus,
+.btn.focus:active,
+.btn:active:focus,
+.btn:focus {
+    outline: 0 !important;
+    outline-offset: 0 !important;
+    background-image: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    box-shadow: none !important;
+    background: #f19638 !important;
+    border-color: #f19638 !important;
+}
+
+textarea:hover,
+input:hover,
+textarea:active,
+input:active,
+textarea:focus,
+input:focus,
+button:focus,
+button:active,
+button:hover,
+label:focus,
+.btn:active,
+.btn.active {
+    outline: 0px !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+}
+
+hr,
+h1,
+h2,
+h3,
+h4,
+h5 {
+    padding: 0px;
+    margin: 0px;
+}
+
+// INPUTS
+.custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #42427b;
+    background-color: #42427b;
+}
+
+// PROGRESS
+.progress {
+    border-radius: 13px;
+    height: 12px;
+    max-width: 70px;
+}
+
+//CARD
+.card {
+    border-radius: 0px;
+    margin-top: -1px;
+    cursor: pointer;
+  
+    &:hover{
+      background: #42427b05;
+      transform: scale(1.01);
+    }
+   
+  }
+  
+  .card-body {
+    padding: 1rem 0 .2rem 0;
+  
+    &:focus {
+      outline: 0;
+    }
+  }

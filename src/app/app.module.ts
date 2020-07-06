@@ -20,24 +20,23 @@ import {registerLocaleData} from '@angular/common';
 registerLocaleData(localePt, 'pt');
 
 @NgModule({
- 
+
   declarations: [
     AppComponent,
   ],
 
   imports: [
     SharedModule,
-    NgbModule,
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,  
+    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
     MunicipiosModule,
     LicitacaoModule
-  ], 
+  ],
 
-  providers: [ 
+  providers: [
      {
     provide: LOCALE_ID,
     useValue: 'pt'
