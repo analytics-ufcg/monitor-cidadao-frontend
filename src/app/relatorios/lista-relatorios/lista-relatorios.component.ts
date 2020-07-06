@@ -1,5 +1,3 @@
-import { HttpClient } from '@angular/common/http';
-import { RelatorioService } from './../../shared/services/relatorio.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
