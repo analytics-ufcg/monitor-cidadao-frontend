@@ -3,7 +3,7 @@
         <div class="card-body" [routerLink]="['/contrato/' + contrato.id_contrato]">
             <div class="row">
                 <div class="col-sm-1">
-                   <small class="text-secondary"><strong><p class="custom-line-height">N.º <br *ngIf="!isPortrait"> {{ contrato.nu_contrato | formatNumContrato: 'newline'}}</p></strong></small>
+                   <small class="text-secondary"><strong><p class="custom-line-height">Nº <br *ngIf="!isPortrait"> {{ contrato.nu_contrato | formatNumContrato: 'newline'}}</p></strong></small>
                 </div>
 
                 <div class="col-sm-4  mx-auto">
