@@ -19,5 +19,7 @@ export class Contrato {
     foto: string    
     planilha: string          
     ordem_servico : string
+    no_fornecedor : string
+    de_ugestora : string
 }
 

@@ -1,59 +1,81 @@
-<div [hidden]="!licitacao">
-
-    <div>
-        <span class="titulo">
-            <a [routerLink]="['/municipios/licitacoes']">
-                <i class="fas fa-arrow-left arrow"></i>
-            </a> Licitacao {{licitacao?.nu_licitacao}}</span>
+<div class="secao-inicial view-container">
+    <div class="container pt-5">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="text-info" href="/home">Paraíba</a></li>
+                <li class="breadcrumb-item"><a class="text-info"
+                        href="/municipios/licitacoes">{{municipioEscolhido?.no_municipio}}</a></li>
+                <li class="breadcrumb-item"><a class="text-info" href="/municipios/licitacoes">Licitações</a></li>
+            </ol>
+        </nav>
     </div>
-    <div class="mb-4">
-        <div class="row mt-4">
-            <div class="col">
-                <span [hidden]="licitacao?.dt_homologacao" class="badge badge-info status-licitacao">
-                    Licitação aberta
-                </span>
-                <span [hidden]="!licitacao?.dt_homologacao" class="badge badge-danger status-licitacao">
-                    Licitação encerrada
-                </span>
+    <div class="container custom-position-title">
+        <div class="row">
+            <div>
+                <h2 class="text-info">
+                    <a [routerLink]="['/municipios/licitacoes']">
+                        <i class="fas fa-arrow-left arrow text-warning"></i>
+                    </a>
+                    Licitação <strong>{{licitacao?.nu_licitacao | formatNumContrato}}</strong>
+                </h2>
             </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-sm-6 col-md-3 col-lg-2">
-                <div>
-                    <strong>Valor da licitação</strong>
-                </div>
-                <div>
-                    <span [hidden]="!licitacao?.vl_licitacao">
-                        {{ licitacao?.vl_licitacao | currency: "R$" }}
+            <div>
+                <h5 class="ml-4 mt-1">
+                    <span [hidden]="licitacao?.dt_homologacao" class="badge badge-success status-licitacao">
+                        Licitação aberta
                     </span>
-                    <span [hidden]="licitacao?.vl_licitacao">--</span>
-                </div>
-            </div>
-            <div class="col-sm-6 col-md-3">
-                <div>
-                    <strong>Data da homologação</strong>
-                </div>
-                <div>
-                    <span [hidden]="!licitacao?.dt_homologacao">
-                        {{ licitacao?.dt_homologacao | date: 'LLL/y'}}
+                    <span [hidden]="!licitacao?.dt_homologacao" class="badge badge-danger status-licitacao">
+                        Licitação encerrada
                     </span>
-                    <span [hidden]="licitacao?.dt_homologacao">--</span>
-                </div>
-            </div>
-        </div>
-        <div class="row mt-4">
-            <div class="col-sm-6 col-md-3 col-lg-2">
-                <div >
-                    <strong>Objeto da Licitação</strong>
-                </div>
-
-            </div>
-            <div class="col-12">
-                {{ licitacao?.de_obs  }}
+                </h5>
             </div>
         </div>
     </div>
-    <div>
-        <app-lista-contratos [contratos] = "licitacao?.contratosLicitacao"></app-lista-contratos>
+
+    <div class="container mt-5">
+        <div class="d-flex flex-column">
+            <div><strong class="text-info mb-0 pb-0 mb-sm-6 pb-sm-4">Descrição</strong></div>
+            <div class="descricao-ajustada pt-2 pb-4 text-warning">{{ licitacao?.de_obs  }}</div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-sm-4">
+            <strong><span class="text-warning">Valor Homologado</span></strong>
+            <p class="text-warning mt-1">{{ licitacao?.vl_licitacao | currency: "R$" }}</p>
+        </div>
+        <div class="col-sm-4">
+            <strong><span class="text-warning">Modalidade</span></strong>
+            <p class="text-warning mt-1">{{ licitacao?.de_tipo_licitacao }}</p>
+        </div>
+        <div class="col-sm-4">
+            <strong><span class="text-warning">N.º de Participantes</span></strong>
+            <p class="text-warning mt-1">Não definido</p>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-4 mb-4">
+    <div class="row">
+        <div class="col-sm-4">
+            <strong><span class="text-warning">Unidade Gestora</span></strong>
+            <p class="text-warning mt-1">{{licitacao?.de_ugestora}}</p>
+        </div>
+        <div class="col-sm-4">
+            <strong><span class="text-warning">N.º de Contratos</span></strong>
+            <p class="text-warning mt-1">{{licitacao?.contratosLicitacao?.length}}</p>
+        </div>
+
+    </div>
+</div>
+
+<div class="container" *ngIf="licitacao?.contratosLicitacao?.length!=0">
+    <div class="row">
+        <div class="col-sm-12">
+           <h6 class="text-warning"> <strong>Contratos Originados</strong></h6>
+           <app-lista-contratos [contratos]="licitacao?.contratosLicitacao"></app-lista-contratos>
+        </div>
     </div>
 </div>

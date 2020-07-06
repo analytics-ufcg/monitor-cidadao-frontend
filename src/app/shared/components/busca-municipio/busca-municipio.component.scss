@@ -4,5 +4,18 @@
   overflow-y: auto;
 }
 
+input {
+  min-height: 2.5em;
+  background: #f19638;
+  color:white;
+  border: 1px solid #f19638;
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+
 
 

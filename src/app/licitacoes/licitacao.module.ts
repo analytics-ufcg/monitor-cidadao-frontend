@@ -1,3 +1,4 @@
+import { PipesModule } from './../shared/pipes/pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgxPaginationModule } from 'ngx-pagination';
@@ -16,7 +17,8 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     NgxPaginationModule,
     LicitacaoRoutingModule,
-    SharedModule
+    SharedModule,
+    PipesModule
   ],  exports: [
     LicitacaoComponent,
     InfoLicitacaoComponent

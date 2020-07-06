@@ -7,9 +7,8 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class RelatorioService {
-  
-  constructor(private http: HttpClient) {
-  }
+
+  constructor(private http: HttpClient) {}
 
   // Retorna o descritivo
   getDescritivo(rota: string){
@@ -17,6 +16,9 @@ export class RelatorioService {
       return this.http.get('../../../assets/relatorios/4-Descritivo-Licitacoes.html', {responseType: 'text'});
     } else if (rota === 'contratos') {
       return this.http.get('../../../assets/relatorios/5-Contratos-Vigentes.html', {responseType: 'text'});
+    } else if (rota === 'fornecedores') {
+
+      return this.http.get('../../../assets/relatorios/06-Descritivo-Fornecedores.html', {responseType: 'text'});
     }
   }
 }
