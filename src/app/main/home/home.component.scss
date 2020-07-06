@@ -1,19 +1,19 @@
-.home-container {
-    margin-top: 5rem;
-}
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 4rem;
 
-h1 {
-    color: rgba(0,8,35,0.7);
-    font-weight: bold;
-}
-
-p {
+  @media (min-width: 576px) {
+    height: 60vh;
     margin-top: 0;
-    margin-bottom: 1rem;
-    font-size: 1.1em;
-    color: gray;
+  }
 }
 
-.mt-6 {
-    margin-top: 6rem !important;
+.view-container {
+  background:white;
+
+  @media (min-width: 576px) {
+   background: #f6f8fb;
+  }
 }

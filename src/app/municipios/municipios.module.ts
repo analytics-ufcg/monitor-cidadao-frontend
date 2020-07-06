@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { SharedModule } from './../shared/shared.module';
 import { PipesModule } from './../shared/pipes/pipes.module';
 import { NgModule } from '@angular/core';
@@ -20,6 +21,7 @@ import { ListaLicitacoesComponent } from './lista-licitacoes/lista-licitacoes.co
     NgxPaginationModule,
     MunicipioRoutingModule,
     PipesModule,
+    FormsModule,
     SharedModule
   ],
   exports:[

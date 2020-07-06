@@ -1,28 +1,34 @@
-import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbTypeaheadModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BuscaMunicipioComponent } from './components/busca-municipio/busca-municipio.component';
-import { BarraBuscaComponent } from './components/barra-busca/barra-busca.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ListaContratosComponent } from './components/lista-contratos/lista-contratos.component';
 import { PipesModule } from './pipes/pipes.module';
+import { BuscaNavbarComponent } from './components/busca-navbar/busca-navbar.component';
+import { BarraNavegacaoComponent } from './components/barra-navegacao/barra-navegacao.component';
+import { RodapeComponent } from './components/rodape/rodape.component';
 
 
 @NgModule({
-  declarations: [BuscaMunicipioComponent, BarraBuscaComponent, LoadingSpinnerComponent, ListaContratosComponent],
+  declarations: [BuscaMunicipioComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent, BarraNavegacaoComponent, RodapeComponent],
   imports: [
     CommonModule,
     FormsModule,
     NgbTypeaheadModule,
     PipesModule,
-    RouterModule
+    RouterModule,
+    NgbModule
+
   ], exports:[
     BuscaMunicipioComponent,
-    BarraBuscaComponent,
     LoadingSpinnerComponent,
-    ListaContratosComponent
+    ListaContratosComponent,
+    BuscaNavbarComponent, 
+    BarraNavegacaoComponent, 
+    RodapeComponent
   ]
 })
 export class SharedModule { }

@@ -27,7 +27,6 @@ registerLocaleData(localePt, 'pt');
 
   imports: [
     SharedModule,
-    NgbModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

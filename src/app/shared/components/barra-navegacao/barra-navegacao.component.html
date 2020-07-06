@@ -1,0 +1,33 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light py-3">
+    <div class="container">
+     
+      <h3>
+        <a class="navbar-logo text-info" href="/home">MONITOR CIDADÃO</a>
+      </h3>
+      <p class="small text-muted">alpha</p>
+  
+      <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed"
+        [attr.aria-expanded]="!isCollapsed" aria-controls="navbarPrincipal" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarPrincipal" [ngbCollapse]="!isCollapsed">
+        <ul class="navbar-nav ml-auto">
+  
+          <app-busca-navbar class="mt-2 mt-md-0" [mostrarBusca]="mostrarInputBusca"></app-busca-navbar>
+  
+          <button *ngIf="mostrarBtnBusca" class="btn-buscar btn btn-dark my-2 my-sm-0 mr-4 text-light" (click)="alteraVisibilidadeBusca()" type="submit"> <i
+              class="fas fa-search"></i>
+          </button> 
+          
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="relatorios">Relatórios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-primary" href="sobre">Sobre</a>
+          </li>
+        </ul>
+      </div>
+  
+    </div>
+  </nav>

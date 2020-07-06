@@ -1,46 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top bg-light py-2">
-    <div class="container">
-        <button
-      class="navbar-toggler"
-      type="button"
-      data-toggle="collapse"
-      data-target="#navbarNav"
-      aria-controls="navbarNav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-      (click)="toggleNavbar()">
-      <span class="icon-menu"></span>
-    </button>
-        <a class="navbar-brand" href="#">MONITOR CIDADÃO</a>
-        <p class="small text-muted">alpha</p>
-        <button class="navbar-toggler d-lg-none" type="button" (click)="isCollapsed = !isCollapsed"
-            [attr.aria-expanded]="!isCollapsed" aria-controls="navbarPrincipal" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+<app-barra-navegacao></app-barra-navegacao>
 
-        <div class="collapse navbar-collapse" id="navbarPrincipal" [ngbCollapse]="!isCollapsed">
-            
-            
-            <ul class="navbar-nav ml-auto">
-                <button class="btn btn-dark my-2 my-sm-0 mr-4" (click)="alteraVisibilidadeBusca()"type="submit"> <i class="fas fa-search"></i> Busque por um município</button>
-                <li class="nav-item">
-                    <a class="nav-link" href="relatorios">Relatórios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="sobre">Sobre</a>
-                </li>
-            </ul>
-            
-        </div>
-    
-    </div>
-</nav>
+<div id="work-area">
+  <router-outlet></router-outlet>
+</div>
 
-
-<app-barra-busca [mostrarBusca]="mostrarBusca"></app-barra-busca>
-
-<router-outlet></router-outlet>
-
-
-
-
+<app-rodape></app-rodape>
