@@ -7,7 +7,7 @@
     *ngFor="let licitacao of licitacoes | paginate: { itemsPerPage: contador, currentPage: pag }; let i = index">
     <div class="card-body" [routerLink]="['/licitacao/' + licitacao.id_licitacao]">
       <div class="row">
-        <div class="col-sm-1"> 
+        <div class="col-sm-1">
           <small class="text-secondary">
               <p class="custom-line-height">Nº
                 {{ licitacao.nu_licitacao | formatNumContrato: 'newline'}}</p>
@@ -20,6 +20,7 @@
 
         <div class="col-sm-2 mx-auto my-auto pb-3 pb-sm-0 pt-2 pt-sm-0">
           <h5 class="text-warning"><strong> {{ licitacao.vl_licitacao | currency:"BRL"  }}</strong></h5>
+          <span class="text-secondary ml-3">Licitado</span>
         </div>
 
       </div>
