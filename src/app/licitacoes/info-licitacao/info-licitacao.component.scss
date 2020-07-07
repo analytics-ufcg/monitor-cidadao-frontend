@@ -12,7 +12,7 @@
     text-align: justify;
 
     @media (min-width: 576px) {
-        max-width:75%;
+        max-width: 75%;
     }
 }
 
@@ -44,13 +44,39 @@
 ::-webkit-scrollbar {
     height: 6px;
 }
- 
+
 ::-webkit-scrollbar-track {
     background: #edf0f4;
     border-radius: 10px;
 }
- 
+
 ::-webkit-scrollbar-thumb {
     border-radius: 10px;
-   background: #4c4c6a;
+    background: #4c4c6a;
 }
+
+.custom-h6 {
+    margin: 0;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 100%;
+
+    @media (min-width: 576px) {
+        flex: 50%;
+    }
+}
+
+.column.ng-star-inserted{
+    max-width: 100%;
+    
+    @media (min-width: 576px) {
+        max-width: 50%;
+    }
+}
+
+
