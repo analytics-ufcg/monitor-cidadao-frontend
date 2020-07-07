@@ -25,7 +25,7 @@
                       Em curso 
                   </span>
                   <span *ngIf="getPorcentagemContrato (contrato?.dt_assinatura, contrato?.pr_vigencia) == 100" class="badge badge-danger text-light">
-                      Finalizada
+                      Finalizado
                   </span>
               </h5>
           </div>
@@ -83,7 +83,7 @@
     </div>
 </div>
 
-<div class="container mt-0 mt-sm-4 mb-4 pb-5">
+<div class="container mt-0 mt-sm-4 mb-4">
     <div class="row">
         <div class="col-sm-4">
             <strong><span class="text-warning">Unidade Gestora</span></strong>
@@ -97,6 +97,17 @@
               {{contrato?.no_fornecedor | formatNomeEmpresa}}
             </h6>
             <span class="text-secondary"><small><strong> {{contrato?.nu_cpfcnpj | formatCpfCnpj}}</strong></small></span>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-4 pb-5">
+    <div class="row">
+        <div class="col-sm-12">
+            <h6 class="text-warning"><strong>Eventos</strong></h6>
+        </div>
+        <div class="col-sm-8 mt-4">
+           <app-timeline [eventosTimeline]="getEventosTimeline ()"></app-timeline>
         </div>
     </div>
 </div>

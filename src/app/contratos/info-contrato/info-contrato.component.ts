@@ -1,3 +1,4 @@
+import { Evento } from './../../shared/models/evento.model';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs';
@@ -15,6 +16,8 @@ export class InfoContratoComponent implements OnInit {
 
   private unsubscribe = new Subject();
   public municipioEscolhido: Municipio;
+
+  
 
   constructor(private userService: UserService) { }
 
@@ -49,6 +52,16 @@ export class InfoContratoComponent implements OnInit {
     }
     
     return -1
+  }
+
+  getEventosTimeline () {
+    if (this.contrato) {
+      let eventosTimeline: Array<Evento> = []
+      eventosTimeline.push (new Evento("Assinatura", this.contrato.dt_assinatura))
+      eventosTimeline.push (new Evento("Fim da vigência", this.contrato.pr_vigencia))
+      
+      return eventosTimeline;
+    }
   }
 
 }

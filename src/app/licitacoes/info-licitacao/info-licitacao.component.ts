@@ -1,3 +1,4 @@
+import { Evento } from './../../shared/models/evento.model';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Municipio } from './../../shared/models/municipio.model';
 import { Subject } from 'rxjs';
@@ -31,6 +32,17 @@ export class InfoLicitacaoComponent implements OnInit {
       .subscribe(municipio => {
         this.municipioEscolhido = municipio;
       });
+  }
+
+  getEventosTimeline () {
+    if (this.licitacao) {
+      let eventosTimeline: Array<Evento> = []
+      eventosTimeline.push (new Evento("Homologação", this.licitacao?.dt_homologacao))
+      this.licitacao.contratosLicitacao?.forEach(function (contrato) {
+        eventosTimeline.push (new Evento("Contrato", contrato?.dt_assinatura, contrato?.id_contrato))
+      }); 
+      return eventosTimeline;
+    }
   }
 
 }

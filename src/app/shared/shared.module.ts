@@ -10,10 +10,11 @@ import { PipesModule } from './pipes/pipes.module';
 import { BuscaNavbarComponent } from './components/busca-navbar/busca-navbar.component';
 import { BarraNavegacaoComponent } from './components/barra-navegacao/barra-navegacao.component';
 import { RodapeComponent } from './components/rodape/rodape.component';
+import { TimelineComponent } from './components/timeline/timeline.component';
 
 
 @NgModule({
-  declarations: [BuscaMunicipioComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent, BarraNavegacaoComponent, RodapeComponent],
+  declarations: [BuscaMunicipioComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent, BarraNavegacaoComponent, RodapeComponent, TimelineComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -28,7 +29,8 @@ import { RodapeComponent } from './components/rodape/rodape.component';
     ListaContratosComponent,
     BuscaNavbarComponent, 
     BarraNavegacaoComponent, 
-    RodapeComponent
+    RodapeComponent,
+    TimelineComponent
   ]
 })
 export class SharedModule { }
