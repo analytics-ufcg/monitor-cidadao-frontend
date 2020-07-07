@@ -49,7 +49,6 @@ export class InfoLicitacaoComponent implements OnInit {
     let contemNaLista = false;
 
     for(let contrato of contratos) {
-      console.log (cpfcnpj == contrato?.nu_cpfcnpj)
       if (contrato?.nu_cpfcnpj == cpfcnpj) {
         contemNaLista = true;
         break;
