@@ -1,17 +1,17 @@
 <div class="container view-container" *ngIf="!isLoading">
     <div class="float-right mt-5 mb-3">
         <div class="custom-control custom-switch">
-            <input type="checkbox" 
-            class="custom-control-input" 
-            ([ngModel])="isCheckedVigentes" 
+            <input type="checkbox"
+            class="custom-control-input"
+            ([ngModel])="isCheckedVigentes"
             (change)="clickSwitchVigentes($event)"
             id="customSwitches">
-            <label class="custom-control-label text-info" 
+            <label class="custom-control-label text-info"
                     for="customSwitches">
                 <strong>Vigentes</strong>
-                <i class="fa fa-info-circle ml-2 text-secondary" 
-                data-toggle="tooltip" 
-                data-placement="top" 
+                <i class="fa fa-info-circle ml-2 text-secondary"
+                data-toggle="tooltip"
+                data-placement="top"
                 title="Todos aqueles posteriores à 01/01/2019"></i>
             </label>
         </div>
@@ -29,12 +29,12 @@
         <div class="card-body" [routerLink]="['/contrato/' + contrato.id_contrato]">
             <div class="row">
                 <div class="col-sm-1">
-                   <small class="text-secondary"><p class="custom-line-height">Nº 
+                   <small class="text-secondary"><p class="custom-line-height">Nº
                     {{ contrato.nu_contrato | formatNumContrato: 'newline'}}</p>
                 </small>
                 </div>
                 <div class="col-sm-4  mx-auto">
-                    <h5 class="text-warning text-capitalize mb-1"><strong>{{contrato.no_fornecedor | formatNomeEmpresa}}</strong></h5>
+                    <h6 class="text-warning text-capitalize mb-1"><strong>{{contrato.no_fornecedor | formatNomeEmpresa}}</strong></h6>
                     <span class="text-secondary">CNPJ/CPF: {{contrato.nu_cpfcnpj | formatCpfCnpj}}</span>
                 </div>
 
