@@ -45,4 +45,16 @@ export class InfoLicitacaoComponent implements OnInit {
     }
   }
 
+  getGanhador (cpfcnpj, contratos){
+    let contemNaLista = false;
+
+    for(let contrato of contratos) {
+      if (contrato?.nu_cpfcnpj == cpfcnpj) {
+        contemNaLista = true;
+        break;
+      }
+    };
+    return contemNaLista;
+  }
+
 }
