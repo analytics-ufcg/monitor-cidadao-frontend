@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location } from "@angular/common";
 
@@ -16,7 +16,7 @@ export class BarraNavegacaoComponent implements OnInit {
 
   public navbarOpen = false;
 
-  constructor(location: Location, router: Router) {
+  constructor(location: Location, router: Router, private eRef: ElementRef) {
     // desativa o botão de busca caso esteja na página home 
     router.events.subscribe(val => {
       if (location.path() != "") {
@@ -52,5 +52,11 @@ export class BarraNavegacaoComponent implements OnInit {
     this.navbarOpen = !this.navbarOpen;
   }
 
-
+  // Desativa busca ao clicar fora do elemento
+  @HostListener('document:click', ['$event'])
+  public documentClick(event): void {
+    if(!this.eRef.nativeElement.contains(event.target)) {
+        this.mostrarInputBusca=false;
+    }
+  }
 }

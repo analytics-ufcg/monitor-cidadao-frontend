@@ -9,13 +9,13 @@ input {
   background: #f19638;
   color:white;
   border: 1px solid #f19638;
+
+  &:hover {
+    box-shadow: 1px 1px 6px #84817a !important;
+  }
 }
 
 ::placeholder {
   color: white;
   opacity: 1;
 }
-
-
-
-

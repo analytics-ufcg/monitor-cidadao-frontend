@@ -52,7 +52,7 @@
         </div>
         <div class="col-sm-4">
             <strong><span class="text-warning">N.º de Participantes</span></strong>
-            <p class="text-warning mt-1">Não definido</p>
+            <p class="text-warning mt-1">{{licitacao?.nu_propostas}}</p>
         </div>
     </div>
 </div>
@@ -71,11 +71,56 @@
     </div>
 </div>
 
+<div class="container mb-4 pb-3" *ngIf="licitacao?.dt_homologacao">
+    <div class="row">
+        <div class="col-sm-12">
+            <h6 class="text-warning"><strong>Eventos</strong></h6>
+        </div>
+        <div class="container-timeline">
+            <div class="col-sm-8 mt-3">
+                <app-timeline [eventosTimeline]="getEventosTimeline ()"></app-timeline>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container pb-4" *ngIf="licitacao?.participantesLicitacao?.length!=0">
+    <div class="row">
+        <div class="col-sm-12">
+            <h6 class="text-warning"> <strong>Participantes</strong></h6>
+
+            <div class="row">
+                <div class="column" *ngFor="let participante of licitacao?.participantesLicitacao">
+                    <div class=" custom-size d-flex align-content-end flex-wrap mt-2">
+                        <div class="col-1 col-sm-1 mx-auto">
+                            <div *ngIf="getGanhador (participante?.nu_cpfcnpj, licitacao?.contratosLicitacao)" class="col-sm-1">
+                                <h6 class="mb-1"><span class="badge badge-success text-light">Ganhador</span></h6>
+                            </div>
+                            <div *ngIf="!getGanhador (participante?.nu_cpfcnpj, licitacao?.contratosLicitacao)" class="col-sm-1">
+                                <h6 class="mb-1"><span class="badge badge-secondary text-light">Perdedor</span></h6>
+                            </div>
+                        </div>
+                        <div class="col-8 col-1 col-sm-19">
+                            <h6 class="custom-h6 text-warning text-capitalize">
+                                {{participante?.no_fornecedor | formatNomeEmpresa}}</h6>
+                            <small
+                                class="text-secondary"><strong>{{participante?.nu_cpfcnpj | formatCpfCnpj}}</strong></small>
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 <div class="container" *ngIf="licitacao?.contratosLicitacao?.length!=0">
     <div class="row">
         <div class="col-sm-12">
-           <h6 class="text-warning"> <strong>Contratos Originados</strong></h6>
-           <app-lista-contratos [contratos]="licitacao?.contratosLicitacao"></app-lista-contratos>
+            <h6 class="text-warning"> <strong>Contratos Originados</strong></h6>
+            <app-lista-contratos [contratos]="licitacao?.contratosLicitacao"></app-lista-contratos>
         </div>
     </div>
 </div>

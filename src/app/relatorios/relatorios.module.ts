@@ -3,12 +3,10 @@ import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListaRelatoriosComponent } from './lista-relatorios/lista-relatorios.component';
-import { RelatorioComponent } from './relatorio/relatorio.component';
-
 
 
 @NgModule({
-  declarations: [ListaRelatoriosComponent, RelatorioComponent],
+  declarations: [ListaRelatoriosComponent],
   imports: [
     CommonModule,
     RelatoriosRoutingModule,
