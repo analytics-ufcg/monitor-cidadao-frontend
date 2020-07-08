@@ -8,23 +8,19 @@
     <div class="card-body" [routerLink]="['/licitacao/' + licitacao.id_licitacao]">
       <div class="row">
         <div class="col-sm-1">
-          <small class="text-secondary"><strong>
-              <p class="custom-line-height">N.º
+          <small class="text-secondary">
+              <p class="custom-line-height">Nº
                 {{ licitacao.nu_licitacao | formatNumContrato: 'newline'}}</p>
-            </strong></small>
+            </small>
         </div>
 
         <div class="col-sm-5  mx-auto my-auto">
-          <p class="text-warning  mb-1"><strong>{{ licitacao.de_obs | formatNomeEmpresa}}</strong></p>
-        </div>
-
-        <div class="col-sm-4  mx-auto my-auto">
-          <h6 class="text-secondary mb-1 pt-2 pt-sm-0"><strong>Unidade Gestora:</strong></h6>
-          <h6 class="text-warning  mb-1">{{ licitacao.de_ugestora }}</h6>
+          <p class="text-warning  mb-1">{{ licitacao.de_obs | formatNomeEmpresa}}</p>
         </div>
 
         <div class="col-sm-2 mx-auto my-auto pb-3 pb-sm-0 pt-2 pt-sm-0">
           <h5 class="text-warning"><strong> {{ licitacao.vl_licitacao | currency:"BRL"  }}</strong></h5>
+          <span class="text-secondary ml-3">Licitado</span>
         </div>
 
       </div>
@@ -36,8 +32,8 @@
   <loading-spinner class="mt-2" *ngIf="isLoading"></loading-spinner>
 </div>
 
-<div class="row d-flex justify-content-center">
-  <div class="my-pagination col-md-7">
+<div class="row d-flex mr-0 mr-sm-1 justify-content-center">
+  <div class="my-pagination text-center col-md-7">
     <pagination-controls (pageChange)="pag = $event" previousLabel="Anterior" nextLabel="Próximo" autoHide="true">
     </pagination-controls>
   </div>
