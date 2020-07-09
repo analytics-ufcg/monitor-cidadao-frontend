@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { BuscaMunicipioComponent } from './components/busca-municipio/busca-municipio.component';
+import { BuscaComponent } from './components/busca/busca.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ListaContratosComponent } from './components/lista-contratos/lista-contratos.component';
 import { PipesModule } from './pipes/pipes.module';
@@ -14,7 +14,7 @@ import { TimelineComponent } from './components/timeline/timeline.component';
 
 
 @NgModule({
-  declarations: [BuscaMunicipioComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent, BarraNavegacaoComponent, RodapeComponent, TimelineComponent],
+  declarations: [BuscaComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent, BarraNavegacaoComponent, RodapeComponent, TimelineComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -24,7 +24,7 @@ import { TimelineComponent } from './components/timeline/timeline.component';
     NgbModule
 
   ], exports:[
-    BuscaMunicipioComponent,
+    BuscaComponent,
     LoadingSpinnerComponent,
     ListaContratosComponent,
     BuscaNavbarComponent, 

@@ -1,7 +1,7 @@
-import { UserService } from './../../services/user.service';
-import { Municipio } from './../../models/municipio.model';
+import { UserService } from '../../services/user.service';
+import { Municipio } from '../../models/municipio.model';
 import { takeUntil } from 'rxjs/operators';
-import { RegiaoService } from './../../services/regiao.service';
+import { RegiaoService } from '../../services/regiao.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 
@@ -12,12 +12,12 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-busca-municipio',
-  templateUrl: './busca-municipio.component.html',
-  styleUrls: ['./busca-municipio.component.scss']
+  selector: 'app-busca',
+  templateUrl: './busca.component.html',
+  styleUrls: ['./busca.component.scss']
 
 })
-export class BuscaMunicipioComponent implements OnInit {
+export class BuscaComponent implements OnInit {
 
   private unsubscribe = new Subject();
   public muncipioSelecionado: any;
@@ -38,15 +38,17 @@ export class BuscaMunicipioComponent implements OnInit {
     this.regiaoService.getMunicipios()
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(municipios => {
-        this.municipios = municipios;
+        this.municipios = municipios.map((response: any) => new Municipio(response.cd_municipio, response.no_municipio));
       });
   }
 
   getMunicipioSalvo() {
     this.userService
       .getMunicipioEscolhido()
+      .pipe(map((response: any) => new Municipio(response.cd_municipio, response.no_municipio)))
       .subscribe(municipio => {
         this.municipioSelecionado = municipio;
+        console.log (municipio)
       });
   }
 
@@ -70,13 +72,13 @@ export class BuscaMunicipioComponent implements OnInit {
       debounceTime(200),
       map(term => term.length < 2 ? []
         : this.municipios.filter(
-          v => v.no_municipio.toLowerCase().indexOf(
+          v => v.descricao.toLowerCase().indexOf(
             term.toLowerCase()
             ) > -1
           ).slice(0, 5)
           )
         )
-  formatter = (x: { no_municipio: string }) => x.no_municipio;
+  formatter = (x: { descricao: string }) => x.descricao;
 
 
 }
