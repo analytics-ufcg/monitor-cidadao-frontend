@@ -1,0 +1,20 @@
+//
+// FOOTER
+//
+.page-footer {
+    background-color: #2c2b54;
+    color: hsl(210, 14%, 97%);
+    min-height: 170px;
+    width: 100%;
+}
+
+.teal-footer {
+    background-color: #d2784d;
+    width: 13em;
+    height: 2px;
+}
+
+.text-muted:hover {
+    cursor: not-allowed;
+    text-decoration: none;
+}

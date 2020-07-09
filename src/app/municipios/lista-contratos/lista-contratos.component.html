@@ -1,57 +1,85 @@
-<div class="container view-container">
-    <h4 class="mb-4">Contratos vigentes</h4>
+<div class="container view-container" *ngIf="!isLoading">
+    <div class="float-right mt-5 mb-3">
+        <div class="custom-control custom-switch">
+            <input type="checkbox"
+            class="custom-control-input"
+            [(ngModel)]="isCheckedVigentes"
+            [ngModelOptions]="{standalone: true}"
+            (change)="clickSwitchVigentes($event)"
+            id="customSwitches">
+            <label class="custom-control-label text-info"
+                    for="customSwitches">
+                <strong>Vigentes</strong>
+                <i class="fa fa-info-circle ml-2 text-secondary"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Todos aqueles posteriores à 01/01/2019"></i>
+            </label>
+        </div>
+    </div>
+</div>
 
-    <p [hidden]="contratos?.length > 0 || isLoading">Não há contratos neste momento.</p>
-    
-    
 
-    <table class="table" >
-        <thead>
-            <tr>
-                <th scope="col">Número</th>
-                <th scope="col" class="w-25">CNPJ/CPF</th>
-                <th scope="col">Início da vigência</th>
-                <th scope="col">Fim da vigência</th>
-                <th scope="col" class="text-right">
-                    Valor Total
-                </th>
-                <th>&nbsp;</th>
-            </tr>
-        </thead>
-        
-        <tbody [hidden]="contratos?.length == 0">
-            
-            <tr
-                *ngFor="let contrato of contratos | paginate: { itemsPerPage: contador, currentPage: pag }; let i = index;">
-                <td>{{ contrato.nu_contrato }}</td>
-                <td class="w-17">
-                    <span *ngIf="contrato.nu_cpfcnpj">{{ contrato.nu_cpfcnpj | formatCpfCnpj}}</span>
-                    <span *ngIf="!contrato.nu_cpfcnpj">-</span>
-                </td>
-                <td>{{ contrato.dt_assinatura | date: 'dd/MM/yyyy'}}</td>
-                <td>{{ contrato.pr_vigencia | date: 'dd/MM/yyyy'}}</td>
-                <td class="text-right numero">
-                    <span *ngIf="contrato.de_obs">{{ contrato.vl_total_contrato | currency: "R$" }}</span>
-                    <span *ngIf="!contrato.de_obs">-</span>
-                </td>
-                <td class="text-center">
-                    <a [routerLink]="['/contrato/' + contrato.id_contrato]"
-                        class="btn btn-sm btn-primary">
-                        Ver contrato
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div class="container view-container row d-flex justify-content-center">
+    <h5 class="mt-5 pt-5" [hidden]="contratosFiltrados?.length > 0 || isLoading">Não há contratos neste momento.</h5>
+</div>
+
+
+<div class="view-container pb-5">
+    <div class="card col-12" *ngFor="let contrato of contratosFiltrados | paginate: { itemsPerPage: contador, currentPage: pag }; let i = index;">
+        <div class="card-body" [routerLink]="['/contrato/' + contrato.id_contrato]">
+            <div class="row">
+                <div class="col-sm-1">
+                   <small class="text-secondary"><p class="custom-line-height">Nº
+                    {{ contrato.nu_contrato | formatNumContrato: 'newline'}}</p>
+                </small>
+                </div>
+                <div class="col-sm-4  mx-auto">
+                    <h6 class="text-warning text-capitalize mb-1"><strong>{{contrato.no_fornecedor | formatNomeEmpresa}}</strong></h6>
+                    <span class="text-secondary">CNPJ/CPF: {{contrato.nu_cpfcnpj | formatCpfCnpj}}</span>
+                </div>
+
+                <div class="col-sm-2 mx-auto">
+                    <h5 class="text-warning text-capitalize mt-3 mt-sm-0"><strong class="custom-value">{{ contrato.vl_total_contrato | currency: "R$" }}</strong></h5>
+                    <div class="row" *ngIf="!isPortrait" >
+                        <span class="text-secondary ml-3">Pago</span>
+                        <div class="col-sm-7 my-auto">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped bg-secondary progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+
+                <div class="col-sm-2 mx-auto mt-3 mt-sm-0">
+                    <h5 class="text-warning"><strong>até {{ contrato.pr_vigencia | date: 'dd/MM/yyyy'}}</strong></h5>
+                    <span class="text-secondary">de {{ contrato.dt_assinatura | date: 'dd/MM/yyyy'}}</span>
+                </div>
+
+                <!-- <div class="col-sm-2">
+                    <h6 class="mb-1"><span class="badge badge-secondary text-light">Exemplo</span></h6>
+                    <h6 class="mb-1"><span class="badge badge-secondary text-light">Exemplo Maior</span></h6>
+                    <span class="text-secondary"><strong>Áreas</strong></span>
+                </div> -->
+
+                <div class="col-sm-1 mx-auto mt-2 mt-sm-0">
+                    <div class="progress custom-progress text-left mt-1">
+                        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span class="text-secondary">Risco</span>
+                </div>
+              </div>
+        </div>
+    </div>
 </div>
 
 <div class="d-flex justify-content-center">
     <loading-spinner class="mt-2" *ngIf="isLoading"></loading-spinner>
 </div>
 
-<div class="row d-flex justify-content-center">
-    <div class="my-pagination col-md-7">
-        <pagination-controls (pageChange)="pag = $event" previousLabel="Anterior" nextLabel="Próximo" autoHide="true">
-        </pagination-controls>
+<div class="row d-flex mr-0 mr-sm-1 justify-content-center">
+    <div class="my-pagination text-center col-md-7">
+      <pagination-controls (pageChange)="pag = $event" previousLabel="Anterior" nextLabel="Próximo" autoHide="true">
+      </pagination-controls>
     </div>
-</div>
+  </div>

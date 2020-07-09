@@ -1,26 +1,37 @@
-<div class="container view-container">
-    <h2 class="mb-4 mt-1">{{municipioEscolhido?.no_municipio}}</h2>
-  
-    <div class="licitacoes-detalhar-nav">
+<div class="secao-inicial view-container h-25">
+  <div class="container">
+    <div class="column pb-4 ml-3 pt-4">
+      <div class="">
+        <span class="text-info ">Acompanhe os <strong>contratos</strong> e as
+          <strong>licitações</strong> de</span>
+          <br>
+      </div>
+      <div>
+        <h2 class="text-info"><strong>{{municipioEscolhido?.no_municipio}}</strong></h2>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="container view-container pt-4">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-10">
       <ul class="nav nav-pills nav-fill">
-        <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['./licitacoes']"
-            routerLinkActive="active">
-            <strong>Licitações</strong> 
+        <li class="nav-item border-primary">
+          <a class="nav-link" [routerLink]="['./contratos']" routerLinkActive="active">
+            <i class="fas fa-clipboard-list fa-lg mr-2"></i>
+            <small><strong>CONTRATOS</strong></small>
           </a>
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            [routerLink]="['./contratos']"
-            routerLinkActive="active">
-          <strong>Contratos</strong>
+          <a class="nav-link" [routerLink]="['./licitacoes']" routerLinkActive="active">
+            <i class="fa fa-gavel fa-lg mr-2"></i>
+            <small><strong>LICITAÇÕES</strong></small>
           </a>
         </li>
       </ul>
     </div>
-  
-    <router-outlet></router-outlet>
   </div>
+  <router-outlet></router-outlet>
+</div>

@@ -1,3 +1,4 @@
+import { SharedModule } from './../shared/shared.module';
 import { PipesModule } from './../shared/pipes/pipes.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -14,7 +15,8 @@ import { ContratoComponent } from './contrato.component';
   imports: [
     CommonModule,
     ContratosRoutingModule,
-    PipesModule
+    PipesModule,
+    SharedModule
   ], exports: [
     InfoContratoComponent, 
     ContratoComponent

@@ -1,12 +1,82 @@
-.status-licitacao {
-    cursor: pointer;
-    color: white;
-}
-
-.titulo {
-    font-size: 1.9rem;
-}
-
+// BARRA INICIAL
 .arrow {
-    max-width: .75em;
-} 
+    max-width: 0.75em;
+}
+
+.secao-inicial {
+    background: #edf0f4;
+}
+
+.descricao-ajustada {
+    max-width: 100%;
+    text-align: justify;
+
+    @media (min-width: 576px) {
+        max-width: 75%;
+    }
+}
+
+.custom-position-title {
+    position: relative;
+
+    @media (min-width: 576px) {
+        left: -19px;
+    }
+}
+
+.breadcrumb {
+    display: flex;
+    font-size: 0.8em;
+    padding: 0;
+    margin-bottom: 0;
+    list-style: none;
+    background-color: #ffffff00;
+    border-radius: 0;
+}
+
+// SCROLLBAR TIMELINE
+.container-timeline {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #edf0f4;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #4c4c6a;
+}
+
+.custom-h6 {
+    margin: 0;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    flex: 100%;
+
+    @media (min-width: 576px) {
+        flex: 50%;
+    }
+}
+
+.column.ng-star-inserted{
+    max-width: 100%;
+    
+    @media (min-width: 576px) {
+        max-width: 50%;
+    }
+}
+
+

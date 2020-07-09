@@ -9,11 +9,16 @@ import { Contrato } from '../../models/contrato.model';
 export class ListaContratosComponent implements OnInit {
 
   @Input() contratos: Contrato[];
-
+  isPortrait = false;
 
   constructor() { }
 
+
+
   ngOnInit(): void {
-  }
+    if (window.screen.width === 360) { // 768px portrait
+      this.isPortrait = true;
+    }
+}
 
 }

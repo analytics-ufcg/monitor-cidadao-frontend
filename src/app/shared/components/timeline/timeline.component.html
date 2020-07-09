@@ -1,0 +1,11 @@
+<ul class="horizontal-timeline">
+  <li class="li" *ngFor="let evento of eventosTimeline">
+    <div class="edge" [ngClass]="{'complete': evento?.completo}">
+        <div class="info">
+          <span *ngIf="!evento?.id">{{evento?.descricao}}</span>
+          <span class="description-clickable" *ngIf="evento?.id" [routerLink]="['/contrato/' + evento.id]">{{evento?.descricao}}</span>
+          <span>{{evento?.data | date: 'dd-MM-yyyy'}}</span>
+        </div>
+    </div>
+  </li>
+</ul>

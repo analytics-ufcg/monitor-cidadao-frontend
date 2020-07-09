@@ -1,6 +1,21 @@
-.lista-relatorios-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 5rem;
+a,
+p {
+    padding: 0px;
+    margin: 0px;
+}
+
+.arrow {
+    max-width: 0.75em;
+}
+
+.secao-inicial {
+    background: #edf0f4;
+}
+
+.custom-position-title {
+    position: relative;
+
+    @media (min-width: 576px) {
+        left: -19px;
+    }
 }

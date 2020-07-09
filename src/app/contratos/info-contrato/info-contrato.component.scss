@@ -1,12 +1,53 @@
-
-.titulo {
-    font-size: 1.9rem;
-}
-
 .sub-titulo {
     font-size: 0.9em !important;
 }
 
+// BARRA INICIAL
 .arrow {
-    max-width: .75em;
+    max-width: 0.75em;
+}
+
+.secao-inicial {
+    background: #edf0f4;
+}
+
+.descricao-ajustada {
+    max-width: 100%;
+    text-align: justify;
+
+    @media (min-width: 576px) {
+        max-width:75%;
+    }
+}
+
+.custom-position-title {
+    position: relative;
+
+    @media (min-width: 576px) {
+        left: -19px;
+    }
+}
+
+.breadcrumb {
+    display: flex;
+    font-size: 0.8em;
+    padding: 0;
+    margin-bottom: 0;
+    list-style: none;
+    background-color: #ffffff00;
+    border-radius: 0;
+}
+
+.progress {
+    border-radius: 13px;
+    height: 8px;
+    min-width: 8em;
+    margin: 0;
+    left: -1.1em;
+    position: relative;
+}
+
+h6{
+    padding: 0;
+    margin: 0;
 }

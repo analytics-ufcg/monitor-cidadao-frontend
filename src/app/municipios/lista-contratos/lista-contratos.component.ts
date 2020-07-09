@@ -15,19 +15,28 @@ import { takeUntil, debounceTime } from 'rxjs/operators';
 })
 export class ListaContratosComponent implements OnInit {
   pag: number = 1;
-  contador: number = 15;
+  contador: number = 10;
   public isLoading = true;
-
-  public municipioEscolhido: Municipio;
-
   private unsubscribe = new Subject();
+  
+  isCheckedVigentes = false;
+  public municipioEscolhido: Municipio;
+  // todos os contratos
   contratos: Contrato[] = [];
+  // contratos filtrados pela vigência
+  contratosFiltrados: Contrato[] = [];
+
+  isPortrait = false;
 
   constructor(private userService: UserService, 
               private contratosService: ContratoService) { }
 
   ngOnInit(): void {
       this.getMunicipio();
+
+      if (window.screen.width === 360) { // 768px portrait
+        this.isPortrait = true;
+      }
   }
 
   getMunicipio() {
@@ -37,17 +46,37 @@ export class ListaContratosComponent implements OnInit {
         debounceTime(300),
         takeUntil(this.unsubscribe))
       .subscribe(municipio => {
-        this.municipioEscolhido = municipio;
-        this.getContratos(this.municipioEscolhido);
+        // evita fazer a requisição duplicada de um municipio
+        if (municipio.cd_municipio != this.municipioEscolhido?.cd_municipio) {
+          this.isLoading = true;
+          this.contratosFiltrados = [];
+          
+          this.getContratos(municipio);
+        }
       });
   }
 
   getContratos(municipio: Municipio) {
     this.contratosService.getContratosPorMunicipio(municipio.cd_municipio)
       .pipe(takeUntil(this.unsubscribe)).subscribe(contratos => {
-        this.contratos = contratos.sort((a, b) => (b.dt_ano - a.dt_ano));
-        this.isLoading = false;
+          this.contratos = contratos.sort((a, b) => (b.dt_ano - a.dt_ano));
+          this.contratosFiltrados = this.contratos;
+          this.isCheckedVigentes = false;
+          this.isLoading = false;
+          this.municipioEscolhido = municipio;
       });
+  }
+
+  clickSwitchVigentes (event) { 
+    let today = new Date();
+   
+    if (event.target.checked){
+      this.contratosFiltrados = this.contratos.filter(m => 
+        new Date(today) <= new Date(m.pr_vigencia)
+      );
+    } else {
+      this.contratosFiltrados = this.contratos;
+    }
   }
 
 }

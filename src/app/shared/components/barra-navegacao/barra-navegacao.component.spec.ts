@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BarraBuscaComponent } from './barra-busca.component';
+import { BarraNavegacaoComponent } from './barra-navegacao.component';
 
-describe('BarraBuscaComponent', () => {
-  let component: BarraBuscaComponent;
-  let fixture: ComponentFixture<BarraBuscaComponent>;
+describe('BarraNavegacaoComponent', () => {
+  let component: BarraNavegacaoComponent;
+  let fixture: ComponentFixture<BarraNavegacaoComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BarraBuscaComponent ]
+      declarations: [ BarraNavegacaoComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BarraBuscaComponent);
+    fixture = TestBed.createComponent(BarraNavegacaoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
