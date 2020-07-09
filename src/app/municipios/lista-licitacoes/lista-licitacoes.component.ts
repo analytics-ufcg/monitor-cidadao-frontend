@@ -52,4 +52,9 @@ export class ListaLicitacoesComponent implements OnInit {
       });
   }
 
+  onPageChange(pag: number) {
+    this.pag = pag;
+    window.scrollTo(0, 0);
+ }
+
 }
