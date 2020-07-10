@@ -1,5 +1,6 @@
+import { RegiaoService } from './../../shared/services/regiao.service';
 import { Evento } from './../../shared/models/evento.model';
-import { debounceTime, takeUntil } from 'rxjs/operators';
+import { debounceTime, takeUntil, map } from 'rxjs/operators';
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Municipio } from './../../shared/models/municipio.model';
@@ -17,9 +18,8 @@ export class InfoContratoComponent implements OnInit {
   private unsubscribe = new Subject();
   public municipioEscolhido: Municipio;
 
-  
-
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+    private regiaoService: RegiaoService) { }
 
   ngOnInit(): void {
     this.getMunicipio();
@@ -33,7 +33,25 @@ export class InfoContratoComponent implements OnInit {
         takeUntil(this.unsubscribe))
       .subscribe(municipio => {
         this.municipioEscolhido = municipio;
+        this.getMunicipioIfUnfined () 
       });
+  }
+
+  /**
+   * Verifica se o municipio já está salvo no userservice,
+   * caso contrário é realizada a busca pelo código.
+   */
+  getMunicipioIfUnfined () {
+    if (!this.municipioEscolhido.cd_municipio || 
+      this.municipioEscolhido.cd_municipio != this.contrato.cd_municipio){
+      this.regiaoService.getMunicipiosbyId(this.contrato.cd_municipio)
+      .subscribe(municipio => {
+        municipio.map (result => {
+          this.userService.setMunicipioEscolhido (result);
+          this.municipioEscolhido = result;
+        }) 
+      })
+    }
   }
 
   getPorcentagemContrato (start, end) {
@@ -62,6 +80,11 @@ export class InfoContratoComponent implements OnInit {
       
       return eventosTimeline;
     }
+  }
+
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
   }
 
 }

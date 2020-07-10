@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 import { Municipio } from './../models/municipio.model';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -18,5 +19,13 @@ export class RegiaoService {
 
   getMunicipios(): Observable<Municipio[]> {
     return this.http.get<Municipio[]>(this.url);
-}
+  }
+
+
+  getMunicipiosbyId(cd_municipio): Observable<Municipio[]> {
+    return  this.getMunicipios().pipe(map(res =>
+      res.filter(v => v.cd_municipio.toLowerCase().indexOf(cd_municipio.toLowerCase()) > -1)
+    ));
+  }
+
 }

@@ -57,10 +57,12 @@ input {
 .loading-position {
   transform: scale(0.13);
   position: absolute;
-  right: 0em;
   top: -5.7em;
   z-index: 1000;
 
+  @media (max-width: 576px) {
+    right: 0;
+  }
   @media (min-width: 576px) {
     left: -2em;
   }
