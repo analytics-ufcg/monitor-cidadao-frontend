@@ -1,13 +1,13 @@
-import { TipoBusca } from './../../enum/tipo-busca.enum';
-import { Contrato } from './../../models/contrato.model';
 import { BuscaService } from './../../services/busca.service';
 import { UserService } from '../../services/user.service';
-import { Municipio } from '../../models/municipio.model';
-import { takeUntil, distinctUntilChanged, tap, switchMap, catchError, debounceTime } from 'rxjs/operators';
 import { RegiaoService } from '../../services/regiao.service';
-import { Component, OnInit, Input } from '@angular/core';
 
+import { TipoBusca } from './../../enum/tipo-busca.enum';
+import { Contrato } from './../../models/contrato.model';
+import { Municipio } from '../../models/municipio.model';
 
+import { Component, OnInit } from '@angular/core';
+import { takeUntil, distinctUntilChanged, tap, switchMap, catchError, debounceTime } from 'rxjs/operators';
 import { Observable, Subject, of, from } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
@@ -23,28 +23,44 @@ import { Router } from '@angular/router';
 export class BuscaComponent implements OnInit {
 
   private unsubscribe = new Subject();
-  model: any;
+  
+  modelBusca: any;
   public municipios: any[];
 
   constructor(private router: Router,
     private regiaoService: RegiaoService,
     private userService: UserService,
     private buscaService: BuscaService) { 
-
+    
+    // A busca por municípios é feita apenas uma vez
     this.getMunicipios()
 
+    this.router.routeReuseStrategy.shouldReuseRoute = function () {
+      return false;
+    }
   }
 
   ngOnInit() {}
 
+  /**
+  * Recupera do service todos os municípios
+  */
   getMunicipios() {
     this.regiaoService.getMunicipios()
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(municipios => {
-        this.municipios = municipios.map((response: any) => new Municipio(response.cd_municipio, response.no_municipio));
+        this.municipios = municipios.map((response: any) => 
+          new Municipio(response.cd_municipio, response.no_municipio)
+        );
       });
   }
 
+  /**
+  * Recupera do service todos os contratos pela descrição
+  * de acordo com o texto inserido no input.
+  * 
+  * @param term inserido no input
+  */
   getContratosPelaDescricao (term) {
     return this.buscaService.getContratosPorMunicipio (term)
     .pipe(map(buscavelList => {
@@ -52,30 +68,53 @@ export class BuscaComponent implements OnInit {
         new Contrato(contrato.id_contrato, contrato.de_obs ? contrato.de_obs.charAt(0).toUpperCase() + contrato.de_obs.substr(1).toLowerCase() : '')
         );
     }))
+  }
+
+  /**
+   * Busca e realiza as etapas necessárias para criar
+   * a listagem de itens buscáveis (municípios e contratos).
+   * 
+   * - Os componentes buscáveis são do tipo @see Buscavel 
+   * (com parametros de id, descricao, e tipo).
+   * 
+   * @param term termo inserido no input
+   */
+  getBuscaveisPelaDescricao (term) {
+    return this.getContratosPelaDescricao (term) 
+    // Adicina todos os municípios na lista de itens buscáveis
     .pipe(map(buscavelList => {
       for (let municipio of this.municipios) {
         buscavelList.push (municipio)
       }
       return buscavelList
     }))
+    // Ordena a lista para colocar o município no começo dela
     .pipe(map(buscavelList => {
       return buscavelList.sort((a, b) => b.tipoBusca.localeCompare(a.tipoBusca))
     }))
+    // Seleciona apenas os 10 primeiros itens
     .pipe(map(res=>
       res.filter(v =>v.descricao.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 6)
     ))
-    
-    // .pipe(map(buscavelList => { console.log (buscavelList)}))
   }
 
-  selecionaMunicipio (municipio){
-    if (municipio.tipoBusca == TipoBusca.Municipio){
-      this.userService.setMunicipioEscolhido(municipio);
+  /**
+   * Realiza a busca de acordo com o tipo do item buscavel
+   * recebido como parâmetro.
+   * 
+   * @param buscavel um município ou um contrato
+   */
+  selecionaBuscavel (buscavel){
+    // Busca pelo município
+    if (buscavel.tipoBusca == TipoBusca.Municipio){
+      this.userService.setMunicipioEscolhido(buscavel);
       this.router.navigate(['/municipios']);
-    }else if (municipio.tipoBusca == 'CONTRATO'){
-      this.router.navigate(['/contrato/' +municipio.id]);
+   
+      // busca pelo contrato
+    }else if (buscavel.tipoBusca == 'CONTRATO'){
+      this.router.navigateByUrl('/contrato/' +buscavel.id ,
+        { queryParams: { id: buscavel.id }})
     }
-    
   }
 
   ngOnDestroy() {
@@ -84,7 +123,8 @@ export class BuscaComponent implements OnInit {
   }
 
   /**
-   * Usado para realizar apresentar as sugestões da busca por municípios
+   * Usado para buscar e e setar as sugestões da busca por municípios
+   * e contratos
    */
   searching = false
   search = (text$: Observable<string>) =>
@@ -92,10 +132,13 @@ export class BuscaComponent implements OnInit {
       debounceTime(400),
       distinctUntilChanged(),
       tap(() => this.searching = true),
-      switchMap(term => this.getContratosPelaDescricao (term)), 
+      switchMap(term => this.getBuscaveisPelaDescricao (term)), 
       tap(() => this.searching = false)
     )
 
-    formatter = (x: { descricao: string }) => x.descricao;
+  /**
+   *  Formata o texto padrão do input 
+   */
+  formatter = (x: { descricao: string }) => x.descricao;
 
 }
