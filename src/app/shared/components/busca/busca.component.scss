@@ -2,15 +2,21 @@
 // LISTAGEM DO AUTO-COMPLETE
 // 
 ::ng-deep.dropdown-menu.show {
-  width: 65vh;
+  width:100%;
   overflow-y: auto;
   border-radius: 15px;
   overflow-x: hidden;
+
+  @media (min-width: 576px) {
+    width: 62vh;
+  }
 }
 
 ::ng-deep.dropdown-item {
   display: block;
-  width: 100%;
+  left:-10px;
+  width:110%;
+  position: relative;
   padding: 0.25rem 1.5rem;
   clear: both;
   font-weight: 300;
@@ -49,9 +55,15 @@ input {
 // LOADING ENQUANTO A BUSCA É REALIZADA
 // 
 .loading-position {
-  transform: scale(0.13); 
-  position: absolute; 
-  left: -2em;
+  transform: scale(0.13);
+  position: absolute;
+  right: 0em;
   top: -5.7em;
+  z-index: 1000;
+
+  @media (min-width: 576px) {
+    left: -2em;
+  }
+
 }
 
