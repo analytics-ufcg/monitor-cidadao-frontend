@@ -1,4 +1,6 @@
-export class Contrato {
+import { TipoBusca } from './../enum/tipo-busca.enum';
+import { Buscavel } from './buscavel.model';
+export class Contrato extends Buscavel{
     id_contrato: string
     id_licitacao: string
     cd_municipio: string
@@ -21,5 +23,11 @@ export class Contrato {
     ordem_servico : string
     no_fornecedor : string
     de_ugestora : string
+
+    constructor (id_contrato?, de_obs?) {
+        super (id_contrato, de_obs, TipoBusca.Contrato);
+        this.id_contrato = id_contrato;
+        this.de_obs = de_obs;
+    }
 }
 

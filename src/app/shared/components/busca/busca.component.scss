@@ -1,9 +1,30 @@
-
+// 
+// LISTAGEM DO AUTO-COMPLETE
+// 
 ::ng-deep.dropdown-menu.show {
-  width: 100%;;
+  width: 65vh;
   overflow-y: auto;
+  border-radius: 15px;
+  overflow-x: hidden;
 }
 
+::ng-deep.dropdown-item {
+  display: block;
+  width: 100%;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 300;
+  color: #6b6b6b;
+  text-align: inherit;
+  font-family: 'Ubuntu', sans-serif; 
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
+// 
+// INPUT DA BUSCA
+// 
 input {
   min-height: 2.5em;
   background: #f19638;
@@ -19,3 +40,18 @@ input {
   color: white;
   opacity: 1;
 }
+
+.input-group {
+  background: white !important;
+}
+
+// 
+// LOADING ENQUANTO A BUSCA É REALIZADA
+// 
+.loading-position {
+  transform: scale(0.13); 
+  position: absolute; 
+  left: -2em;
+  top: -5.7em;
+}
+
