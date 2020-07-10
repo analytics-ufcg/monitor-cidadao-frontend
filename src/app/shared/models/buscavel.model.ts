@@ -10,7 +10,7 @@ export class Buscavel {
         this.id = id;
         this.descricao = descricao;
         this.tipoBusca = tipoBusca;
-        this.descricaoCurta = this.descricao?.length > 36 ? descricao.substring(0, 36)+"..." : this.descricao;
+        this.descricaoCurta = this.descricao?.length > 55 ? descricao.substring(0, 55)+"..." : this.descricao;
     }
 }
 
