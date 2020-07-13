@@ -1,0 +1,25 @@
+<ng-template #rt let-r="result" let-t="term">
+  <i *ngIf="r?.tipoBusca=='MUNICIPIO'" class="fas fa-city mr-2"></i>
+  <i *ngIf="r?.tipoBusca=='CONTRATO'" class="fas fa-clipboard-list  mr-2"></i>
+  <ngb-highlight class= "custom-description lr-1" [result]="r?.descricaoCurta" [term]="t"></ngb-highlight>
+  <small *ngIf="r?.tipoBusca=='MUNICIPIO'">, Município</small>
+  <small *ngIf="r?.tipoBusca=='CONTRATO'">, Contrato</small>
+</ng-template>
+
+
+
+<div class="input-group">
+  <app-circle-loading-spinner *ngIf="searching" class="loading-position"></app-circle-loading-spinner>
+  <input id="typeahead-prevent-manual-entry" 
+  [(ngModel)]="modelBusca" 
+  type="text" 
+  class="form-control" 
+  [ngbTypeahead]="search"
+  [inputFormatter]="formatter" 
+  [resultFormatter]="formatter" 
+  [editable]='false' 
+  [resultTemplate]="rt"
+  placeholder="Busque aqui por um contrato ou município" 
+  (selectItem)="selecionaBuscavel($event.item)" />
+
+</div>

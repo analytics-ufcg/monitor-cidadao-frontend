@@ -1,0 +1,71 @@
+// 
+// LISTAGEM DO AUTO-COMPLETE
+// 
+::ng-deep.dropdown-menu.show {
+  width:100%;
+  overflow-y: auto;
+  border-radius: 15px;
+  overflow-x: hidden;
+
+  @media (min-width: 576px) {
+    min-width: 33.2em;
+  }
+}
+
+::ng-deep.dropdown-item {
+  display: block;
+  left:-10px;
+  width:110%;
+  position: relative;
+  padding: 0.25rem 1.5rem;
+  clear: both;
+  font-weight: 300;
+  color: #6b6b6b;
+  text-align: inherit;
+  font-family: 'Ubuntu', sans-serif; 
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+}
+
+// 
+// INPUT DA BUSCA
+// 
+input {
+  min-height: 2.5em;
+  background: #f19638;
+  color:white;
+  border: 1px solid #f19638;
+
+  &:hover {
+    box-shadow: 1px 1px 6px #84817a !important;
+  }
+}
+
+::placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.input-group {
+  background: white !important;
+}
+
+// 
+// LOADING ENQUANTO A BUSCA É REALIZADA
+// 
+.loading-position {
+  transform: scale(0.13);
+  position: absolute;
+  top: -5.7em;
+  z-index: 1000;
+
+  @media (max-width: 576px) {
+    right: 0;
+  }
+  @media (min-width: 576px) {
+    left: -2em;
+  }
+
+}
+
