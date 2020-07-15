@@ -8,8 +8,18 @@
   overflow-x: hidden;
 
   @media (min-width: 576px) {
-    min-width: 33.2em;
+    min-width: 27em;
   }
+}
+
+hr {
+  max-width: 94%;
+    position: relative;
+    top: 4px;
+}
+
+strong {
+  font-weight: 900;
 }
 
 ::ng-deep.dropdown-item {
@@ -49,23 +59,5 @@ input {
 
 .input-group {
   background: white !important;
-}
-
-// 
-// LOADING ENQUANTO A BUSCA É REALIZADA
-// 
-.loading-position {
-  transform: scale(0.13);
-  position: absolute;
-  top: -5.7em;
-  z-index: 1000;
-
-  @media (max-width: 576px) {
-    right: 0;
-  }
-  @media (min-width: 576px) {
-    left: -2em;
-  }
-
 }
 

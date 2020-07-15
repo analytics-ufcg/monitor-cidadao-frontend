@@ -1,3 +1,4 @@
+import { Buscavel } from './../../models/buscavel.model';
 import { BuscaService } from './../../services/busca.service';
 import { UserService } from '../../services/user.service';
 import { RegiaoService } from '../../services/regiao.service';
@@ -23,64 +24,73 @@ import { Router } from '@angular/router';
 export class BuscaComponent implements OnInit {
 
   modelBusca: any;
-  searching = false;
-  searchFailed = false;
+  private unsubscribe = new Subject();
+
+  public municipios: any[];
+  public municipioSelecionado: Municipio;
+
 
   constructor(private router: Router,
+    private regiaoService: RegiaoService,
     private userService: UserService,
-    private buscaService: BuscaService) {
+    private buscaService: BuscaService) { }
 
-    // utilizado para que a rota nao seja reutilizada
-    // e permita que o router.navite atualize a página
-    this.router.routeReuseStrategy.shouldReuseRoute = function () {
-      return false;
-    }
+  ngOnInit() {
+    this.getMunicipios();
   }
 
-  ngOnInit() { }
+  getMunicipios() {
+    this.regiaoService.getMunicipios()
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(municipios => {
+        let buscaveis: Buscavel[] = []
 
-  /**
-   * Realiza a busca de acordo com o tipo do item buscavel
-   * recebido como parâmetro.
-   * 
-   * @param buscavel um município ou um contrato
-   */
-  selecionaBuscavel(buscavel) {
-    // Busca pelo município
-    if (this.buscaService.isMunicipio(buscavel)) {
-      this.userService.setMunicipioEscolhido(buscavel);
+        this.municipios = municipios.map((response: any) =>
+          buscaveis.push(new Buscavel(response.cd_municipio, response.no_municipio, TipoBusca.Municipio))
+        );
+
+        this.municipios = buscaveis;
+      });
+  }
+
+  selecionaBuscavel(buscavel:Buscavel) {
+    console.log (buscavel)
+    if (this.buscaService.isContrato(buscavel)){
+      console.log ("Clicou em contrato")
+    } else if (this.buscaService.isMunicipio(buscavel)) {
+      this.userService.setMunicipioEscolhido(new Municipio(buscavel.id, buscavel.descricao));
       this.router.navigate(['/municipios']);
-
-      // busca pelo contrato
-    } else if (this.buscaService.isContrato(buscavel)) {
-      this.router.navigateByUrl('/contrato/' + buscavel.id,
-        { queryParams: { id: buscavel.id } })
     }
   }
 
+  ngOnDestroy() {
+    this.unsubscribe.next();
+    this.unsubscribe.complete();
+  }
+
   /**
-   * Usado para buscar e e setar as sugestões da busca por municípios
-   * e contratos.
-   * 
-   * @param text$ utilizado no ng-templete para apresentar as sugestões.
+   * Usado para realizar apresentar as sugestões da busca por municípios
    */
   search = (text$: Observable<string>) =>
     text$.pipe(
-      debounceTime(400),
-      distinctUntilChanged(),
-      tap(() => this.searching = true),
-      switchMap(term => this.buscaService.search(term).pipe(
-        tap(() => this.searchFailed = false),
-        catchError(() => {
-          this.searchFailed = true;
-          return of([]);
-        }))),
-      tap(() => this.searching = false)
-    )
+      debounceTime(200),
+      map(term => {
+        if (term.length > 2) {
+         
+          let buscaveisTemp = this.municipios.filter(v => 
+            v.descricao.toLowerCase().indexOf(term.toLowerCase()) > -1
+          ).slice(0, 5)
+          
+          buscaveisTemp.unshift (new Buscavel("", term, TipoBusca.Contrato))
+          return buscaveisTemp
+          
+        } else {
+          []
+        }
 
-  /**
-   *  Formata o texto padrão do input 
-   */
+      })
+    )
   formatter = (x: { descricao: string }) => x.descricao;
+
 
 }

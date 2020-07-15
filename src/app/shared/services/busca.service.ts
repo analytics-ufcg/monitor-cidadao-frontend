@@ -21,7 +21,7 @@ export class BuscaService {
   constructor(private regiaoService: RegiaoService,
     private http: HttpClient) {
     // A busca por municípios é feita apenas uma vez
-    this.getMunicipios()
+    // this.getMunicipios()
   }
 
   /**
@@ -34,7 +34,7 @@ export class BuscaService {
       return of([]);
     }
     // trim utilizado para evitar bad request.
-    return this.getBuscaveis(term?.trim())
+    // return this.getBuscaveis(term?.trim())
   }
 
   /**
@@ -51,30 +51,30 @@ export class BuscaService {
  * Recupera do service de municípios todos aqueles que estão 
  * cadastrados.
  */
-  getMunicipios() {
-    this.regiaoService.getMunicipios()
-      .pipe(takeUntil(this.unsubscribe))
-      .subscribe(municipios => {
-        this.municipios = municipios.map((response: any) =>
-          new Municipio(response.cd_municipio, response.no_municipio)
-        );
-      });
-  }
+  // getMunicipios() {
+  //   this.regiaoService.getMunicipios()
+  //     .pipe(takeUntil(this.unsubscribe))
+  //     .subscribe(municipios => {
+  //       this.municipios = municipios.map((response: any) =>
+  //         new Municipio(response.cd_municipio, response.no_municipio)
+  //       );
+  //     });
+  // }
 
   /**
-  * Recupera do service todos os contratos pela descrição
-  * de acordo com o texto inserido no input.
-  * 
-  * @param term termo inserido no input
-  */
-  getContratosPelaDescricao(term) {
-    return this.getContratosPelaDecricao(term)
-      .pipe(map(buscavelList => {
-        return buscavelList.map((contrato) =>
-          new Contrato(contrato.id_contrato, contrato.de_obs ? contrato.de_obs.charAt(0).toUpperCase() + contrato.de_obs.substr(1).toLowerCase() : '')
-        );
-      }))
-  }
+  // * Recupera do service todos os contratos pela descrição
+  // * de acordo com o texto inserido no input.
+  // * 
+  // * @param term termo inserido no input
+  // */
+  // getContratosPelaDescricao(term) {
+  //   return this.getContratosPelaDecricao(term)
+  //     .pipe(map(buscavelList => {
+  //       return buscavelList.map((contrato) =>
+  //         new Contrato(contrato.id_contrato, contrato.de_obs ? contrato.de_obs.charAt(0).toUpperCase() + contrato.de_obs.substr(1).toLowerCase() : '')
+  //       );
+  //     }))
+  // }
 
   /**
    * Busca e realiza as etapas necessárias para criar
@@ -85,24 +85,24 @@ export class BuscaService {
    * 
    * @param term termo inserido no input
    */
-  getBuscaveis(term) {
-    return this.getContratosPelaDescricao(term)
-      // Adicina todos os municípios na lista de itens buscáveis
-      .pipe(map(buscavelList => {
-        for (let municipio of this.municipios) {
-          buscavelList.push(municipio)
-        }
-        return buscavelList
-      }))
-      // Ordena a lista para colocar o município no começo dela
-      .pipe(map(buscavelList => {
-        return buscavelList.sort((a, b) => b.tipoBusca.localeCompare(a.tipoBusca))
-      }))
-      // Seleciona apenas os 10 primeiros itens
-      .pipe(map(res =>
-        res.filter(v => v.descricao.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 6)
-      ))
-  }
+  // getBuscaveis(term) {
+  //   return this.getContratosPelaDescricao(term)
+  //     // Adicina todos os municípios na lista de itens buscáveis
+  //     .pipe(map(buscavelList => {
+  //       for (let municipio of this.municipios) {
+  //         buscavelList.push(municipio)
+  //       }
+  //       return buscavelList
+  //     }))
+  //     // Ordena a lista para colocar o município no começo dela
+  //     .pipe(map(buscavelList => {
+  //       return buscavelList.sort((a, b) => b.tipoBusca.localeCompare(a.tipoBusca))
+  //     }))
+  //     // Seleciona apenas os 10 primeiros itens
+  //     .pipe(map(res =>
+  //       res.filter(v => v.descricao.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 6)
+  //     ))
+  // }
 
   /**
    * Verifica se um item buscavel é um contrato.
