@@ -1,4 +1,4 @@
-<div class="secao-inicial view-container h-25">
+<div class="secao-inicial view-container h-25 mb-5">
     <div class="container">
         <div class="column pb-4 ml-4 mr-4 pt-4">
             <div>
@@ -21,29 +21,39 @@
     </div>
 </div>
 
-<div *ngIf="!isLoading" class="view-container">
-    <div class="container">
-        <div class="column ml-3 pt-4">
+
+<div *ngIf="!isLoading" class="container view-container pb-6 pt-4">
+    <div class="card col-12" *ngFor="let contrato of contratos | paginate: { itemsPerPage: contador, currentPage: pag }; let i = index;">
+        <div class="card-body" [routerLink]="['/contrato/' + contrato.id_contrato]">
             
-
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item"
-                    *ngFor="let contrato of contratos | paginate: { itemsPerPage: contador, currentPage: pag }; let i = index;">
-                    <small class="text-secondary"> {{ contrato.de_ugestora }} </small>
-                    <h6 [routerLink]="['/contrato/' + contrato.id_contrato]"><strong class="text-warning">Contrato
-                            {{ contrato.nu_contrato | formatNumContrato}}</strong></h6>
-                    <div class="ml-5 text-warning">
-                        <div [innerHTML]="contrato.de_obs | formatFirstLetterCapitalize | highlight: termoBuscado">
-                        </div>
-                        <div class="mt-2 text-warning">
-                            <span>{{contrato.no_fornecedor | formatNomeEmpresa}}, </span>
-                            <span>CNPJ/CPF: {{contrato.nu_cpfcnpj | formatCpfCnpj}}</span>
-                        </div>
-                        <p class="mt-2">{{ contrato.vl_total_contrato | currency: "R$"}}</p>
+            
+            <div class="row">
+                
+                <div class="col-sm-6  mx-auto">
+                    <strong class="text-warning">Descrição: </strong>
+                    <div class="mb-3 text-warning text-justify" [innerHTML]="contrato.de_obs | formatFirstLetterCapitalize | highlight: termoBuscado">
                     </div>
-                </li>
-            </ul>
+                </div>
+                
+                <div class="col-sm-2 mx-auto my-auto">
+                    <small class="text-secondary"> Realizado em {{contrato.dt_ano}} pela</small>
+                    <h6 class="text-secondary"><strong>{{contrato.de_ugestora}}</strong></h6>
+                </div>
+                <div class="col-sm-2 my-auto mx-auto">
+                    <h5 class="text-warning text-capitalize mt-3 mt-sm-0"><strong class="custom-value">{{ contrato.vl_total_contrato | currency: "R$" }}</strong></h5>
+                    <div class="row">
+                        <span class="text-secondary ml-3">Contratado</span>
+                        
+                      </div>
+                </div>
 
+                <div class="col-sm-1 my-auto">
+                    <div class="progress custom-progress text-left mt-1">
+                        <div class="progress-bar progress-bar-striped bg-success progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                    <span class="text-secondary">Risco</span>
+                </div>
+              </div>
         </div>
     </div>
 </div>
