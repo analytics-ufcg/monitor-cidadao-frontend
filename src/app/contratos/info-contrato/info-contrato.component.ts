@@ -1,3 +1,6 @@
+import { ContratoService } from './../../shared/services/contrato.service';
+import { ActivatedRoute } from '@angular/router';
+import { Contrato } from './../../shared/models/contrato.model';
 import { RegiaoService } from './../../shared/services/regiao.service';
 import { Evento } from './../../shared/models/evento.model';
 import { debounceTime, takeUntil, map } from 'rxjs/operators';
@@ -13,16 +16,29 @@ import { UserService } from './../../shared/services/user.service';
 })
 export class InfoContratoComponent implements OnInit {
 
-  @Input() contrato;
+  public contrato: Contrato;
 
   private unsubscribe = new Subject();
   public municipioEscolhido: Municipio;
 
   constructor(private userService: UserService,
-    private regiaoService: RegiaoService) { }
+    private regiaoService: RegiaoService,
+    private contratoService: ContratoService,
+    private activatedroute: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.getMunicipio();
+
+    const id = this.activatedroute.snapshot.paramMap.get('id');
+    this.getContratoByID(id);
+  }
+
+  getContratoByID(id: string) {
+    this.contratoService.getById(id)
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(contrato => {
+        this.contrato = contrato;
+      });
   }
 
   getMunicipio() {
@@ -42,8 +58,8 @@ export class InfoContratoComponent implements OnInit {
    * caso contrário é realizada a busca pelo código.
    */
   getMunicipioIfUnfined () {
-    if (!this.municipioEscolhido.cd_municipio || 
-      this.municipioEscolhido.cd_municipio != this.contrato.cd_municipio){
+    if (!this.municipioEscolhido?.cd_municipio || 
+      this.municipioEscolhido?.cd_municipio != this.contrato?.cd_municipio){
       this.regiaoService.getMunicipiosbyId(this.contrato.cd_municipio)
       .subscribe(municipio => {
         municipio.map (result => {

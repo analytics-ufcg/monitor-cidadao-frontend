@@ -5,21 +5,18 @@ import { CommonModule } from '@angular/common';
 import { ContratosRoutingModule } from './contratos-routing.module';
 
 import { InfoContratoComponent } from './info-contrato/info-contrato.component';
-import { ContratoComponent } from './contrato.component';
 
 
 @NgModule({
   declarations: [ 
-    InfoContratoComponent, 
-    ContratoComponent],
+    InfoContratoComponent],
   imports: [
     CommonModule,
     ContratosRoutingModule,
     PipesModule,
     SharedModule
   ], exports: [
-    InfoContratoComponent, 
-    ContratoComponent
+    InfoContratoComponent
   ]
 })
 export class ContratosModule { }

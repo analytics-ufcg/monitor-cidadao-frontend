@@ -1,15 +1,10 @@
-import { ContratoComponent } from './contrato.component';
 import { InfoContratoComponent } from './info-contrato/info-contrato.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-
-
-
 const routes: Routes = [
   {
     path: ':id',
-    component: ContratoComponent,
     children: [
       {
         path: '',
