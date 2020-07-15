@@ -25,7 +25,11 @@ export class BuscaService {
    * 
    * @param term termo que sera utilizado na busca
    */
-  getContratosPelaDecricao(term: string): Observable<Contrato[]> {
+  searchContratos(term: string): Observable<Contrato[]> {
+    if (term?.trim() === '') {
+      return of([]);
+    }
+    
     const params = new HttpParams().set('termo', term);
     return this.http.get<Contrato[]>(this.url, { params });
   }

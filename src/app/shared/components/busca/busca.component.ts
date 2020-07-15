@@ -55,7 +55,7 @@ export class BuscaComponent implements OnInit {
 
   selecionaBuscavel(buscavel:Buscavel) {
     if (this.buscaService.isContrato(buscavel)){
-      console.log ("Clicou em contrato")
+      this.router.navigate(['contrato/search'], { queryParams: { termo: buscavel.descricao }});
     } else if (this.buscaService.isMunicipio(buscavel)) {
       this.userService.setMunicipioEscolhido(new Municipio(buscavel.id, buscavel.descricao));
       this.router.navigate(['/municipios']);

@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormatNumContratoPipe } from './format-num-contrato.pipe';
 import { FormatNomeEmpresaPipe } from './format-nome-empresa.pipe';
+import { HighlightSearchPipe } from './highlight-search.pipe';
+import { FormatFirstLetterCapitalizePipe } from './format-first-letter-capitalize.pipe';
 
 
 
@@ -10,7 +12,9 @@ import { FormatNomeEmpresaPipe } from './format-nome-empresa.pipe';
   declarations: [
     FormatCpfCnpjPipe,
     FormatNumContratoPipe,
-    FormatNomeEmpresaPipe
+    FormatNomeEmpresaPipe,
+    HighlightSearchPipe,
+    FormatFirstLetterCapitalizePipe
   ],
   imports: [
     CommonModule
@@ -18,7 +22,9 @@ import { FormatNomeEmpresaPipe } from './format-nome-empresa.pipe';
   exports: [
     FormatCpfCnpjPipe,
     FormatNumContratoPipe,
-    FormatNomeEmpresaPipe
+    FormatNomeEmpresaPipe,
+    HighlightSearchPipe,
+    FormatFirstLetterCapitalizePipe
   ]
 })
 export class PipesModule { }

@@ -1,0 +1,22 @@
+
+.secao-inicial {
+    background:#f9f4ea;
+}
+
+.title {
+    color: #61617e;
+}
+
+.subtitle {
+    color: #a39f9b;
+}
+
+h6 {
+    margin: 0;
+
+    &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+    }
+}
+
