@@ -54,7 +54,6 @@ export class BuscaComponent implements OnInit {
   }
 
   selecionaBuscavel(buscavel:Buscavel) {
-    console.log (buscavel)
     if (this.buscaService.isContrato(buscavel)){
       console.log ("Clicou em contrato")
     } else if (this.buscaService.isMunicipio(buscavel)) {
