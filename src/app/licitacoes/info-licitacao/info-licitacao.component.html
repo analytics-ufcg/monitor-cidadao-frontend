@@ -13,7 +13,7 @@
         <div class="row">
             <div>
                 <h2 class="text-info">
-                    <a [routerLink]="['/municipios/licitacoes']">
+                    <a (click)="lastPage()">
                         <i class="fas fa-arrow-left arrow text-warning"></i>
                     </a>
                     Licitação <strong>{{licitacao?.nu_licitacao | formatNumContrato}}</strong>

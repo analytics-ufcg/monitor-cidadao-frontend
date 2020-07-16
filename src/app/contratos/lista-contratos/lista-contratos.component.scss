@@ -1,6 +1,5 @@
-
 .secao-inicial {
-    background:#f9f4ea;
+    background: #f9f4ea;
 }
 
 .title {
@@ -15,3 +14,10 @@ h6 {
     margin: 0;
 }
 
+a:hover {
+    cursor: pointer;
+}
+
+.custom-value {
+    white-space: nowrap;
+}

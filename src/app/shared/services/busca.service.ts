@@ -30,7 +30,7 @@ export class BuscaService {
       return of([]);
     }
     
-    const params = new HttpParams().set('termo', term);
+    const params = new HttpParams().set('termo', term?.trim());
     return this.http.get<Contrato[]>(this.url, { params });
   }
 

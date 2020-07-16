@@ -1,13 +1,16 @@
 import { ContratoService } from './../../shared/services/contrato.service';
-import { ActivatedRoute } from '@angular/router';
-import { Contrato } from './../../shared/models/contrato.model';
 import { RegiaoService } from './../../shared/services/regiao.service';
+import { UserService } from './../../shared/services/user.service';
+
+import { ActivatedRoute } from '@angular/router';
+
+import { Contrato } from './../../shared/models/contrato.model';
 import { Evento } from './../../shared/models/evento.model';
 import { debounceTime, takeUntil, map } from 'rxjs/operators';
 import { Component, OnInit, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Municipio } from './../../shared/models/municipio.model';
-import { UserService } from './../../shared/services/user.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'info-contrato',
@@ -24,7 +27,8 @@ export class InfoContratoComponent implements OnInit {
   constructor(private userService: UserService,
     private regiaoService: RegiaoService,
     private contratoService: ContratoService,
-    private activatedroute: ActivatedRoute) { }
+    private activatedroute: ActivatedRoute,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.getMunicipio();
@@ -101,6 +105,10 @@ export class InfoContratoComponent implements OnInit {
   ngOnDestroy() {
     this.unsubscribe.next();
     this.unsubscribe.complete();
+  }
+
+  lastPage() {
+    this.location.back(); 
   }
 
 }

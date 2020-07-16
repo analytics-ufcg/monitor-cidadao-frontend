@@ -1,4 +1,4 @@
-<div class="secao-inicial view-container h-25 mb-5">
+<div class="secao-inicial view-container h-25 mb-3">
     <div class="container">
         <div class="column pb-4 ml-4 mr-4 pt-4">
             <div>
@@ -22,7 +22,22 @@
 </div>
 
 
-<div *ngIf="!isLoading" class="container view-container pb-6 pt-4">
+<div class="container view-container">
+    <div class="float-right" *ngIf="!isLoading && contratos?.length != 0">
+        <div ngbDropdown  class="nav-item dropdown" >
+            <a ngbDropdownToggle class="nav-link dropdown-toggle"  id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                {{ordenacaoSelecionada.name}}
+            </a>
+            <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <a *ngFor="let options of dropDownOptions" (click)="ordena(options)" class="dropdown-item" >{{options.name}}</a>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="!isLoading" class="container view-container pb-6">
     <div class="card col-12" *ngFor="let contrato of contratos | paginate: { itemsPerPage: contador, currentPage: pag }; let i = index;">
         <div class="card-body" [routerLink]="['/contrato/' + contrato.id_contrato]">
             
@@ -36,7 +51,7 @@
                 </div>
                 
                 <div class="col-sm-2 mx-auto my-auto">
-                    <small class="text-secondary"> Realizado em {{contrato.dt_ano}} pela</small>
+                    <small class="text-secondary"> Realizado em {{contrato.dt_ano}}</small>
                     <h6 class="text-secondary"><strong>{{contrato.de_ugestora}}</strong></h6>
                 </div>
                 <div class="col-sm-2 my-auto mx-auto">
@@ -58,7 +73,7 @@
     </div>
 </div>
 
-<div *ngIf="!isLoading" class="row d-flex mr-0 mr-sm-1 justify-content-center">
+<div *ngIf="!isLoading" class="row d-flex mt-4 mr-0 mr-sm-1 justify-content-center">
     <div class="my-pagination text-center col-md-7">
         <pagination-controls (pageChange)="onPageChange($event)" previousLabel="Anterior" nextLabel="Próximo"
             autoHide="true">
