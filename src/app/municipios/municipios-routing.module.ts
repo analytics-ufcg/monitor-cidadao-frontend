@@ -6,7 +6,7 @@ import { MunicipiosComponent } from './municipios.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: MunicipiosComponent,
     children: [
       {

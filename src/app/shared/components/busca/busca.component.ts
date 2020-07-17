@@ -53,12 +53,19 @@ export class BuscaComponent implements OnInit {
       });
   }
 
+  /**
+   * Realiza a busca de acordo com o tipo do item buscavel
+   * recebido como parâmetro.
+   * 
+   * @param buscavel um município ou um contrato
+   */
   selecionaBuscavel(buscavel:Buscavel) {
     if (this.buscaService.isContrato(buscavel)){
       this.router.navigate(['contrato/search'], { queryParams: { termo: buscavel.descricao }});
     } else if (this.buscaService.isMunicipio(buscavel)) {
       this.userService.setMunicipioEscolhido(new Municipio(buscavel.id, buscavel.descricao));
-      this.router.navigate(['/municipios']);
+      this.router.navigateByUrl('/municipios/' + buscavel.id,
+        { queryParams: {id: buscavel.id } });
     }
   }
 
