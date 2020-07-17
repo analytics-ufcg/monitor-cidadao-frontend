@@ -53,16 +53,15 @@ export class ListaContratosComponent implements OnInit {
     this.ordenacaoSelecionada = this.dropDownOptions [0]
     this.contratos.sort((a, b) => (b.dt_ano - a.dt_ano));
   }
-  ordenaMaiorData() {
-    this.ordenacaoSelecionada  = this.dropDownOptions [1]
-    this.contratos.sort((a, b) => (b.vl_total_contrato - a.vl_total_contrato));
-  }
-
   ordenaMenorData() {
-    this.ordenacaoSelecionada  = this.dropDownOptions [2]
+    this.ordenacaoSelecionada  = this.dropDownOptions [1]
     this.contratos.sort((a, b) => (a.vl_total_contrato - b.vl_total_contrato));
   }
-
+  ordenaMaiorData() {
+    this.ordenacaoSelecionada  = this.dropDownOptions [2]
+    this.contratos.sort((a, b) => (b.vl_total_contrato - a.vl_total_contrato));
+  }
+  
 
   ordena (opcao) {
     if (opcao.id == 'ATUAIS'){
