@@ -49,7 +49,8 @@ export class BuscaComponent implements OnInit {
     // Busca pelo município
     if (this.buscaService.isMunicipio(buscavel)) {
       this.userService.setMunicipioEscolhido(buscavel);
-      this.router.navigate(['/municipios']);
+      this.router.navigateByUrl('/municipios/' + buscavel.id,
+        { queryParams: {id: buscavel.id } });
 
       // busca pelo contrato
     } else if (this.buscaService.isContrato(buscavel)) {

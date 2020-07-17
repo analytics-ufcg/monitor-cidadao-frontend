@@ -1,3 +1,5 @@
+import { MunicipioService } from './../shared/services/municipio.service';
+import { ActivatedRoute } from '@angular/router';
 import { Municipio } from './../shared/models/municipio.model';
 
 import { debounceTime, takeUntil } from 'rxjs/operators';
@@ -18,10 +20,23 @@ export class MunicipiosComponent implements OnInit {
   public municipioEscolhido: Municipio;
 
   constructor(
-    private userService: UserService) { }
+    private activatedroute: ActivatedRoute,
+    private userService: UserService,
+    private municipioService: MunicipioService) { }
 
   ngOnInit() {
-    this.getMunicipio();
+    const id = this.activatedroute.snapshot.paramMap.get('id');
+    this.getMunicipioById(id);
+  }
+
+  getMunicipioById(id: string) {
+    
+    this.municipioService.getById(id)
+      .pipe(takeUntil(this.unsubscribe))
+      .subscribe(municipio => {
+        this.municipioEscolhido = municipio;
+        this.userService.setMunicipioEscolhido(municipio);
+      });
   }
 
   getMunicipio() {

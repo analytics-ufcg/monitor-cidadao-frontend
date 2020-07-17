@@ -11,12 +11,17 @@ import { environment } from '../../../environments/environment';
 })
 export class MunicipioService {
 
-    private url = environment.apiUrl + '/municipio';
+    private url = environment.apiUrl + '/municipios';
 
     constructor(private http: HttpClient) { }
 
     getMunicipios(): Observable<Municipio[]> {
         return this.http.get<Municipio[]>(this.url);
+    }
+
+    // Recupera municipio pelo ID
+    getById(id: string): Observable<Municipio> {
+        return this.http.get<Municipio>(this.url + '/' + id);
     }
 
 }
