@@ -4,8 +4,8 @@
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a class="text-info" href="/home">Paraíba</a></li>
                 <li class="breadcrumb-item"><a class="text-info"
-                        href="/municipios/licitacoes">{{municipioEscolhido?.no_municipio}}</a></li>
-                <li class="breadcrumb-item"><a class="text-info" href="/municipios/licitacoes">Licitações</a></li>
+                        href="/municipios/{{municipioEscolhido?.cd_municipio}}/licitacoes">{{municipioEscolhido?.no_municipio}}</a></li>
+                <li class="breadcrumb-item"><a class="text-info" href="/municipios/{{municipioEscolhido?.cd_municipio}}/licitacoes">Licitações</a></li>
             </ol>
         </nav>
     </div>
@@ -13,7 +13,7 @@
         <div class="row">
             <div>
                 <h2 class="text-info">
-                    <a [routerLink]="['/municipios/licitacoes']">
+                    <a (click)="lastPage()">
                         <i class="fas fa-arrow-left arrow text-warning"></i>
                     </a>
                     Licitação <strong>{{licitacao?.nu_licitacao | formatNumContrato}}</strong>

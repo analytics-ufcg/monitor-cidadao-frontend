@@ -5,10 +5,22 @@
 @import "assets/bootstrap/variables";
 @import "~bootstrap/scss/bootstrap";
 @import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700;900&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400&display=swap");
 @import "assets/bootstrap/overhide";
 
 body {
-    background-color:white;
-    font-family: 'Rubik', sans-serif;
+    background-color: white;
+    font-family: "Rubik", sans-serif;
+}
+
+mark {
+    font-weight: 900;
+    background-color: transparent;
+    padding: 0;
+    color: #305061;
+}
+
+//Paginacao
+.my-pagination .ngx-pagination .current {
+    background: #1e4354;
 }

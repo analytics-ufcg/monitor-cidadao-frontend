@@ -11,11 +11,10 @@ import { BuscaNavbarComponent } from './components/busca-navbar/busca-navbar.com
 import { BarraNavegacaoComponent } from './components/barra-navegacao/barra-navegacao.component';
 import { RodapeComponent } from './components/rodape/rodape.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
-import { CircleLoadingSpinnerComponent } from './components/circle-loading-spinner/circle-loading-spinner.component';
 
 
 @NgModule({
-  declarations: [BuscaComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent, BarraNavegacaoComponent, RodapeComponent, TimelineComponent, CircleLoadingSpinnerComponent],
+  declarations: [BuscaComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent, BarraNavegacaoComponent, RodapeComponent, TimelineComponent],
   imports: [
     CommonModule,
     FormsModule,

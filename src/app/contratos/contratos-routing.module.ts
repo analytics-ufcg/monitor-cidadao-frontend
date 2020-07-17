@@ -1,15 +1,15 @@
-import { ContratoComponent } from './contrato.component';
 import { InfoContratoComponent } from './info-contrato/info-contrato.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
-
-
+import { ListaContratosComponent } from './lista-contratos/lista-contratos.component';
 
 const routes: Routes = [
   {
+    path: 'search',
+    component: ListaContratosComponent
+  },
+  {
     path: ':id',
-    component: ContratoComponent,
     children: [
       {
         path: '',

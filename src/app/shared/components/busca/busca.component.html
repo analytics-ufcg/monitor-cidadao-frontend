@@ -1,15 +1,16 @@
 <ng-template #rt let-r="result" let-t="term">
   <i *ngIf="r?.tipoBusca=='MUNICIPIO'" class="fas fa-city mr-2"></i>
-  <i *ngIf="r?.tipoBusca=='CONTRATO'" class="fas fa-clipboard-list  mr-2"></i>
-  <ngb-highlight class= "custom-description lr-1" [result]="r?.descricaoCurta" [term]="t"></ngb-highlight>
+  <i *ngIf="r?.tipoBusca=='CONTRATO'" class="fas fa-search mr-2"></i>
+  <span *ngIf="r?.tipoBusca=='CONTRATO'" > Buscar <strong>contratos</strong> com o termo "</span>
+  <ngb-highlight class= "custom-description lr-1" [result]="r?.descricao" [term]="t"></ngb-highlight>
   <small *ngIf="r?.tipoBusca=='MUNICIPIO'">, Município</small>
-  <small *ngIf="r?.tipoBusca=='CONTRATO'">, Contrato</small>
+  <span *ngIf="r?.tipoBusca=='CONTRATO'">"</span>
+  <hr *ngIf="r?.tipoBusca=='CONTRATO'">
 </ng-template>
 
 
 
 <div class="input-group">
-  <app-circle-loading-spinner *ngIf="searching" class="loading-position"></app-circle-loading-spinner>
   <input id="typeahead-prevent-manual-entry" 
   [(ngModel)]="modelBusca" 
   type="text" 
