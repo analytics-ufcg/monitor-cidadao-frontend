@@ -1,7 +1,7 @@
-// 
+//
 // LISTAGEM DO AUTO-COMPLETE
-// 
-::ng-deep.dropdown-menu.show {
+//
+:host ::ng-deep.dropdown-menu.show {
   width:100%;
   overflow-y: auto;
   border-radius: 15px;
@@ -32,15 +32,15 @@ strong {
   font-weight: 300;
   color: #6b6b6b;
   text-align: inherit;
-  font-family: 'Ubuntu', sans-serif; 
+  font-family: 'Ubuntu', sans-serif;
   white-space: nowrap;
   background-color: transparent;
   border: 0;
 }
 
-// 
+//
 // INPUT DA BUSCA
-// 
+//
 input {
   min-height: 2.5em;
   background: #f19638;
@@ -60,4 +60,3 @@ input {
 .input-group {
   background: white !important;
 }
-
