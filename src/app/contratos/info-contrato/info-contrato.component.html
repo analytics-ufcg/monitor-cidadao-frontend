@@ -20,7 +20,7 @@
               </h2>
           </div>
           <div>
-              <h5 class="ml-4 mt-1">
+              <h5 class="ml-3 col-sm-1 mt-1">
                   <span *ngIf="getPorcentagemContrato (contrato?.dt_assinatura, contrato?.pr_vigencia) != 100" class="badge badge-success text-light">
                       Em curso 
                   </span>
@@ -91,7 +91,7 @@
               {{ contrato?.de_ugestora }}
             </h6>
         </div>
-        <div class="col-sm-4">
+        <div class="col-sm-4 mt-3 mt-sm-0">
             <strong><span class="text-warning">Empresa Contratada</span></strong>
             <h6 class="text-warning text-capitalize mt-1">
               {{contrato?.no_fornecedor | formatNomeEmpresa}}
