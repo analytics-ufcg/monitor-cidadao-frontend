@@ -26,11 +26,13 @@ export class MunicipiosComponent implements OnInit {
 
   ngOnInit() {
     const id = this.activatedroute.snapshot.paramMap.get('id');
+    // usado para buscar um município pelo id na URL
     this.getMunicipioById(id);
+    // usado para alterar o município quando a busca é realizada
+    this.getMunicipioObservable()
   }
 
   getMunicipioById(id: string) {
-    
     this.municipioService.getById(id)
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(municipio => {
@@ -39,7 +41,7 @@ export class MunicipiosComponent implements OnInit {
       });
   }
 
-  getMunicipio() {
+  getMunicipioObservable() {
     this.userService
       .getMunicipioEscolhido()
       .pipe(
