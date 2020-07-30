@@ -11,10 +11,12 @@ import { BuscaNavbarComponent } from './components/busca-navbar/busca-navbar.com
 import { BarraNavegacaoComponent } from './components/barra-navegacao/barra-navegacao.component';
 import { RodapeComponent } from './components/rodape/rodape.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
+import { CardContratoComponent } from './components/card-contrato/card-contrato.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
-  declarations: [BuscaComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent, BarraNavegacaoComponent, RodapeComponent, TimelineComponent],
+  declarations: [BuscaComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent, BarraNavegacaoComponent, RodapeComponent, TimelineComponent, CardContratoComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -22,7 +24,8 @@ import { TimelineComponent } from './components/timeline/timeline.component';
     PipesModule,
     RouterModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    NgxPaginationModule
 
   ], exports:[
     BuscaComponent,
@@ -31,7 +34,8 @@ import { TimelineComponent } from './components/timeline/timeline.component';
     BuscaNavbarComponent, 
     BarraNavegacaoComponent, 
     RodapeComponent,
-    TimelineComponent
+    TimelineComponent,
+    CardContratoComponent,
   ]
 })
 export class SharedModule { }
