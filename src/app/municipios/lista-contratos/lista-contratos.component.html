@@ -26,7 +26,7 @@
 
 
 <div class="view-container pb-5">
-    <div class="card col-12" *ngFor="let contrato of contratosFiltrados| paginate: { itemsPerPage: contador, currentPage: pag }; let i = index;">
+    <div class="col-12" *ngFor="let contrato of contratosFiltrados| paginate: { itemsPerPage: contador, currentPage: pag }; let i = index;">
         <app-card-contrato [contrato] = "contrato"></app-card-contrato>
     </div>
 </div>
