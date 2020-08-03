@@ -16,6 +16,7 @@ import { takeUntil, debounceTime } from 'rxjs/operators';
 export class ListaContratosComponent implements OnInit {
   pag: number = 1;
   contador: number = 10;
+  public contrato: Contrato;
   public isLoading = true;
   private unsubscribe = new Subject();
   

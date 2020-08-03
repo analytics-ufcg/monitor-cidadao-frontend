@@ -118,9 +118,11 @@
 
 <div class="container" *ngIf="licitacao?.contratosLicitacao?.length!=0">
     <div class="row">
-        <div class="col-sm-12">
+        <div class="col-sm-12 pb-5">
             <h6 class="text-warning"> <strong>Contratos Originados</strong></h6>
-            <app-lista-contratos [contratos]="licitacao?.contratosLicitacao"></app-lista-contratos>
+            <div class="" *ngFor="let contrato of licitacao?.contratosLicitacao">
+                <app-card-contrato [contrato] = "contrato"></app-card-contrato>
         </div>
     </div>
 </div>
+
