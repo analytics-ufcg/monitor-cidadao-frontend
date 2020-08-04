@@ -19,7 +19,7 @@ import { Location } from '@angular/common';
 })
 export class InfoContratoComponent implements OnInit {
 
-  public contrato: Contrato;
+  public contrato: any;
 
   private unsubscribe = new Subject();
   public municipioEscolhido: Municipio;
@@ -64,7 +64,7 @@ export class InfoContratoComponent implements OnInit {
   getMunicipioIfUnfined () {
     if (!this.municipioEscolhido?.cd_municipio || 
       this.municipioEscolhido?.cd_municipio != this.contrato?.cd_municipio){
-      this.regiaoService.getMunicipiosbyId(this.contrato.cd_municipio)
+      this.regiaoService.getMunicipiosbyId(this.contrato?.cd_municipio)
       .subscribe(municipio => {
         municipio.map (result => {
           this.userService.setMunicipioEscolhido (result);
@@ -100,6 +100,11 @@ export class InfoContratoComponent implements OnInit {
       
       return eventosTimeline;
     }
+  }
+
+  getRisco (risco) {
+    if (!risco?.previsaoContrato) return 0;
+    return (risco?.previsaoContrato?.vig_prob_1 * 100).toFixed(0);
   }
 
   ngOnDestroy() {
