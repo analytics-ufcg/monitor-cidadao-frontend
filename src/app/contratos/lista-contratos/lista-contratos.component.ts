@@ -13,7 +13,7 @@ export class ListaContratosComponent implements OnInit {
   pag: number = 1;
   contador: number = 10;
   
-  public dropDownOptions = [{name: 'Por ano', id:'ATUAIS'}, {name: 'Menores Valores', id:'MENOR_VALOR'}, {name:'Maiores Valores', id:'MAIOR_VALOR'}]
+  public dropDownOptions = [{name: 'Por ano', id:'ATUAIS'}, {name: 'Menores Valores', id:'MENOR_VALOR'}, {name:'Maiores Valores', id:'MAIOR_VALOR'},{name: 'Por risco', id:'RISCO'}]
   public ordenacaoSelecionada;
 
   panelExpanded = false;
@@ -21,7 +21,7 @@ export class ListaContratosComponent implements OnInit {
   public isLoading = true;
   termoBuscado: string;
 
-  contratos: Contrato[];
+  contratos: any[];
 
   constructor(private activatedRoute: ActivatedRoute,
     private buscaService: BuscaService) { }
@@ -40,7 +40,7 @@ export class ListaContratosComponent implements OnInit {
       .subscribe(contratos => {
         this.isLoading = false;
         this.contratos = contratos;
-        this.ordernaPorAno()
+        this.ordenaPorRisco();
       });
   }
 
@@ -53,13 +53,18 @@ export class ListaContratosComponent implements OnInit {
     this.ordenacaoSelecionada = this.dropDownOptions [0]
     this.contratos.sort((a, b) => (b.dt_ano - a.dt_ano));
   }
-  ordenaMenorData() {
+  ordenaMenorValor() {
     this.ordenacaoSelecionada  = this.dropDownOptions [1]
     this.contratos.sort((a, b) => (a.vl_total_contrato - b.vl_total_contrato));
   }
-  ordenaMaiorData() {
+  ordenaMaiorValor() {
     this.ordenacaoSelecionada  = this.dropDownOptions [2]
     this.contratos.sort((a, b) => (b.vl_total_contrato - a.vl_total_contrato));
+  }
+
+  ordenaPorRisco() {
+    this.ordenacaoSelecionada  = this.dropDownOptions [3]
+    this.contratos.sort((a, b) => (b.vig_prob_1 != null ? b.vig_prob_1 : -Infinity) - (a.vig_prob_1 != null ? a.vig_prob_1 : -Infinity));
   }
   
 
@@ -67,10 +72,17 @@ export class ListaContratosComponent implements OnInit {
     if (opcao.id == 'ATUAIS'){
       this.ordernaPorAno();
     }else if (opcao.id == 'MENOR_VALOR'){
-      this.ordenaMenorData();
+      this.ordenaMenorValor();
     } else if (opcao.id == 'MAIOR_VALOR'){
-      this.ordenaMaiorData();
+      this.ordenaMaiorValor();
+    } else if (opcao.id == 'RISCO'){
+      this.ordenaPorRisco();
     }
+  }
+
+  getRisco (risco) {
+    if (!risco) return 0;
+    return risco * 100;
   }
 
 }

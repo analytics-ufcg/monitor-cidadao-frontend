@@ -22,6 +22,10 @@ export class CardContratoComponent implements OnInit {
       }
   }
 
+  getRisco (risco) {
+    if (!risco.previsaoContrato) return 0;
+    return risco.previsaoContrato.vig_prob_1 * 100;
+  }
   
   
 }
