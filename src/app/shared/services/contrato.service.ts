@@ -24,4 +24,9 @@ export class ContratoService {
   getById(id: string): Observable<Contrato> {
     return this.http.get<Contrato>(this.url + '/' + id);
   }
+
+  // Recupera contrato pelo Risco
+  getContratosPorRisco(): Observable<Contrato[]> {
+    return this.http.get<Contrato[]>(this.url + '/risco/geral');
+  }
 }
