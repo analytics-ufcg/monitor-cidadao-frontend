@@ -8,11 +8,12 @@ import { ContratosRoutingModule } from './contratos-routing.module';
 
 import { InfoContratoComponent } from './info-contrato/info-contrato.component';
 import { ListaContratosComponent } from './lista-contratos/lista-contratos.component';
+import { RiscoContratosComponent } from './risco-contratos/risco-contratos/risco-contratos.component';
 
 
 @NgModule({
   declarations: [ 
-    InfoContratoComponent, ListaContratosComponent],
+    InfoContratoComponent, ListaContratosComponent, RiscoContratosComponent],
   imports: [
     CommonModule,
     ContratosRoutingModule,
