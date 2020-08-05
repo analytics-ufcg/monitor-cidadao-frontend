@@ -27,6 +27,6 @@ export class ContratoService {
 
   // Recupera contrato pelo Risco
   getContratosPorRisco(): Observable<Contrato[]> {
-    return this.http.get<Contrato[]>(this.url + '/risco/geral');
+    return this.http.get<Contrato[]>(this.url + '/riscos/paraiba');
   }
 }

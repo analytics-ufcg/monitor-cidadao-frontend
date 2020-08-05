@@ -35,7 +35,7 @@ const routes: Routes = [
   },
   // aqui contém os contratos de maior risco
   {
-    path: 'risco/geral',
+    path: 'riscos/paraiba',
     loadChildren: () => import('./contratos/contratos.module').then(m => m.ContratosModule)
   }
   

@@ -24,7 +24,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'risco/geral',
+    path: 'riscos/paraiba',
     component: RiscoContratosComponent
   }
 ];
