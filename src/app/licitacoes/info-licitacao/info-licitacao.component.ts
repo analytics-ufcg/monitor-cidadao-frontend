@@ -4,6 +4,7 @@ import { Municipio } from './../../shared/models/municipio.model';
 import { Subject } from 'rxjs';
 import { UserService } from './../../shared/services/user.service';
 import { Component, OnInit, Input } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-info-licitacao',
@@ -17,7 +18,8 @@ export class InfoLicitacaoComponent implements OnInit {
 
   @Input() licitacao;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,
+    private location: Location) { }
 
   ngOnInit(): void {
     this.getMunicipio();
@@ -55,6 +57,10 @@ export class InfoLicitacaoComponent implements OnInit {
       }
     };
     return contemNaLista;
+  }
+
+  lastPage() {
+    this.location.back(); 
   }
 
 }

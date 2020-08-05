@@ -2,8 +2,8 @@ import { NgbTypeaheadModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { BuscaMunicipioComponent } from './components/busca-municipio/busca-municipio.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BuscaComponent } from './components/busca/busca.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ListaContratosComponent } from './components/lista-contratos/lista-contratos.component';
 import { PipesModule } from './pipes/pipes.module';
@@ -11,26 +11,31 @@ import { BuscaNavbarComponent } from './components/busca-navbar/busca-navbar.com
 import { BarraNavegacaoComponent } from './components/barra-navegacao/barra-navegacao.component';
 import { RodapeComponent } from './components/rodape/rodape.component';
 import { TimelineComponent } from './components/timeline/timeline.component';
+import { CardContratoComponent } from './components/card-contrato/card-contrato.component';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
-  declarations: [BuscaMunicipioComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent, BarraNavegacaoComponent, RodapeComponent, TimelineComponent],
+  declarations: [BuscaComponent, LoadingSpinnerComponent, ListaContratosComponent, BuscaNavbarComponent, BarraNavegacaoComponent, RodapeComponent, TimelineComponent, CardContratoComponent],
   imports: [
     CommonModule,
     FormsModule,
     NgbTypeaheadModule,
     PipesModule,
     RouterModule,
-    NgbModule
+    ReactiveFormsModule,
+    NgbModule,
+    NgxPaginationModule
 
   ], exports:[
-    BuscaMunicipioComponent,
+    BuscaComponent,
     LoadingSpinnerComponent,
     ListaContratosComponent,
     BuscaNavbarComponent, 
     BarraNavegacaoComponent, 
     RodapeComponent,
-    TimelineComponent
+    TimelineComponent,
+    CardContratoComponent,
   ]
 })
 export class SharedModule { }

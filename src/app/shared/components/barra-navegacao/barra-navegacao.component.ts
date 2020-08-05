@@ -11,6 +11,7 @@ export class BarraNavegacaoComponent implements OnInit {
 
   mostrarInputBusca = false;
   mostrarBtnBusca = false;
+  windowWidth;
 
   isCollapsed = false;
 
@@ -33,8 +34,8 @@ export class BarraNavegacaoComponent implements OnInit {
   // Utilizado para remover o botão de busca e 
   // adicionar o input no mobile
   alteraVisibilidadeMobile (isHomePage:boolean) {
-    const actualWidth = window.innerWidth;
-    if (actualWidth < 987 ) {
+    this.windowWidth = window.innerWidth;
+    if (this.windowWidth < 987 ) {
       if (!isHomePage) {
         this.mostrarInputBusca = true;
       }
@@ -55,7 +56,7 @@ export class BarraNavegacaoComponent implements OnInit {
   // Desativa busca ao clicar fora do elemento
   @HostListener('document:click', ['$event'])
   public documentClick(event): void {
-    if(!this.eRef.nativeElement.contains(event.target)) {
+    if(!this.eRef.nativeElement.contains(event.target) && this.windowWidth > 987) {
         this.mostrarInputBusca=false;
     }
   }

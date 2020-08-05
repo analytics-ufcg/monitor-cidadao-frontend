@@ -1,4 +1,6 @@
-export class Contrato {
+import { TipoBusca } from './../enum/tipo-busca.enum';
+import { Buscavel } from './buscavel.model';
+export class Contrato{
     id_contrato: string
     id_licitacao: string
     cd_municipio: string

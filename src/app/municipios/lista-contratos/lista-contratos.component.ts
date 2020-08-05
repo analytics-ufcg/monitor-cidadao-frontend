@@ -16,6 +16,7 @@ import { takeUntil, debounceTime } from 'rxjs/operators';
 export class ListaContratosComponent implements OnInit {
   pag: number = 1;
   contador: number = 10;
+  public contrato: Contrato;
   public isLoading = true;
   private unsubscribe = new Subject();
   
@@ -78,5 +79,10 @@ export class ListaContratosComponent implements OnInit {
       this.contratosFiltrados = this.contratos;
     }
   }
+
+  onPageChange(pag: number) {
+    this.pag = pag;
+    window.scrollTo(0, 0);
+ }
 
 }
