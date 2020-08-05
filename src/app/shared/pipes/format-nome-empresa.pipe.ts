@@ -9,7 +9,7 @@ export class FormatNomeEmpresaPipe implements PipeTransform {
     if (value == null) {
       return "";
     }
-    let nomeEmpresa = value.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase()).replace('Me', "ME");
+    let nomeEmpresa = value?.toLowerCase().replace(/(^|\s)\S/g, l => l.toUpperCase()).replace('Me', "ME");
     return nomeEmpresa
   }
 
