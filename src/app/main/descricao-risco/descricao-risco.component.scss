@@ -1,0 +1,21 @@
+.secao-inicial{
+    background: #edf0f4;
+}
+
+a,
+p {
+    padding: 0px;
+    margin: 0px;
+}
+
+.arrow {
+    max-width: 0.75em;
+}
+
+.custom-position-title {
+    position: relative;
+
+    @media (min-width: 576px) {
+        left: -19px;
+    }
+}
