@@ -81,8 +81,8 @@ export class ListaContratosComponent implements OnInit {
   }
 
   getRisco (risco) {
-    if (!risco) return 0;
-    return risco * 100;
+    if (!risco) return -1;
+    return (risco * 100).toFixed(0);
   }
 
 }

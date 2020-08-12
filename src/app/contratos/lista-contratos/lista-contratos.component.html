@@ -77,9 +77,13 @@
                         aria-valuemax="100"></div>
                     </div>
                     <span class="text-secondary">Risco</span>
-                    <a href="/risco"> 
-                        <i class="fa fa-info-circle ml-1"></i>
-                    </a>
+                    
+                    <i *ngIf="getRisco(contrato?.vig_prob_1) != -1; else elseBlock" class="text-secondary fa fa-info-circle ml-1" data-toggle="tooltip" data-placement="top" title="{{ getRisco(contrato?.vig_prob_1) }}% de chances de rompimento"></i>
+                    
+                    <ng-template #elseBlock>
+                        <i class="text-secondary fa fa-info-circle ml-1" data-toggle="tooltip" data-placement="top" title="Não há risco associado"></i>
+                    </ng-template>
+                    
                 </div>
               </div>
         </div>
