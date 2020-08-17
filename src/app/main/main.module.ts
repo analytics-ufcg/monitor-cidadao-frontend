@@ -6,11 +6,13 @@ import { MainRoutingModule } from './main-routing.module';
 
 import { HomeComponent } from './home/home.component';
 import { SobreComponent } from './sobre/sobre.component';
+import { DescricaoRiscoComponent } from './descricao-risco/descricao-risco.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    SobreComponent
+    SobreComponent,
+    DescricaoRiscoComponent
   ],
   imports: [
     CommonModule,

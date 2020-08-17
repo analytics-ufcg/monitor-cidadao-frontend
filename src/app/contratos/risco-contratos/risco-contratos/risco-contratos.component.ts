@@ -34,8 +34,8 @@ export class RiscoContratosComponent implements OnInit {
   }
 
   getRisco (risco) {
-    if (!risco.previsaoContrato) return 0;
-    return risco.previsaoContrato.vig_prob_1 * 100;
+    if (!risco.previsaoContrato) return -1;
+    return (risco.previsaoContrato.vig_prob_1 * 100).toFixed(0);
   }
 
   onPageChange(pag: number) {
