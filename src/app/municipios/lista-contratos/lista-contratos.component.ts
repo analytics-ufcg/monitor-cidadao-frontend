@@ -1,7 +1,8 @@
+import { MunicipioService } from './../../shared/services/municipio.service';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Municipio } from './../../shared/models/municipio.model';
 import { Contrato } from '../../shared/models/contrato.model';
 
-import { UserService } from './../../shared/services/user.service';
 import { ContratoService } from './../../shared/services/contrato.service';
 
 import { Component, OnInit } from '@angular/core';
@@ -14,12 +15,12 @@ import { takeUntil, debounceTime } from 'rxjs/operators';
   styleUrls: ['./lista-contratos.component.scss']
 })
 export class ListaContratosComponent implements OnInit {
-  pag: number = 1;
-  contador: number = 10;
+  pag = 1;
+  contador = 10;
   public contrato: Contrato;
   public isLoading = true;
   private unsubscribe = new Subject();
-  
+
   isCheckedVigentes = false;
   public municipioEscolhido: Municipio;
   // todos os contratos
@@ -29,50 +30,47 @@ export class ListaContratosComponent implements OnInit {
 
   isPortrait = false;
 
-  constructor(private userService: UserService, 
-              private contratosService: ContratoService) { }
+  constructor(
+    private router: Router,
+    private contratosService: ContratoService,
+    private municipioService: MunicipioService) { }
 
   ngOnInit(): void {
-      this.getMunicipio();
+    // recupera o ID do municipio da rota root
+    // o ActivatedRoute não funciona neste caso
+    const cdMunicipio = this.router.url.split('/')[2];
+    this.getMunicipioByID(cdMunicipio);
 
-      if (window.screen.width === 360) { // 768px portrait
-        this.isPortrait = true;
-      }
+    if (window.screen.width === 360) { // 768px portrait
+      this.isPortrait = true;
+    }
   }
 
-  getMunicipio() {
-    this.userService
-      .getMunicipioEscolhido()
-      .pipe(
-        debounceTime(300),
-        takeUntil(this.unsubscribe))
-      .subscribe(municipio => {
-        // evita fazer a requisição duplicada de um municipio
-        if (municipio.cd_municipio != this.municipioEscolhido?.cd_municipio) {
-          this.isLoading = true;
-          this.contratosFiltrados = [];
-          
-          this.getContratos(municipio);
-        }
-      });
+  getMunicipioByID(cdMunicipio) {
+    this.municipioService.getById(cdMunicipio)
+    .pipe(takeUntil(this.unsubscribe))
+    .subscribe(municipio => {
+      this.municipioEscolhido = municipio;
+      this.getContratos(municipio);
+    });
   }
 
   getContratos(municipio: Municipio) {
     this.contratosService.getContratosPorMunicipio(municipio.cd_municipio)
       .pipe(takeUntil(this.unsubscribe)).subscribe(contratos => {
-          this.contratos = contratos.sort((a, b) => (b.dt_ano - a.dt_ano));
-          this.contratosFiltrados = this.contratos;
-          this.isCheckedVigentes = false;
-          this.isLoading = false;
-          this.municipioEscolhido = municipio;
+        this.contratos = contratos.sort((a, b) => (b.dt_ano - a.dt_ano));
+        this.contratosFiltrados = this.contratos;
+        this.isCheckedVigentes = false;
+        this.isLoading = false;
+        this.municipioEscolhido = municipio;
       });
   }
 
-  clickSwitchVigentes (event) { 
+  clickSwitchVigentes(event) {
     let today = new Date();
-   
-    if (event.target.checked){
-      this.contratosFiltrados = this.contratos.filter(m => 
+
+    if (event.target.checked) {
+      this.contratosFiltrados = this.contratos.filter(m =>
         new Date(today) <= new Date(m.pr_vigencia)
       );
     } else {
@@ -83,6 +81,6 @@ export class ListaContratosComponent implements OnInit {
   onPageChange(pag: number) {
     this.pag = pag;
     window.scrollTo(0, 0);
- }
+  }
 
 }

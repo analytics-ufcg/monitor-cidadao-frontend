@@ -1,10 +1,8 @@
 import { Buscavel } from './../../models/buscavel.model';
 import { BuscaService } from './../../services/busca.service';
-import { UserService } from '../../services/user.service';
 import { RegiaoService } from '../../services/regiao.service';
 
 import { TipoBusca } from './../../enum/tipo-busca.enum';
-import { Contrato } from './../../models/contrato.model';
 import { Municipio } from '../../models/municipio.model';
 
 import { Component, OnInit } from '@angular/core';
@@ -32,7 +30,6 @@ export class BuscaComponent implements OnInit {
 
   constructor(private router: Router,
     private regiaoService: RegiaoService,
-    private userService: UserService,
     private buscaService: BuscaService) { }
 
   ngOnInit() {
@@ -63,7 +60,6 @@ export class BuscaComponent implements OnInit {
     if (this.buscaService.isContrato(buscavel)){
       this.router.navigate(['contrato/search'], { queryParams: { termo: buscavel.descricao }});
     } else if (this.buscaService.isMunicipio(buscavel)) {
-      this.userService.setMunicipioEscolhido(new Municipio(buscavel.id, buscavel.descricao));
       this.router.navigateByUrl('/municipios/' + buscavel.id,
         { queryParams: {id: buscavel.id } });
     }

@@ -1,12 +1,13 @@
+import { MunicipioService } from './../../shared/services/municipio.service';
 import { Municipio } from './../../shared/models/municipio.model';
 import { Licitacao } from './../../shared/models/licitacao.model';
 
-import { UserService } from './../../shared/services/user.service';
 import { LicitacaoService } from 'src/app/shared/services/licitacao.service';
 
 import { Component, OnInit } from '@angular/core';
 import { takeUntil, debounceTime } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista-licitacoes',
@@ -14,8 +15,8 @@ import { Subject } from 'rxjs';
   styleUrls: ['./lista-licitacoes.component.scss']
 })
 export class ListaLicitacoesComponent implements OnInit {
-  pag: number = 1;
-  contador: number = 15;
+  pag = 1;
+  contador = 15;
 
   public isLoading = true;
 
@@ -24,23 +25,23 @@ export class ListaLicitacoesComponent implements OnInit {
 
   public municipioEscolhido: Municipio;
 
-  constructor(private userService: UserService,
-    private licitacoesService: LicitacaoService) { }
+  constructor(
+    private router: Router,
+    private licitacoesService: LicitacaoService,
+    private municipioService: MunicipioService) { }
 
   ngOnInit(): void {
-    this.getMunicipio();
+    const cdMunicipio = this.router.url.split('/')[2];
+    this.getMunicipioByID(cdMunicipio);
   }
 
-  getMunicipio() {
-    this.userService
-      .getMunicipioEscolhido()
-      .pipe(
-        debounceTime(300),
-        takeUntil(this.unsubscribe))
-      .subscribe(municipio => {
-        this.municipioEscolhido = municipio;
-        this.getLicitacoes(this.municipioEscolhido);
-      });
+  getMunicipioByID(cdMunicipio) {
+    this.municipioService.getById(cdMunicipio)
+    .pipe(takeUntil(this.unsubscribe))
+    .subscribe(municipio => {
+      this.municipioEscolhido = municipio;
+      this.getLicitacoes(municipio);
+    });
   }
 
   getLicitacoes(municipio: Municipio) {

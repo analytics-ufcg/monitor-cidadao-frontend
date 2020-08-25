@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { RegiaoService } from './../shared/services/regiao.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { takeUntil } from 'rxjs/operators';
@@ -12,12 +13,14 @@ import { LicitacaoService } from 'src/app/shared/services/licitacao.service';
   templateUrl: './licitacao.component.html',
   styleUrls: ['./licitacao.component.scss']
 })
-export class LicitacaoComponent implements OnInit {
+export class LicitacaoComponent implements OnInit, OnDestroy {
 
   private unsubscribe = new Subject();
-  public licitacao = new Licitacao;
+  public licitacao = new Licitacao();
+  public municipioEscolhido;
 
   constructor(
+    private regiaoService: RegiaoService,
     private activatedroute: ActivatedRoute,
     private licitacaoService: LicitacaoService) { }
 
@@ -31,9 +34,18 @@ export class LicitacaoComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(licitacao => {
         this.licitacao = licitacao;
+        this.getMunicipioByID(this.licitacao?.cd_municipio);
       });
   }
 
+  getMunicipioByID(cdMunicipio){
+    this.regiaoService.getMunicipiosbyId(cdMunicipio)
+    .subscribe(municipio => {
+      municipio.map (result => {
+        this.municipioEscolhido = result;
+      });
+    });
+  }
 
   ngOnDestroy() {
     this.unsubscribe.next();
