@@ -1,13 +1,11 @@
 import { ContratoService } from './../../shared/services/contrato.service';
 import { RegiaoService } from './../../shared/services/regiao.service';
-import { UserService } from './../../shared/services/user.service';
 
 import { ActivatedRoute } from '@angular/router';
 
-import { Contrato } from './../../shared/models/contrato.model';
 import { Evento } from './../../shared/models/evento.model';
 import { debounceTime, takeUntil, map } from 'rxjs/operators';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Municipio } from './../../shared/models/municipio.model';
 import { Location } from '@angular/common';
@@ -17,22 +15,20 @@ import { Location } from '@angular/common';
   templateUrl: './info-contrato.component.html',
   styleUrls: ['./info-contrato.component.scss']
 })
-export class InfoContratoComponent implements OnInit {
+export class InfoContratoComponent implements OnInit, OnDestroy {
 
   public contrato: any;
 
   private unsubscribe = new Subject();
   public municipioEscolhido: Municipio;
 
-  constructor(private userService: UserService,
+  constructor(
     private regiaoService: RegiaoService,
     private contratoService: ContratoService,
     private activatedroute: ActivatedRoute,
     private location: Location) { }
 
   ngOnInit(): void {
-    this.getMunicipio();
-
     const id = this.activatedroute.snapshot.paramMap.get('id');
     this.getContratoByID(id);
   }
@@ -42,68 +38,50 @@ export class InfoContratoComponent implements OnInit {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(contrato => {
         this.contrato = contrato;
+        this.getMunicipioById(contrato.cd_municipio);
       });
   }
 
-  getMunicipio() {
-    this.userService
-      .getMunicipioEscolhido()
-      .pipe(
-        debounceTime(300),
-        takeUntil(this.unsubscribe))
-      .subscribe(municipio => {
-        this.municipioEscolhido = municipio;
-        this.getMunicipioIfUnfined () 
+  getMunicipioById( cdMunicipio: string) {
+    this.regiaoService.getMunicipiosbyId(cdMunicipio)
+    .subscribe(municipio => {
+      municipio.map (result => {
+        this.municipioEscolhido = result;
       });
+    });
   }
 
-  /**
-   * Verifica se o municipio já está salvo no userservice,
-   * caso contrário é realizada a busca pelo código.
-   */
-  getMunicipioIfUnfined () {
-    if (!this.municipioEscolhido?.cd_municipio || 
-      this.municipioEscolhido?.cd_municipio != this.contrato?.cd_municipio){
-      this.regiaoService.getMunicipiosbyId(this.contrato?.cd_municipio)
-      .subscribe(municipio => {
-        municipio.map (result => {
-          this.userService.setMunicipioEscolhido (result);
-          this.municipioEscolhido = result;
-        }) 
-      })
-    }
-  }
 
-  getPorcentagemContrato (start, end) {
+  getPorcentagemContrato(start, end) {
     let percentage;
 
     if (start && end) {
-      let startDate = new Date(start).getTime(); 
-      let endDate = new Date(end).getTime();
-      let todayDate = new Date().getTime();
+      const startDate = new Date(start).getTime();
+      const endDate = new Date(end).getTime();
+      const todayDate = new Date().getTime();
 
-      let total = endDate - startDate;
-      let current = todayDate - startDate;
+      const total = endDate - startDate;
+      const current = todayDate - startDate;
       percentage = (current / total) * 100;
 
-      return Math.min(Math.max(parseInt((percentage).toFixed(2)), 0), 100);
+      return Math.min(Math.max(parseInt((percentage).toFixed(2), 10), 0), 100);
     }
-    
-    return -1
+    return -1;
   }
 
-  getEventosTimeline () {
+  getEventosTimeline() {
     if (this.contrato) {
-      let eventosTimeline: Array<Evento> = []
-      eventosTimeline.push (new Evento("Assinatura", this.contrato.dt_assinatura))
-      eventosTimeline.push (new Evento("Fim da vigência", this.contrato.pr_vigencia))
-      
+      const eventosTimeline: Array<Evento> = [];
+      eventosTimeline.push (new Evento('Assinatura', this.contrato.dt_assinatura));
+      eventosTimeline.push (new Evento('Fim da vigência', this.contrato.pr_vigencia));
       return eventosTimeline;
     }
   }
 
-  getRisco (risco) {
-    if (!risco?.previsaoContrato) return 0;
+  getRisco(risco) {
+    if (!risco?.previsaoContrato) {
+      return 0;
+    }
     return (risco?.previsaoContrato?.vig_prob_1 * 100).toFixed(0);
   }
 
@@ -113,7 +91,7 @@ export class InfoContratoComponent implements OnInit {
   }
 
   lastPage() {
-    this.location.back(); 
+    this.location.back();
   }
 
 }
