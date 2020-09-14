@@ -29,4 +29,6 @@ export class ContratoService {
   getContratosPorRisco(): Observable<Contrato[]> {
     return this.http.get<Contrato[]>(this.url + '/riscos/paraiba');
   }
+
+  
 }
