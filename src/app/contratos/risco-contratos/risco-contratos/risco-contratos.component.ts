@@ -30,6 +30,7 @@ export class RiscoContratosComponent implements OnInit {
       .subscribe(contratos => {
           this.isLoading = false;
           this.contratos = contratos;
+          console.log(contratos)
       });
   }
 

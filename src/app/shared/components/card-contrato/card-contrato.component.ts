@@ -21,7 +21,11 @@ export class CardContratoComponent implements OnInit {
   }
 
   getRisco(contrato: Contrato) {
+    console.log("aquii")
     if (!contrato.previsao) { return -1; }
+    console.log(this.contrato)
+    console.log(this.contrato.previsao)
     return contrato.previsao.risco * 100;
+
   }
 }
