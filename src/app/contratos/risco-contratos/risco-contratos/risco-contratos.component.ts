@@ -30,13 +30,12 @@ export class RiscoContratosComponent implements OnInit {
       .subscribe(contratos => {
           this.isLoading = false;
           this.contratos = contratos;
-          console.log(contratos)
       });
   }
 
-  getRisco (risco) {
-    if (!risco.previsaoContrato) return -1;
-    return (risco.previsaoContrato.vig_prob_1 * 100).toFixed(0);
+  getRisco (contrato: Contrato) {
+    if (!contrato?.previsao) return -1;
+    return (contrato?.previsao.risco * 100).toFixed(0);
   }
 
   onPageChange(pag: number) {

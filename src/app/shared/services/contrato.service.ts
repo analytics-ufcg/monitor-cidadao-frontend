@@ -46,20 +46,20 @@ export class ContratoService {
           res.previsao = previsao;
         }
       })
-      console.log(res);
       return res
     }));
   }
  
   // Recupera contrato pelo Risco
   getContratosPorRisco(): Observable<Contrato[]> {
-    return this.http.get<Contrato[]>(this.url + '/vigentes').pipe(map(res => {
+    return this.http.get<Contrato[]>(this.url + '/vigentes/riscos').pipe(map(res => {
       this.previsaoService.previsoes.map(previsao => {
         res.map(contrato => {
-          contrato.previsao = previsao
+          if (previsao.id_contrato == contrato.id_contrato) {
+            contrato.previsao = previsao;
+          }
         })
       })
-      console.log(res);
       return res
     }));
   }

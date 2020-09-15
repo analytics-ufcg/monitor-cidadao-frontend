@@ -21,7 +21,6 @@ export class PrevisaoService {
         this.previsoes = previsao;
          
       });
-      console.log(this.previsoes);
   }
 
   getPrevisoes(): Observable<Previsao[]> {
