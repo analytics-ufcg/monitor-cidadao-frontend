@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Contrato } from '../../models/contrato.model';
 import { ContratoService } from '../../services/contrato.service';
 
 @Component({
@@ -19,8 +20,8 @@ export class CardContratoComponent implements OnInit {
       }
   }
 
-  getRisco(risco) {
-    if (!risco.previsaoContrato) { return -1; }
-    return risco.previsaoContrato.vig_prob_1 * 100;
+  getRisco(contrato: Contrato) {
+    if (!contrato.previsao) { return -1; }
+    return contrato.previsao.risco * 100;
   }
 }

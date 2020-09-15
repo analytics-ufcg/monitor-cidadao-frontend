@@ -10,13 +10,22 @@ import { environment } from '../../../environments/environment';
   providedIn: 'root'
 })
 export class PrevisaoService {
+  static getPrevisoes() {
+    throw new Error('Method not implemented.');
+  }
 
   private url = environment.apiUrl + 'previsoes';
-
-  constructor(private http: HttpClient) { }
+  previsoes;
+  constructor(private http: HttpClient) { 
+      this.getPrevisoes().subscribe(previsao => {
+        this.previsoes = previsao;
+         
+      });
+      console.log(this.previsoes);
+  }
 
   getPrevisoes(): Observable<Previsao[]> {
     return this.http.get<Previsao[]>(this.url);
   }
-  
+
 }

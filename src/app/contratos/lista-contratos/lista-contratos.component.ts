@@ -80,9 +80,9 @@ export class ListaContratosComponent implements OnInit {
     }
   }
 
-  getRisco (risco) {
-    if (!risco) return -1;
-    return (risco * 100).toFixed(0);
+  getRisco (contrato: Contrato) {
+    if (!contrato?.previsao) return -1;
+    return (contrato?.previsao.risco * 100).toFixed(0);
   }
 
 }
