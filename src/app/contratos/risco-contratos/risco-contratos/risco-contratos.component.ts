@@ -29,10 +29,36 @@ export class RiscoContratosComponent implements OnInit {
     this.contratosService.getContratosPorRisco()
       .subscribe(contratos => {
           this.isLoading = false;
-          this.contratos = contratos
-          this.contratos = contratos.sort((a:Contrato, b:Contrato) => b.vl_total_contrato - a.vl_total_contrato);
-          console.log(contratos)
+          this.contratos = this.ordenaPorRisco(contratos);
       });
+  }
+
+  ordenaPorRisco(contratos: Contrato[]) {
+    let comRiscos: Contrato[]
+    comRiscos = []
+    let semRiscos: Contrato[]
+    semRiscos = []
+    let contratosOrdenados: Contrato[]
+    contratosOrdenados = []
+
+    for(let contrato of contratos) {
+      if (contrato?.previsao != null) {
+        comRiscos.push(contrato)
+      } else {
+        semRiscos.push(contrato)
+      }
+    }
+
+    comRiscos = comRiscos.sort((a:Contrato, b:Contrato) => b.previsao.risco - a.previsao.risco);
+    
+    for(let contrato of comRiscos) {
+      contratosOrdenados.push(contrato)
+    }
+    for(let contrato of semRiscos) {
+      contratosOrdenados.push(contrato)
+    }
+
+    return contratosOrdenados
   }
 
   getRisco (contrato: Contrato) {
