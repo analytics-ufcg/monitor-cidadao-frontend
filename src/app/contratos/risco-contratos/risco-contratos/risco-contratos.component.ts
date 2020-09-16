@@ -29,7 +29,9 @@ export class RiscoContratosComponent implements OnInit {
     this.contratosService.getContratosPorRisco()
       .subscribe(contratos => {
           this.isLoading = false;
-          this.contratos = contratos;
+          this.contratos = contratos
+          this.contratos = contratos.sort((a:Contrato, b:Contrato) => b.vl_total_contrato - a.vl_total_contrato);
+          console.log(contratos)
       });
   }
 
