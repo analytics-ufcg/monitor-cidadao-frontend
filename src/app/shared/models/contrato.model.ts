@@ -1,5 +1,6 @@
 import { TipoBusca } from './../enum/tipo-busca.enum';
 import { Buscavel } from './buscavel.model';
+import { Previsao } from './previsao.model';
 export class Contrato{
     id_contrato: string
     id_licitacao: string
@@ -23,5 +24,6 @@ export class Contrato{
     ordem_servico : string
     no_fornecedor : string
     de_ugestora : string
+    previsao: Previsao
 }
 

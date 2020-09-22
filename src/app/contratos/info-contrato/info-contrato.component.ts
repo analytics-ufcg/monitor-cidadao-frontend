@@ -1,3 +1,4 @@
+import { Contrato } from './../../shared/models/contrato.model';
 import { ContratoService } from './../../shared/services/contrato.service';
 import { RegiaoService } from './../../shared/services/regiao.service';
 
@@ -78,11 +79,11 @@ export class InfoContratoComponent implements OnInit, OnDestroy {
     }
   }
 
-  getRisco(risco) {
-    if (!risco?.previsaoContrato) {
+  getRisco(contrato: Contrato) {
+    if (!contrato?.previsao) {
       return 0;
     }
-    return (risco?.previsaoContrato?.vig_prob_1 * 100).toFixed(0);
+    return (contrato?.previsao.risco * 100).toFixed(0);
   }
 
   ngOnDestroy() {

@@ -115,8 +115,8 @@
                     aria-valuemax="100"></div>
                 </div>
             </div>
-            <span *ngIf="contrato?.previsaoContrato" class="text-secondary"><small>{{getRisco (contrato)}}% de chances de rompimento</small></span>
-            <span *ngIf="!contrato?.previsaoContrato" class="text-secondary"><small>Nenhum risco associado.</small></span>
+            <span *ngIf="contrato?.previsao" class="text-secondary"><small>{{getRisco (contrato)}}% de chances de rompimento</small></span>
+            <span *ngIf="!contrato?.previsao" class="text-secondary"><small>Nenhum risco associado.</small></span>
         </div>
     </div>
 </div>

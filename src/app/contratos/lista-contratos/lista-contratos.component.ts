@@ -64,7 +64,36 @@ export class ListaContratosComponent implements OnInit {
 
   ordenaPorRisco() {
     this.ordenacaoSelecionada  = this.dropDownOptions [3]
-    this.contratos.sort((a, b) => (b.vig_prob_1 != null ? b.vig_prob_1 : -Infinity) - (a.vig_prob_1 != null ? a.vig_prob_1 : -Infinity));
+
+    let comRiscos: any[]
+    comRiscos = []
+    let semRiscos: any[]
+    semRiscos = []
+    let contratosOrdenados: any[]
+    contratosOrdenados = []
+
+    for(let contrato of this.contratos) {
+      if (contrato?.previsao != null) {
+        comRiscos.push(contrato)
+      } else {
+        semRiscos.push(contrato)
+      }
+    }
+
+    comRiscos = comRiscos.sort((a, b) => (b.previsao.risco != null ? b.previsao.risco : -Infinity) - (a.previsao.risco != null ? a.previsao.risco : -Infinity));
+    
+    console.log(comRiscos)
+    console.log(semRiscos)
+
+    for(let contrato of comRiscos) {
+      contratosOrdenados.push(contrato)
+    }
+    for(let contrato of semRiscos) {
+      contratosOrdenados.push(contrato)
+    }
+
+    this.contratos = contratosOrdenados
+
   }
   
 
@@ -80,9 +109,9 @@ export class ListaContratosComponent implements OnInit {
     }
   }
 
-  getRisco (risco) {
-    if (!risco) return -1;
-    return (risco * 100).toFixed(0);
+  getRisco (contrato: Contrato) {
+    if (!contrato?.previsao) return -1;
+    return (contrato?.previsao.risco * 100).toFixed(0);
   }
 
 }
