@@ -43,8 +43,41 @@
             
             
             <div class="row">
+
+                <div>
+
+                    <div *ngIf="termoBuscado == contrato.nu_contrato && termoBuscado == contrato.nu_licitacao">
+                        <div class="mx-auto pl-3">
+                            <small class="text-secondary"> Nº Licitação:</small>
+                            <p app:Highlight>{{contrato.nu_licitacao}}</p>
+                            <small class="text-secondary"> Nº Contrato:</small>
+                            <p app:Highlight>{{contrato.nu_contrato}}</p>
+                        </div>
+                    </div>
+
+                    <div *ngIf="termoBuscado == contrato.nu_contrato && termoBuscado != contrato.nu_licitacao">
+                        <div class="mx-auto pl-3">
+                            <small class="text-secondary"> Nº Contrato:</small>
+                            <p app:Highlight>{{contrato.nu_contrato}}</p>
+                        </div>
+                    </div>
+    
+                    <div *ngIf="termoBuscado == contrato.nu_licitacao && termoBuscado != contrato.nu_contrato">
+                        <div class="mx-auto pl-3">
+                            <small class="text-secondary"> Nº Licitação:</small>
+                            <p app:Highlight>{{contrato.nu_licitacao}}</p>
+                        </div>
+                    </div>
+
+
+                </div>
                 
-                <div class="col-sm-6  mx-auto">
+               
+
+                
+
+
+                <div class="col-sm-4  mx-auto">
                     <strong class="text-warning">Descrição: </strong>
                     <div class="mb-3 text-warning text-justify" [innerHTML]="contrato.de_obs | formatFirstLetterCapitalize | highlight: termoBuscado">
                     </div>
