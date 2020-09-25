@@ -81,9 +81,6 @@ export class ListaContratosComponent implements OnInit {
     }
 
     comRiscos = comRiscos.sort((a, b) => (b.previsao.risco != null ? b.previsao.risco : -Infinity) - (a.previsao.risco != null ? a.previsao.risco : -Infinity));
-    
-    console.log(comRiscos)
-    console.log(semRiscos)
 
     for(let contrato of comRiscos) {
       contratosOrdenados.push(contrato)
