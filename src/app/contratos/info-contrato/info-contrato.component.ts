@@ -74,8 +74,19 @@ export class InfoContratoComponent implements OnInit, OnDestroy {
     if (this.contrato) {
       const eventosTimeline: Array<Evento> = [];
       eventosTimeline.push (new Evento('Assinatura', this.contrato.dt_assinatura));
+      if (this.contrato.empenhosContrato){
+        for (let empenho of this.contrato.empenhosContrato){
+          eventosTimeline.push(new Evento('Empenho', empenho.dt_empenho, empenho.vl_empenho));
+        }
+      }
+      if (this.contrato.pagamentosContrato) {
+        for (let pagamento of this.contrato.pagamentosContrato){
+          eventosTimeline.push(new Evento('Pagamento', pagamento.dt_pagamento, pagamento.vl_pagamento));
+        }
+      }
       eventosTimeline.push (new Evento('Fim da vigência', this.contrato.pr_vigencia));
-      return eventosTimeline;
+
+      return eventosTimeline.sort((b, a) => new Date(b.data).getTime() - new Date(a.data).getTime());
     }
   }
 

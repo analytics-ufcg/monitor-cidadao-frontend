@@ -5,11 +5,12 @@ $color-success-node: #cc8e36;
 .horizontal-timeline {
   list-style-type: none;
   display: flex;
-  align-items: center;
+  align-items: normal;
 }
 
 .info {
   display: flex;
+  width: 100px;
   flex-direction: column;
   align-items: center;
   font-weight: 100;
