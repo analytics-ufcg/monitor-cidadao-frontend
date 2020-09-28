@@ -90,11 +90,28 @@ export class InfoContratoComponent implements OnInit, OnDestroy {
     if (!contrato || !contrato.pagamentosContrato) {
       return -1;
     }
+    return (this. getTotalPago(contrato) / contrato.vl_total_contrato * 100).toFixed(0);
+  }
+
+  getTotalPago(contrato: Contrato) {
+    if (!contrato || !contrato.pagamentosContrato) {
+      return -1;
+    }
     let totalPago = 0;
     for (let pagamento of contrato.pagamentosContrato){
       totalPago += +pagamento.vl_pagamento;
     }
-    return (totalPago / contrato.vl_total_contrato * 100).toFixed(0);
+    return totalPago;
+  }
+
+  getPorcentagemDiff(contrato: Contrato){
+    if (!contrato || !contrato.pagamentosContrato) {
+      return -1;
+    }
+    const diferenca = this.getTotalPago(contrato) - contrato.vl_total_contrato;
+    return  ( diferenca / contrato.vl_total_contrato * 100).toFixed(0);
+
+
   }
 
   ngOnDestroy() {
