@@ -19,7 +19,7 @@ import { Location } from '@angular/common';
 export class InfoContratoComponent implements OnInit, OnDestroy {
 
   public contrato: any;
-
+  public isLoading = true; 
   private unsubscribe = new Subject();
   public municipioEscolhido: Municipio;
 
@@ -39,6 +39,7 @@ export class InfoContratoComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(contrato => {
         this.contrato = contrato;
+        this.isLoading = false;
         this.getMunicipioById(contrato.cd_municipio);
       });
   }
