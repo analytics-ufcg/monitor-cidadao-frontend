@@ -20,7 +20,8 @@ export class InfoLicitacaoComponent implements OnInit {
   constructor(
     private location: Location) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
   getEventosTimeline() {
     if (this.licitacao) {
@@ -43,6 +44,25 @@ export class InfoLicitacaoComponent implements OnInit {
       }
     }
     return contemNaLista;
+  }
+
+  getContratosLicitacao(){
+    let contratos = this.licitacao.contratosLicitacao;
+
+    if (!contratos) {
+      return [];
+    }
+
+    for (let contrato of contratos) {
+      if (contrato.pagamentosContrato){
+        let totalPago = 0;
+        for (let pagamento of contrato.pagamentosContrato) {
+          totalPago += parseFloat(pagamento.vl_pagamento);
+        }
+        contrato.totalPago = totalPago;
+      }
+    }
+    return this.licitacao.contratosLicitacao;
   }
 
   lastPage() {
