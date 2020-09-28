@@ -18,6 +18,7 @@ export class LicitacaoComponent implements OnInit, OnDestroy {
   private unsubscribe = new Subject();
   public licitacao = new Licitacao();
   public municipioEscolhido;
+  public isLoading = true;
 
   constructor(
     private regiaoService: RegiaoService,
@@ -34,6 +35,7 @@ export class LicitacaoComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(licitacao => {
         this.licitacao = licitacao;
+        this.isLoading = false;
         this.getMunicipioByID(this.licitacao?.cd_municipio);
       });
   }
