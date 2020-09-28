@@ -1,3 +1,4 @@
+import { Pagamento } from './pagamento.model';
 import { TipoBusca } from './../enum/tipo-busca.enum';
 import { Buscavel } from './buscavel.model';
 import { Previsao } from './previsao.model';
@@ -25,5 +26,7 @@ export class Contrato{
     no_fornecedor : string
     de_ugestora : string
     previsao: Previsao
+    totalPago: number
+    pagamentosContrato: Pagamento[];
 }
 

@@ -21,7 +21,16 @@ export class CardContratoComponent implements OnInit {
   }
 
   getRisco(contrato: Contrato) {
-    if (!contrato.previsao)  return -1; 
+    if (!contrato.previsao) {
+      return -1;
+    }
     return (contrato.previsao.risco * 100).toFixed(0);
+  }
+
+  getPorcentagemPago(contrato: Contrato) {
+    if (!contrato.vl_total_contrato) {
+      return -1;
+    }
+    return (contrato.totalPago / contrato.vl_total_contrato * 100).toFixed(0);
   }
 }
