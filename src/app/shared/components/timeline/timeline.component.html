@@ -9,7 +9,7 @@
    }">
       <div class="info">
           <span class="text-secondary description pt-3" *ngIf="!evento?.id">{{evento?.descricao}}</span>
-          <span class="description-clickable text-secondary description" *ngIf="evento?.id" [routerLink]="['/contrato/' + evento.id]">{{evento?.descricao}}</span>
+          <span class="description-clickable text-secondary description pt-3" *ngIf="evento?.id" [routerLink]="['/contrato/' + evento.id]">{{evento?.descricao}}</span>
           <span *ngIf="evento?.valor"><small class="text-secondary valor">
             {{ evento?.valor | currency: "R$"}}
           </small> </span> 
