@@ -1,3 +1,8 @@
+<div class="d-flex justify-content-center">
+    <loading-spinner class="mt-2" *ngIf="isLoading"></loading-spinner>
+</div>
+
+<div *ngIf="!isLoading">
 <div class="secao-inicial view-container">
   <div class="container pt-5">
       <nav aria-label="breadcrumb">
@@ -147,3 +152,4 @@
     </div>
 </div>
 
+</div>
