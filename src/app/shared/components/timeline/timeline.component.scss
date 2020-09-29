@@ -10,11 +10,17 @@ $color-success-node: #cc8e36;
 
 .info {
   display: flex;
-  width: 100px;
   flex-direction: column;
   align-items: center;
   font-weight: 100;
-  margin-top: 20px;
+  font-family: 'Dosis', sans-serif;
+}
+
+.data-timeline {
+  padding: 0px 40px;
+  bottom: 14px;
+  position: relative;
+  justify-content: center;
   font-family: 'Dosis', sans-serif;
 }
 
@@ -47,6 +53,18 @@ $color-success-node: #cc8e36;
     }
   }
 
+  .edge.secondary {
+    padding: 0px 20px;
+    border-top: 2px solid $color-success-node;
+    &:before {
+      background-color: white;
+      width: 19px;
+      height: 19px;
+      top: -10px;
+      border: 2px solid $color-success-node;
+    }
+  }
+
 ul {
     display: block;
     list-style-type: disc;
@@ -55,6 +73,15 @@ ul {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 0px;
+}
+
+.description {
+  font-weight: 800;
+}
+
+.valor {
+  position: relative;
+  bottom: 4px;
 }
 
 .description-clickable:hover {

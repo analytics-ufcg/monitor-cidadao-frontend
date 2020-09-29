@@ -1,11 +1,16 @@
 <ul class="horizontal-timeline">
   <li class="li" *ngFor="let evento of eventosTimeline">
-    <div class="edge" [ngClass]="{'complete': evento?.completo}">
-        <div class="info">
-          <span>{{evento?.data | date: 'dd-MM-yyyy'}}</span>
-          <span *ngIf="!evento?.id">{{evento?.descricao}}</span>
-          <span class="description-clickable" *ngIf="evento?.id" [routerLink]="['/contrato/' + evento.id]">{{evento?.descricao}}</span>
-          <span *ngIf="evento?.valor"><small class="text-secondary">
+
+    <span class="data-timeline">{{evento?.data | date: 'dd/MM/yyyy'}}</span>
+    <div class="edge"
+    [ngClass]="{
+      'complete' : evento?.completo,
+      'secondary' : evento?.descricao == 'Pagamento' || evento?.descricao == 'Empenho'
+   }">
+      <div class="info">
+          <span class="text-secondary description pt-3" *ngIf="!evento?.id">{{evento?.descricao}}</span>
+          <span class="description-clickable text-secondary description" *ngIf="evento?.id" [routerLink]="['/contrato/' + evento.id]">{{evento?.descricao}}</span>
+          <span *ngIf="evento?.valor"><small class="text-secondary valor">
             {{ evento?.valor | currency: "R$"}}
           </small> </span> 
         </div>
