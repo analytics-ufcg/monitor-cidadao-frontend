@@ -28,7 +28,7 @@ export class InfoLicitacaoComponent implements OnInit {
       const eventosTimeline: Array<Evento> = [];
       eventosTimeline.push (new Evento('Homologação', this.licitacao?.dt_homologacao));
       this.licitacao.contratosLicitacao?.forEach(function (contrato) {
-        eventosTimeline.push (new Evento('Contrato', contrato?.dt_assinatura, contrato?.id_contrato))
+        eventosTimeline.push (new Evento('Contrato', contrato?.dt_assinatura, 0, contrato?.id_contrato))
       });
       return eventosTimeline;
     }

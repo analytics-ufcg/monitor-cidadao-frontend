@@ -137,10 +137,12 @@
 <div class="container mb-4 pb-5">
     <div class="row">
         <div class="col-sm-12">
-            <h6 class="text-warning"><strong>Eventos</strong></h6>
+            <h6 class="text-warning mb-4 pt-4"><strong>Eventos</strong></h6>
         </div>
-        <div class="col-sm-8 mt-4">
-           <app-timeline [eventosTimeline]="getEventosTimeline ()"></app-timeline>
+        <div class="container-timeline">
+            <div class="col-sm-8 mt-4">
+                <app-timeline [eventosTimeline]="getEventosTimeline ()"></app-timeline>
+            </div>
         </div>
     </div>
 </div>

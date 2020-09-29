@@ -37,6 +37,26 @@
     background-color: #ffffff00;
     border-radius: 0;
 }
+// SCROLLBAR TIMELINE
+.container-timeline {
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+::-webkit-scrollbar {
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #edf0f4;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #4c4c6a;
+}
 
 .progress {
     border-radius: 13px;
