@@ -19,11 +19,13 @@
     </div>
 </div>
 
-
-<div class="container view-container row d-flex justify-content-center">
-    <h5 class="mt-5 pt-5" [hidden]="contratosFiltrados?.length > 0 || isLoading">Não há contratos neste momento.</h5>
+<div class="">
+    <div class="container view-container row  justify-content-center ml-1">
+    <div class="text-center"> 
+        <h5 class="mt-5 pt-5" [hidden]="contratosFiltrados?.length > 0 || isLoading">Não há contratos neste momento.</h5>
+    </div>
+    </div>
 </div>
-
 
 <div class="view-container pb-5">
     <div class="col-12" *ngFor="let contrato of contratosFiltrados| paginate: { itemsPerPage: contador, currentPage: pag }; let i = index;">

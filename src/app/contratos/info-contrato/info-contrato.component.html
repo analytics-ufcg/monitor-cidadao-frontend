@@ -1,3 +1,8 @@
+<div class="d-flex justify-content-center">
+    <loading-spinner class="mt-2" *ngIf="isLoading"></loading-spinner>
+</div>
+
+<div *ngIf="!isLoading">
 <div class="secao-inicial view-container">
   <div class="container pt-5">
       <nav aria-label="breadcrumb">
@@ -51,14 +56,27 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-sm-4">
-            <strong><span class="text-warning">Valor do Contrato</span></strong>
-            <div class="col-sm-7 mb-1">
+            <strong><span class="text-warning">Custo</span></strong>
+            <!-- <div class="col-sm-7 mb-1">
                 <div class="progress">
-                    <div class="progress-bar progress-bar-striped bg-secondary progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar progress-bar-striped bg-secondary progress-bar-animated" role="progressbar" [style.width.%]="getPorcentagemPago (contrato)" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
-            </div>
-            <p class="text-warning">{{ contrato?.vl_total_contrato | currency: "R$" }} </p>
-            
+            </div> -->
+            <br>
+            <span class="text-secondary"><small> valor contratado de {{ contrato?.vl_total_contrato | currency: "R$" }} </small></span>
+            <p *ngIf="getPorcentagemDiff(contrato)!= -1 && contrato.pagamentosContrato?.length > 0" class="text-warning"> foi pago {{getTotalPago(contrato) | currency: "R$"}} 
+                <span [ngClass]="{
+                    'text-success' : getPorcentagemDiff (contrato) <= 0,
+                    'text-warnning' : getPorcentagemDiff (contrato) > 0,
+                    'text-danger' : getPorcentagemDiff (contrato) > 20
+                 }">
+                 <small>({{getPorcentagemDiff(contrato) > 0 ? '+' : ''}}{{getPorcentagemDiff(contrato)}}%)</small>
+
+                </span>
+            </p>
+            <p *ngIf="getPorcentagemDiff(contrato)!= -1 && contrato.pagamentosContrato?.length == 0" class="text-warning"> 
+                nenhum pagamento foi registrado.
+            </p>
         </div>
         <div class="col-sm-4">
             <strong><span class="text-warning">Vigência</span></strong>
@@ -115,8 +133,8 @@
                     aria-valuemax="100"></div>
                 </div>
             </div>
-            <span *ngIf="contrato?.previsaoContrato" class="text-secondary"><small>{{getRisco (contrato)}}% de chances de rescisão.</small></span>
-            <span *ngIf="!contrato?.previsaoContrato" class="text-secondary"><small>Nenhum risco associado.</small></span>
+            <span *ngIf="contrato?.previsao" class="text-secondary"><small>{{getRisco (contrato)}}% de chances de rompimento</small></span>
+            <span *ngIf="!contrato?.previsao" class="text-secondary"><small>Nenhum risco associado.</small></span>
         </div>
     </div>
 </div>
@@ -124,11 +142,14 @@
 <div class="container mb-4 pb-5">
     <div class="row">
         <div class="col-sm-12">
-            <h6 class="text-warning"><strong>Eventos</strong></h6>
+            <h6 class="text-warning mb-4 pt-4"><strong>Eventos</strong></h6>
         </div>
-        <div class="col-sm-8 mt-4">
-           <app-timeline [eventosTimeline]="getEventosTimeline ()"></app-timeline>
+        <div class="container-timeline">
+            <div class="col-sm-8 mt-4">
+                <app-timeline [eventosTimeline]="getEventosTimeline ()"></app-timeline>
+            </div>
         </div>
     </div>
 </div>
 
+</div>

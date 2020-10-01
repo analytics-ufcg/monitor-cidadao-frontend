@@ -2,6 +2,7 @@ import { TipoBusca } from './../enum/tipo-busca.enum';
 import { Municipio } from './../models/municipio.model';
 import { takeUntil, map } from 'rxjs/operators';
 import { RegiaoService } from './regiao.service';
+import { PrevisaoService } from './previsao.service';
 import { Observable, of, Subject } from 'rxjs';
 import { Contrato } from './../models/contrato.model';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -17,7 +18,8 @@ export class BuscaService {
   private unsubscribe = new Subject();
 
   constructor(private regiaoService: RegiaoService,
-    private http: HttpClient) {
+              private http: HttpClient, 
+              private previsaoService: PrevisaoService) {
   }
 
   /**
@@ -31,7 +33,16 @@ export class BuscaService {
     }
     
     const params = new HttpParams().set('termo', term?.trim());
-    return this.http.get<Contrato[]>(this.url, { params });
+    return this.http.get<Contrato[]>(this.url, { params }).pipe(map(res => {
+      this.previsaoService.previsoes.map(previsao => {
+        res.map(contrato => {
+          if (previsao.id_contrato == contrato.id_contrato) {
+            contrato.previsao = previsao;
+          }
+        })
+      })
+      return res
+    }));
   }
 
   

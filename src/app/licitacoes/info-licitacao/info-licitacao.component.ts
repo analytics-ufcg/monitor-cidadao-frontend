@@ -2,7 +2,6 @@ import { Evento } from './../../shared/models/evento.model';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 import { Municipio } from './../../shared/models/municipio.model';
 import { Subject } from 'rxjs';
-import { UserService } from './../../shared/services/user.service';
 import { Component, OnInit, Input } from '@angular/core';
 import { Location } from '@angular/common';
 
@@ -14,40 +13,28 @@ import { Location } from '@angular/common';
 export class InfoLicitacaoComponent implements OnInit {
 
   private unsubscribe = new Subject();
-  public municipioEscolhido: Municipio;
 
   @Input() licitacao;
+  @Input() municipioEscolhido;
 
-  constructor(private userService: UserService,
+  constructor(
     private location: Location) { }
 
   ngOnInit(): void {
-    this.getMunicipio();
   }
 
-  getMunicipio() {
-    this.userService
-      .getMunicipioEscolhido()
-      .pipe(
-        debounceTime(300),
-        takeUntil(this.unsubscribe))
-      .subscribe(municipio => {
-        this.municipioEscolhido = municipio;
-      });
-  }
-
-  getEventosTimeline () {
+  getEventosTimeline() {
     if (this.licitacao) {
-      let eventosTimeline: Array<Evento> = []
-      eventosTimeline.push (new Evento("Homologação", this.licitacao?.dt_homologacao))
+      const eventosTimeline: Array<Evento> = [];
+      eventosTimeline.push (new Evento('Homologação', this.licitacao?.dt_homologacao));
       this.licitacao.contratosLicitacao?.forEach(function (contrato) {
-        eventosTimeline.push (new Evento("Contrato", contrato?.dt_assinatura, contrato?.id_contrato))
-      }); 
+        eventosTimeline.push (new Evento('Contrato', contrato?.dt_assinatura, 0, contrato?.id_contrato))
+      });
       return eventosTimeline;
     }
   }
 
-  getGanhador (cpfcnpj, contratos){
+  getGanhador(cpfcnpj, contratos){
     let contemNaLista = false;
 
     for(let contrato of contratos) {
@@ -55,12 +42,31 @@ export class InfoLicitacaoComponent implements OnInit {
         contemNaLista = true;
         break;
       }
-    };
+    }
     return contemNaLista;
   }
 
+  getContratosLicitacao(){
+    let contratos = this.licitacao.contratosLicitacao;
+
+    if (!contratos) {
+      return [];
+    }
+
+    for (let contrato of contratos) {
+      if (contrato.pagamentosContrato){
+        let totalPago = 0;
+        for (let pagamento of contrato.pagamentosContrato) {
+          totalPago += parseFloat(pagamento.vl_pagamento);
+        }
+        contrato.totalPago = totalPago;
+      }
+    }
+    return this.licitacao.contratosLicitacao;
+  }
+
   lastPage() {
-    this.location.back(); 
+    this.location.back();
   }
 
 }

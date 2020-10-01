@@ -1,3 +1,7 @@
-<div class="view-container">
-  <app-info-licitacao [licitacao]="licitacao"></app-info-licitacao>
+<div class="d-flex justify-content-center">
+  <loading-spinner class="mt-2" *ngIf="isLoading"></loading-spinner>
+</div>
+
+<div class="view-container" *ngIf="!isLoading" >
+  <app-info-licitacao [licitacao]="licitacao" [municipioEscolhido]="municipioEscolhido"></app-info-licitacao>
 </div>

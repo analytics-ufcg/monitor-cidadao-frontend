@@ -120,7 +120,7 @@
     <div class="row">
         <div class="col-sm-12 pb-5">
             <h6 class="text-warning"> <strong>Contratos Originados</strong></h6>
-            <div class="" *ngFor="let contrato of licitacao?.contratosLicitacao">
+            <div class="" *ngFor="let contrato of getContratosLicitacao()">
                 <app-card-contrato [contrato] = "contrato"></app-card-contrato>
         </div>
     </div>

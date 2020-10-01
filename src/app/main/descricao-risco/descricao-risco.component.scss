@@ -1,3 +1,7 @@
+.secao-inicial{
+    background: #edf0f4;
+}
+
 a,
 p {
     padding: 0px;
@@ -8,18 +12,10 @@ p {
     max-width: 0.75em;
 }
 
-.secao-inicial {
-    background: #edf0f4;
-}
-
 .custom-position-title {
     position: relative;
 
     @media (min-width: 576px) {
         left: -19px;
     }
-}
-
-.custom-value {
-    white-space: nowrap;
 }
