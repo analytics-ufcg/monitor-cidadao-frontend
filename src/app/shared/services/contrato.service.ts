@@ -23,7 +23,7 @@ export class ContratoService {
 
   // Recupera contratos de um municipio
   getContratosPorMunicipio(municipio: string): Observable<Contrato[]> {
-    const params = new HttpParams().set('cd_municipio', municipio);
+    const params = new HttpParams().set('cd_ibge', municipio);
     return this.http.get<Contrato[]>(this.url + '/municipio', { params }).pipe(map(res => {
       this.previsaoService.previsoes.map(previsao => {
         res.map(contrato => {

@@ -2,12 +2,12 @@ import { TipoBusca } from './../enum/tipo-busca.enum';
 import { Buscavel } from './buscavel.model';
 
 export class Municipio {
-    cd_municipio: string;
-    no_municipio: string;
+    cd_ibge: string;
+    nome_municipio: string;
 
-    constructor (cd_municipio?, no_municipio?) {
-        this.cd_municipio = cd_municipio;
-        this.no_municipio = no_municipio;
+    constructor (cd_ibge?, nome_municipio?) {
+        this.cd_ibge = cd_ibge;
+        this.nome_municipio = nome_municipio;
     }
 
 }

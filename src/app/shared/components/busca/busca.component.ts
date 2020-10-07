@@ -43,7 +43,7 @@ export class BuscaComponent implements OnInit {
         let buscaveis: Buscavel[] = []
 
         this.municipios = municipios.map((response: any) =>
-          buscaveis.push(new Buscavel(response.cd_municipio, response.no_municipio, TipoBusca.Municipio))
+          buscaveis.push(new Buscavel(response.cd_ibge, response.nome_municipio, TipoBusca.Municipio))
         );
 
         this.municipios = buscaveis;

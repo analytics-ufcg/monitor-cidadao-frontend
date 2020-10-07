@@ -45,7 +45,7 @@ export class ListaLicitacoesComponent implements OnInit {
   }
 
   getLicitacoes(municipio: Municipio) {
-    this.licitacoesService.getLicitacoesPorMunicipio(this.municipioEscolhido.cd_municipio)
+    this.licitacoesService.getLicitacoesPorMunicipio(this.municipioEscolhido.cd_ibge)
       .pipe(takeUntil(this.unsubscribe))
       .subscribe(licitacoes => {
         this.licitacoes = licitacoes.sort((a, b) => (b.dt_ano - a.dt_ano));
