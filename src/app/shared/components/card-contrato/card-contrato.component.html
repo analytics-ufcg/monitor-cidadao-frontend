@@ -7,7 +7,8 @@
             </small>
             </div>
             <div class="col-sm-4  mx-auto">
-                <h6 class="text-warning text-capitalize mb-1"><strong>{{contrato.no_fornecedor | formatNomeEmpresa}}</strong></h6>
+                <h6 *ngIf="contrato.no_fornecedor" class="text-warning text-capitalize mb-1"><strong>{{contrato.no_fornecedor | formatNomeEmpresa}}</strong></h6>
+                <h6 *ngIf="!contrato.no_fornecedor" class="text-warning mb-1"><strong>Nome não encontrado</strong></h6>
                 <span class="text-secondary">CNPJ/CPF: {{contrato.nu_cpfcnpj | formatCpfCnpj}}</span>
             </div>
 

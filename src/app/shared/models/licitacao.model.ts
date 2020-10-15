@@ -1,7 +1,7 @@
 import { Contrato } from './contrato.model';
 export class Licitacao {
     id_licitacao: string
-    cd_municipio: string
+    cd_ibge: string
     cd_u_gestora: number
     dt_ano:  number
     nu_licitacao: string

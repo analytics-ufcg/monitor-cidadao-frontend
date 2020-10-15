@@ -36,7 +36,7 @@ export class LicitacaoComponent implements OnInit, OnDestroy {
       .subscribe(licitacao => {
         this.licitacao = licitacao;
         this.isLoading = false;
-        this.getMunicipioByID(this.licitacao?.cd_municipio);
+        this.getMunicipioByID(this.licitacao?.cd_ibge);
       });
   }
 

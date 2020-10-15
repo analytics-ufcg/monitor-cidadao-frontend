@@ -22,9 +22,9 @@ export class RegiaoService {
   }
 
 
-  getMunicipiosbyId(cd_municipio): Observable<Municipio[]> {
+  getMunicipiosbyId(cd_ibge): Observable<Municipio[]> {
     return  this.getMunicipios().pipe(map(res =>
-      res.filter(v => v.cd_municipio.toLowerCase().indexOf(cd_municipio.toLowerCase()) > -1)
+      res.filter(v => v.cd_ibge.toLowerCase().indexOf(cd_ibge.toLowerCase()) > -1)
     ));
   }
 

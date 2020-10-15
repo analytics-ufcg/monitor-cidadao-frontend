@@ -40,7 +40,7 @@ export class InfoContratoComponent implements OnInit, OnDestroy {
       .subscribe(contrato => {
         this.contrato = contrato;
         this.isLoading = false;
-        this.getMunicipioById(contrato.cd_municipio);
+        this.getMunicipioById(contrato.cd_ibge);
       });
   }
 

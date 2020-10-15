@@ -56,7 +56,7 @@ export class ListaContratosComponent implements OnInit {
   }
 
   getContratos(municipio: Municipio) {
-    this.contratosService.getContratosPorMunicipio(municipio.cd_municipio)
+    this.contratosService.getContratosPorMunicipio(municipio.cd_ibge)
       .pipe(takeUntil(this.unsubscribe)).subscribe(contratos => {
         this.contratos = contratos.sort((a, b) => (b.dt_ano - a.dt_ano));
         this.contratosFiltrados = this.contratos;

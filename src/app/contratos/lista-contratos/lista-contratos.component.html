@@ -85,7 +85,7 @@
                 
                 <div class="col-sm-2 mx-auto my-auto">
                     <small class="text-secondary"> Realizado em {{contrato.dt_ano}}</small>
-                    <h6 class="text-secondary"><strong>{{contrato.de_ugestora}}</strong></h6>
+                    <h6 class="text-secondary"><strong>{{contrato.de_ugestora | formatNomeEmpresa}}</strong></h6>
                 </div>
                 <div class="col-sm-2 my-auto mx-auto">
                     <h5 class="text-warning text-capitalize mt-3 mt-sm-0"><strong class="custom-value">{{ contrato.vl_total_contrato | currency: "R$" }}</strong></h5>
