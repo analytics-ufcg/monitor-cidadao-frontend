@@ -7,7 +7,7 @@
   <div class="container pt-5">
       <nav aria-label="breadcrumb">
           <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a class="text-info" href="/home">Paraíba</a></li>
+              <li class="breadcrumb-item"><a class="text-info" href="/home">Início</a></li>
               <li class="breadcrumb-item"><a class="text-info"
                       href="/municipios/{{municipioEscolhido?.cd_ibge}}">{{municipioEscolhido?.nome_municipio}}</a></li>
               <li class="breadcrumb-item"><a class="text-info" href="/municipios/{{municipioEscolhido?.cd_ibge}}">Contratos</a></li>
@@ -111,9 +111,12 @@
         </div>
         <div class="col-sm-4 mt-3 mt-sm-0">
             <strong><span class="text-warning">Empresa Contratada</span></strong>
-            <h6 class="text-warning text-capitalize mt-1">
-              {{contrato?.no_fornecedor | formatNomeEmpresa}}
+            <h6 *ngIf="!contrato?.no_fornecedor" class="text-warning mt-1">
+              Nome não encontrado
             </h6>
+            <h6 *ngIf="contrato?.no_fornecedor" class="text-warning text-capitalize mt-1">
+                {{contrato?.no_fornecedor | formatNomeEmpresa}}
+              </h6>
             <span class="text-secondary"><small><strong> {{contrato?.nu_cpfcnpj | formatCpfCnpj}}</strong></small></span>
         </div>
         <div class="col-sm-4 mt-3 mt-sm-0">

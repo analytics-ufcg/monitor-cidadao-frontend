@@ -3,7 +3,10 @@
   <i *ngIf="r?.tipoBusca=='CONTRATO'" class="fas fa-search mr-2"></i>
   <span *ngIf="r?.tipoBusca=='CONTRATO'" > Buscar <strong>contratos</strong> com o termo "</span>
   <ngb-highlight class= "custom-description lr-1" [result]="r?.descricao" [term]="t"></ngb-highlight>
-  <small *ngIf="r?.tipoBusca=='MUNICIPIO'">, Município</small>
+  <small *ngIf="r?.tipoBusca=='MUNICIPIO'">, 
+    <span *ngIf="r?.uf=='25'">PB</span>
+    <span *ngIf="r?.uf=='43'">RS</span>
+  </small>
   <span *ngIf="r?.tipoBusca=='CONTRATO'">"</span>
   <hr *ngIf="r?.tipoBusca=='CONTRATO'">
 </ng-template>
