@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="col-sm-2 mx-auto my-auto">
-                    <small class="text-secondary"> Iniciado em {{ contrato.data_inicio }}</small>
+                    <small class="text-secondary"> Iniciado em {{ contrato?.dt_assinatura | date: 'yyyy' }}</small>
                     <h6 class="text-secondary"><strong>{{contrato.de_ugestora | formatNomeEmpresa}}</strong></h6>
                 </div>
                 <div class="col-sm-2 my-auto mx-auto">
