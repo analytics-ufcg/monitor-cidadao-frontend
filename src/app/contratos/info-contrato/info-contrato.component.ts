@@ -93,7 +93,7 @@ export class InfoContratoComponent implements OnInit, OnDestroy {
 
   getRisco(contrato: Contrato) {
     if (!contrato?.previsao) {
-      return 0;
+      return -1;
     }
     return (contrato?.previsao.risco * 100).toFixed(0);
   }

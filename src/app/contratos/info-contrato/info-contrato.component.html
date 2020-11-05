@@ -127,18 +127,21 @@
                     role="progressbar" 
                     [style.width.%]="getRisco (contrato)" 
                     [ngClass]="{
-                        'bg-danger' : getRisco (contrato) >= 75,
-                        'bg-warnning' : getRisco (contrato) >= 50,
-                        'bg-success' : getRisco (contrato) < 50
-                     }"
+                        'bg-danger' : getRisco (contrato) > 25,
+                        'bg-warnning' : getRisco (contrato) > 10,
+                        'bg-success' : getRisco (contrato) <= 10
+                        }"
                     aria-valuenow="0" 
                     aria-valuemin="0" 
                     aria-valuemax="100"></div>
                 </div>
             </div>
-            <span *ngIf="contrato?.previsao" class="text-secondary"><small>{{getRisco (contrato)}}% de chances de rompimento</small></span>
-            <span *ngIf="!contrato?.previsao" class="text-secondary"><small>Nenhum risco associado.</small></span>
+            <span *ngIf="getRisco (contrato) > 25" class="text-secondary risk custom-risk"><small>Alto Risco</small></span>
+            <span *ngIf="getRisco (contrato) > 10 && getRisco (contrato) <= 25" class="text-secondary risk custom-risk"><small>Médio Risco</small></span>
+            <span *ngIf="getRisco (contrato) <= 10 && getRisco (contrato) >=0 " class="text-secondary risk custom-risk"><small>Baixo Risco</small></span>
+            <span *ngIf="getRisco (contrato) == -1" class="text-secondary risk custom-risk"><small>Sem Risco Associado</small></span>
         </div>
+       
     </div>
 </div>
 
