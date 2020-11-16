@@ -12,3 +12,12 @@
     z-index: 1000;
     right: 5px;
 }
+
+.custom-logo {
+    width: 175px;
+
+    @media (min-width: 640px) {
+        width: 215px
+
+    }
+}
