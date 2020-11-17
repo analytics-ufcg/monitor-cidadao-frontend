@@ -26,13 +26,21 @@ export class BuscaComponent implements OnInit {
 
   public municipios: any[];
   public municipioSelecionado: Municipio;
+  
+  gFirst = true;
+  timeToWait = 850;
 
+  textPrincipal = 'Busque aqui por um contrato ou município';
+  texts = [this.textPrincipal, this.textPrincipal + ' |'];
+  placeHolder = this.textPrincipal;
+  
 
   constructor(private router: Router,
     private regiaoService: RegiaoService,
-    private buscaService: BuscaService) { }
-
-  ngOnInit() {
+    private buscaService: BuscaService) {}
+    
+    ngOnInit() {
+    this.setPlaceholderSearch();
     this.getMunicipios();
   }
 
@@ -94,5 +102,20 @@ export class BuscaComponent implements OnInit {
     )
   formatter = (x: { descricao: string }) => x.descricao;
 
+
+
+  setPlaceholderSearch(){
+    setTimeout(() => {
+        if (this.gFirst) {
+          this.placeHolder = this.texts[1];
+          this.gFirst = !this.gFirst;
+          this.setPlaceholderSearch();
+        }else {
+          this.placeHolder = this.texts[0];
+          this.gFirst = !this.gFirst;
+          this.setPlaceholderSearch();
+        }
+    }, this.timeToWait);
+  }
 
 }
